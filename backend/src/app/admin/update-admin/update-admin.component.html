@@ -1,0 +1,130 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPy6jbsFpkq2QwHQARgBV1XUM2IanHqrs99zC5UR9DEx_RJBJn"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                </div>
+                <form
+                  class="admin"
+                  [formGroup]="updateAdminForm"
+                  (ngSubmit)="onSubmit(updateAdminForm.value)"
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-admin"
+                      placeholder="Enter Name here..."
+                      formControlName="admin_name"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateAdminForm
+                          .get('admin_name')
+                          .hasError('required') &&
+                        updateAdminForm.get('admin_name').touched
+                      "
+                    >
+                      Name is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-admin"
+                      placeholder="Enter Password Number here..."
+                      formControlName="admin_password"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateAdminForm
+                          .get('admin_password')
+                          .hasError('required') &&
+                        updateAdminForm.get('admin_password').touched
+                      "
+                    >
+                      Password is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control form-control-admin"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter Email Address..."
+                      formControlName="admin_email"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateAdminForm.get('admin_email').hasError('email') &&
+                        !updateAdminForm.get('admin_email').hasError('required')
+                      "
+                    >
+                      Please enter a valid email address
+                    </label>
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateAdminForm
+                          .get('admin_email')
+                          .hasError('required') &&
+                        updateAdminForm.get('admin_email').touched
+                      "
+                    >
+                      Email is <strong>required</strong>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-admin"
+                      placeholder="Enter Mobile Number here..."
+                      formControlName="admin_mobile"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateAdminForm
+                          .get('admin_mobile')
+                          .hasError('required') &&
+                        updateAdminForm.get('admin_mobile').touched
+                      "
+                    >
+                      Mobile number is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <button
+                    class="btn btn-primary btn-admin btn-block"
+                    type="submit"
+                    [disabled]="updateAdminForm.invalid"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

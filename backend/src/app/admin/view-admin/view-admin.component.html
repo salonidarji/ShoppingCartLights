@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">admins</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All admins
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of admin_arr">
+            <tr>
+              <td>{{ item.admin_name }}</td>
+              <td>{{ item.admin_password }}</td>
+              <td>{{ item.admin_email }}</td>
+              <td>{{ item.admin_mobile }}</td>
+              <td colspan="3">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="deleteAdmin(item.pk_admin_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+                <!-- <button
+                  class="btn btn-primary btn-md"
+                  (click)="singleadmin(item.pk_admin_id)"
+                >
+                  View
+                </button> -->
+                &nbsp;
+                <button
+                  class="btn btn-primary btn-md"
+                  routerLink="/updateAdmin/{{ item.pk_admin_id }}"
+                >
+                  <span class="fa fa-pen"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
