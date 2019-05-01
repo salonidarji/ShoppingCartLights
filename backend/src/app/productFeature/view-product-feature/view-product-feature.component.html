@@ -1,3 +1,63 @@
-<p>
-  view-product-feature works!
-</p>
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Product Features</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All Product Features
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Feature Id</th>
+              <th>Product ID</th>
+              <th>Feature Value</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of productFeature_arr">
+            <tr>
+              <td>{{ item.fk_feature_id }}</td>
+              <td>{{ item.fk_product_id }}</td>
+              <td>{{ item.feature_value }}</td>
+              <td colspan="3">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="deleteProductFeature(item.pk_product_feature_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+                <!-- <button
+                    class="btn btn-primary btn-md"
+                    (click)="singleproductFeature(item.pk_productFeature_id)"
+                  >
+                    View
+                  </button> -->
+                &nbsp;
+                <button
+                  class="btn btn-primary btn-md"
+                  routerLink="/updateProductFeature/{{
+                    item.pk_product_feature_id
+                  }}"
+                >
+                  <span class="fa fa-pen"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

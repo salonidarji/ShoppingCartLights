@@ -1,3 +1,59 @@
-<p>
-  view-category works!
-</p>
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Category</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All Category
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Parent Id</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of category_arr">
+            <tr>
+              <td>{{ item.category_name }}</td>
+              <td>{{ item.fk_parent_id }}</td>
+              <td colspan="3">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="deleteCategory(item.pk_category_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+                <!-- <button
+                    class="btn btn-primary btn-md"
+                    (click)="singlecategory(item.pk_category_id)"
+                  >
+                    View
+                  </button> -->
+                &nbsp;
+                <button
+                  class="btn btn-primary btn-md"
+                  routerLink="/updateCategory/{{ item.pk_category_id }}"
+                >
+                  <span class="fa fa-pen"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

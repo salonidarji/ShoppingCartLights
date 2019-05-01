@@ -1,3 +1,65 @@
-<p>
-  view-product works!
-</p>
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Products</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All Products
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Sale price</th>
+              <th>Category Id</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of product_arr">
+            <tr>
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.product_desc }}</td>
+              <td>{{ item.product_price }}</td>
+              <td>{{ item.product_sale_price }}</td>
+              <td>{{ item.fk_category_id }}</td>
+              <td colspan="3">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="deleteProduct(item.pk_product_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+                <!-- <button
+                    class="btn btn-primary btn-md"
+                    (click)="singleproduct(item.pk_product_id)"
+                  >
+                    View
+                  </button> -->
+                &nbsp;
+                <button
+                  class="btn btn-primary btn-md"
+                  routerLink="/updateProduct/{{ item.pk_product_id }}"
+                >
+                  <span class="fa fa-pen"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

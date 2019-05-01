@@ -1,3 +1,73 @@
-<p>
-  view-order works!
-</p>
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Order</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All Orders
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>User Id</th>
+              <th>Address Name</th>
+              <th>Mobile</th>
+              <th>Address Line1</th>
+              <th>Address Line2</th>
+              <th>Landmark</th>
+              <th>Pincode</th>
+              <th>City</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of order_arr">
+            <tr>
+              <td>{{ item.order_date }}</td>
+              <td>{{ item.fk_user_id }}</td>
+              <td>{{ item.address_name }}</td>
+              <td>{{ item.address_mobile }}</td>
+              <td>{{ item.address_line_1 }}</td>
+              <td>{{ item.address_line_2 }}</td>
+              <td>{{ item.address_landmark }}</td>
+              <td>{{ item.address_pincode }}</td>
+              <td>{{ item.address_city }}</td>
+              <td colspan="3">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="deleteOrder(item.pk_order_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+                <!-- <button
+                      class="btn btn-primary btn-md"
+                      (click)="singleOrder(item.pk_Order_id)"
+                    >
+                      View
+                    </button> -->
+                &nbsp;
+                <button
+                  class="btn btn-primary btn-md"
+                  routerLink="/updateOrder/{{ item.pk_order_id }}"
+                >
+                  <span class="fa fa-pen"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
