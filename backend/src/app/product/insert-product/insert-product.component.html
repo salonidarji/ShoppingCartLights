@@ -1,3 +1,137 @@
-<p>
-  insert-product works!
-</p>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://apps.odoo.com/apps/icon_image?module_id=32428"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Create Product</h1>
+                </div>
+                <form
+                  class="product"
+                  [formGroup]="insertProductForm"
+                  (ngSubmit)="onSubmit(insertProductForm.value)"
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-product"
+                      placeholder="Enter Name here..."
+                      formControlName="product_name"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertProductForm
+                          .get('product_name')
+                          .hasError('required') &&
+                        insertProductForm.get('product_name').touched
+                      "
+                    >
+                      Name is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <textarea
+                      class="form-control form-control-product"
+                      aria-describedby=""
+                      placeholder="Enter Description..."
+                      formControlName="product_desc"
+                    ></textarea>
+
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertProductForm
+                          .get('product_desc')
+                          .hasError('required') &&
+                        insertProductForm.get('product_desc').touched
+                      "
+                    >
+                      Description is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-product"
+                      placeholder="Enter Price here..."
+                      formControlName="product_price"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertProductForm
+                          .get('product_price')
+                          .hasError('required') &&
+                        insertProductForm.get('product_price').touched
+                      "
+                    >
+                      product price is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-product"
+                      placeholder="Enter Sale Price here..."
+                      formControlName="product_sale_price"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertProductForm
+                          .get('product_sale_price')
+                          .hasError('required') &&
+                        insertProductForm.get('product_sale_price').touched
+                      "
+                    >
+                      Sale price is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <select
+                      class="form-control form-control-product"
+                      placeholder="Select Category of product here..."
+                      formControlName="fk_category_id"
+                    >
+                      <option value="0">None</option>
+                      <option
+                        *ngFor="let item of category_arr"
+                        value="{{ item.pk_category_id }}"
+                        >{{ item.category_name }}</option
+                      >
+                    </select>
+                  </div>
+
+                  <button
+                    class="btn btn-primary btn-product btn-block"
+                    type="submit"
+                    [disabled]="insertProductForm.invalid"
+                  >
+                    Insert
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

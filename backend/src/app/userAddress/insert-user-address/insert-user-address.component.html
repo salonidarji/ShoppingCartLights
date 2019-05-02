@@ -1,3 +1,197 @@
-<p>
-  insert-user-address works!
-</p>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden buserAddress-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://apps.odoo.com/apps/icon_image?module_id=32428"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Create User Address</h1>
+                </div>
+                <form
+                  class="userAddress"
+                  [formGroup]="insertUserAddressForm"
+                  (ngSubmit)="onSubmit(insertUserAddressForm.value)"
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Name here..."
+                      formControlName="address_name"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('address_name')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('address_name').touched
+                      "
+                    >
+                      Address Name is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Mobile here..."
+                      formControlName="address_mobile"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('address_mobile')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('address_mobile').touched
+                      "
+                    >
+                      Address Mobile is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Line1 here..."
+                      formControlName="address_line_1"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('address_line_1')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('address_line_1').touched
+                      "
+                    >
+                      Address Line1 is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Line2 here..."
+                      formControlName="address_line_2"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Landmark here..."
+                      formControlName="address_landmark"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address Pincode here..."
+                      formControlName="address_pincode"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('address_pincode')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('address_pincode').touched
+                      "
+                    >
+                      Address Pincode is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Address City here..."
+                      formControlName="address_city"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('address_city')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('address_city').touched
+                      "
+                    >
+                      Address City is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <select
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter User Id here..."
+                      formControlName="fk_user_id"
+                    >
+                      <option
+                        *ngFor="let item of user_arr"
+                        value="{{ item.pk_user_id }}"
+                      >
+                        {{ item.user_name }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <select
+                      class="form-control form-control-userAddress"
+                      placeholder="Enter Default value here..."
+                      formControlName="is_default"
+                    >
+                      <option>--Select Default Value</option>
+                      <option value="1">Default Address</option>
+                      <option value="0">Not Default Address</option>
+                    </select>
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertUserAddressForm
+                          .get('is_default')
+                          .hasError('required') &&
+                        insertUserAddressForm.get('is_default').touched
+                      "
+                    >
+                      Default value is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <button
+                    class="btn btn-primary btn-userAddress btn-block"
+                    type="submit"
+                    [disabled]="insertUserAddressForm.invalid"
+                  >
+                    Insert
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
