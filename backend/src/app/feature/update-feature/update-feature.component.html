@@ -1,3 +1,61 @@
-<p>
-  update-feature works!
-</p>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://apps.odoo.com/apps/icon_image?module_id=32428"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Update Feature</h1>
+                </div>
+                <form
+                  class="feature"
+                  [formGroup]="updateFeatureForm"
+                  (ngSubmit)="onSubmit(updateFeatureForm.value)"
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-feature"
+                      placeholder="Enter Name here..."
+                      formControlName="feature_name"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateFeatureForm
+                          .get('feature_name')
+                          .hasError('required') &&
+                        updateFeatureForm.get('feature_name').touched
+                      "
+                    >
+                      Name is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <button
+                    class="btn btn-primary btn-feature btn-block"
+                    type="submit"
+                    [disabled]="updateFeatureForm.invalid"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

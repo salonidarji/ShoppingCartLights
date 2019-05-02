@@ -38,7 +38,7 @@ var OrderDetail = {
   },
   updateOrderDetail: function(id, item, callback) {
     return db.query(
-      "update order_detail_tbl set fk_order_id=?, fk_product_id=? where pk_detail_id=?",
+      "update order_detail_tbl set fk_order_id=?, fk_product_id=? , detail_qty=? , detail_price=? where pk_detail_id=?",
       [
         item.fk_order_id,
         item.fk_product_id,

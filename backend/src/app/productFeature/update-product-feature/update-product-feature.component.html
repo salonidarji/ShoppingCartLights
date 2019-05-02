@@ -1,3 +1,117 @@
-<p>
-  update-product-feature works!
-</p>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://apps.odoo.com/apps/icon_image?module_id=32428"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Update Product Feature</h1>
+                </div>
+                <form
+                  class="productFeature"
+                  [formGroup]="updateProductFeatureForm"
+                  (ngSubmit)="onSubmit(updateProductFeatureForm.value)"
+                >
+                  <div class="form-group">
+                    <select
+                      class="form-control form-control-productFeature"
+                      aria-describedby=""
+                      placeholder="Enter feature id..."
+                      formControlName="fk_feature_id"
+                    >
+                      <option
+                        *ngFor="let item of feature_arr"
+                        value="{{ item.pk_feature_id }}"
+                      >
+                        {{ item.feature_name }}</option
+                      >
+                    </select>
+
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateProductFeatureForm
+                          .get('fk_feature_id')
+                          .hasError('required') &&
+                        updateProductFeatureForm.get('fk_feature_id').touched
+                      "
+                    >
+                      Feture is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <select
+                      class="form-control form-control-productFeature"
+                      aria-describedby=""
+                      placeholder="Enter product id..."
+                      formControlName="fk_product_id"
+                    >
+                      <option
+                        *ngFor="let item of product_arr"
+                        value="{{ item.pk_product_id }}"
+                      >
+                        {{ item.product_name }}</option
+                      >
+                    </select>
+
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateProductFeatureForm
+                          .get('fk_product_id')
+                          .hasError('required') &&
+                        updateProductFeatureForm.get('fk_product_id').touched
+                      "
+                    >
+                      product is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-productFeature"
+                      placeholder="Enter Value here..."
+                      formControlName="feature_value"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        updateProductFeatureForm
+                          .get('feature_value')
+                          .hasError('required') &&
+                        updateProductFeatureForm.get('feature_value').touched
+                      "
+                    >
+                      value is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <button
+                    class="btn btn-primary btn-productFeature btn-block"
+                    type="submit"
+                    [disabled]="updateProductFeatureForm.invalid"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
