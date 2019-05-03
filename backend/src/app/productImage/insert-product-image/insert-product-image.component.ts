@@ -5,6 +5,10 @@ import { ProductImage } from "../../models/product-image";
 import { ProductImageServiceService } from "../../services/product-image-service.service";
 import { Product } from "../../models/product";
 import { ProductServiceService } from "../../services/product-service.service";
+import {
+  FileUploader,
+  FileSelectDirective
+} from "ng2-file-upload/ng2-file-upload";
 
 @Component({
   selector: "app-insert-product-image",
@@ -39,6 +43,12 @@ export class InsertProductImageComponent implements OnInit {
         console.log("finally product");
       }
     );
+  }
+
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file.name);
+    this.insertProductImageForm.controls["image_url"].setValue(file.name);
   }
 
   onSubmit() {

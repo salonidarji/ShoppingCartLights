@@ -26,10 +26,16 @@
                   <div class="form-group">
                     <input
                       type="file"
+                      (change)="onFileUpload($event)"
+                      formControlName="image_url"
+                    />
+                    <!-- <input
+                      type="file"
+                      (change)="onFileUpload($event)"
                       class="form-control form-control-productImage"
                       placeholder="Enter url here..."
                       formControlName="image_url"
-                    />
+                    /> -->
                     <label
                       class="text-danger"
                       *ngIf="
