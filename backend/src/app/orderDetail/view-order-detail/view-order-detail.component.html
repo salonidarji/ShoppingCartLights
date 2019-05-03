@@ -19,8 +19,8 @@
         >
           <thead>
             <tr>
-              <th>Order Id</th>
-              <th>Product Id</th>
+              <th>Order Date</th>
+              <th>Product</th>
               <th>Quantity</th>
               <th>Price</th>
               <th>Action</th>
@@ -29,8 +29,8 @@
 
           <tbody *ngFor="let item of orderDetail_arr">
             <tr>
-              <td>{{ item.fk_order_id }}</td>
-              <td>{{ item.fk_product_id }}</td>
+              <td>{{ item.order_date }}</td>
+              <td>{{ item.product_name }}</td>
               <td>{{ item.detail_qty }}</td>
               <td>{{ item.detail_price }}</td>
               <td colspan="3">

@@ -20,7 +20,7 @@
           <thead>
             <tr>
               <th>Date</th>
-              <th>User Id</th>
+              <th>User</th>
               <th>Address Name</th>
               <th>Mobile</th>
               <th>Address Line1</th>
@@ -35,7 +35,7 @@
           <tbody *ngFor="let item of order_arr">
             <tr>
               <td>{{ item.order_date }}</td>
-              <td>{{ item.fk_user_id }}</td>
+              <td>{{ item.user_name }}</td>
               <td>{{ item.address_name }}</td>
               <td>{{ item.address_mobile }}</td>
               <td>{{ item.address_line_1 }}</td>

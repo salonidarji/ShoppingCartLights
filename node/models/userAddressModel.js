@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var UserAddress = {
   getAllUserAddress: function(callback) {
     return db.query(
-      "Select * from user_address_tbl where is_delete=0 && is_active=1",
+      "Select *  from user_address_tbl ua, user_tbl u where ua.fk_user_id=u.pk_user_id && ua.is_active=1 && u.is_active=1 && ua.is_delete=0 && u.is_delete=0",
       callback
     );
   },

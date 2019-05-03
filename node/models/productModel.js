@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var Product = {
   getAllProduct: function(callback) {
     return db.query(
-      "Select * from product_tbl where is_delete=0 && is_active=1",
+      "Select *  from product_tbl p, category_tbl c where p.fk_category_id=c.pk_category_id && c.is_active=1 && p.is_active=1 && c.is_delete=0 && p.is_delete=0",
       callback
     );
   },

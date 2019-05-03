@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var Order = {
   getAllOrder: function(callback) {
     return db.query(
-      "Select * from order_tbl where is_delete=0 && is_active=1",
+      "Select *  from order_tbl o, user_tbl u where o.fk_user_id=u.pk_user_id && o.is_active=1 && u.is_active=1 && o.is_delete=0 && u.is_delete=0",
       callback
     );
   },

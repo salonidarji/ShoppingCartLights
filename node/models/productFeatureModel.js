@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var ProductFeature = {
   getAllProductFeature: function(callback) {
     return db.query(
-      "Select * from product_feature_tbl where is_delete=0 && is_active=1",
+      "Select *  from product_feature_tbl pf , product_tbl p, feature_tbl f where pf.fk_feature_id=f.pk_feature_id  && pf.fk_product_id=p.pk_product_id && pf.is_active=1 && f.is_active=1 && p.is_active=1 && pf.is_delete=0 &&  f.is_delete=0 && p.is_delete=0",
       callback
     );
   },

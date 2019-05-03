@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var ProductImage = {
   getAllProductImage: function(callback) {
     return db.query(
-      "Select * from product_image_tbl where is_delete=0 && is_active=1",
+      "Select *  from product_image_tbl pi, product_tbl p where pi.fk_product_id=p.pk_product_id && pi.is_active=1 && p.is_active=1 && pi.is_delete=0 && p.is_delete=0",
       callback
     );
   },

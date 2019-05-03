@@ -20,15 +20,22 @@
           <thead>
             <tr>
               <th>Image URL</th>
-              <th>Product Id</th>
+              <th>Product</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody *ngFor="let item of productImage_arr">
             <tr>
-              <td>{{ item.image_url }}</td>
-              <td>{{ item.fk_product_id }}</td>
+              <td>
+                <img
+                  src="{{ item.image_url }}"
+                  height="auto"
+                  width="auto"
+                  alt="Image Not Available"
+                />
+              </td>
+              <td>{{ item.product_name }}</td>
               <td colspan="3">
                 <button
                   class="btn btn-primary btn-md"

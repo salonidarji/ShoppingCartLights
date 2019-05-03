@@ -19,8 +19,8 @@
         >
           <thead>
             <tr>
-              <th>Feature Id</th>
-              <th>Product ID</th>
+              <th>Feature</th>
+              <th>Product</th>
               <th>Feature Value</th>
               <th>Action</th>
             </tr>
@@ -28,8 +28,8 @@
 
           <tbody *ngFor="let item of productFeature_arr">
             <tr>
-              <td>{{ item.fk_feature_id }}</td>
-              <td>{{ item.fk_product_id }}</td>
+              <td>{{ item.feature_name }}</td>
+              <td>{{ item.product_name }}</td>
               <td>{{ item.feature_value }}</td>
               <td colspan="3">
                 <button
