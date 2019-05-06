@@ -9,7 +9,7 @@ var Admin = {
   },
   getAdmin: function(id, callback) {
     return db.query(
-      "select * from admin_tbl where pk_admin_id=? && is_delete=0 && is_active=1",
+      "select * from admin_tbl where admin_email=? && is_delete=0 && is_active=1",
       [id],
       callback
     );

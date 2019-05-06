@@ -39,6 +39,7 @@ import { InsertOrderDetailComponent } from "./orderDetail/insert-order-detail/in
 import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/update-order-detail.component";
 import { LoginComponent } from "./login/login.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     InsertOrderDetailComponent,
     UpdateOrderDetailComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -32,10 +32,12 @@ import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/up
 import { ViewOrderDetailComponent } from "./orderDetail/view-order-detail/view-order-detail.component";
 import { LoginComponent } from "./login/login.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: DashboardComponent },
+  { path: "profile", component: ProfileComponent },
   { path: "viewUser", component: ViewUserComponent },
   { path: "insertUser", component: InsertUserComponent },
   { path: "updateUser/:uId", component: UpdateUserComponent },
