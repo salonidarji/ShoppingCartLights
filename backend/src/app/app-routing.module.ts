@@ -30,9 +30,12 @@ import { UpdateOrderComponent } from "./order/update-order/update-order.componen
 import { InsertOrderDetailComponent } from "./orderDetail/insert-order-detail/insert-order-detail.component";
 import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/update-order-detail.component";
 import { ViewOrderDetailComponent } from "./orderDetail/view-order-detail/view-order-detail.component";
+import { LoginComponent } from "./login/login.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/viewUser", pathMatch: "full" },
+  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
+  { path: "dashboard", component: DashboardComponent },
   { path: "viewUser", component: ViewUserComponent },
   { path: "insertUser", component: InsertUserComponent },
   { path: "updateUser/:uId", component: UpdateUserComponent },
@@ -65,7 +68,8 @@ const routes: Routes = [
   { path: "updateOrder/:uId", component: UpdateOrderComponent },
   { path: "viewOrderDetail", component: ViewOrderDetailComponent },
   { path: "insertOrderDetail", component: InsertOrderDetailComponent },
-  { path: "updateOrderDetail/:uId", component: UpdateOrderDetailComponent }
+  { path: "updateOrderDetail/:uId", component: UpdateOrderDetailComponent },
+  { path: "login", component: LoginComponent }
 ];
 
 @NgModule({

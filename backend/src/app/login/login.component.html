@@ -1,0 +1,96 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <img
+                src="https://apps.odoo.com/apps/icon_image?module_id=32428"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                </div>
+                <form
+                  class="user"
+                  [formGroup]="insertLoginForm"
+                  (ngSubmit)="onSubmit(insertLoginForm.value)"
+                >
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control form-control-user"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter Email Address..."
+                      formControlName="user_email"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertLoginForm.get('user_email').hasError('email') &&
+                        !insertLoginForm.get('user_email').hasError('required')
+                      "
+                    >
+                      Please enter a valid email address
+                    </label>
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertLoginForm
+                          .get('user_email')
+                          .hasError('required') &&
+                        insertLoginForm.get('user_email').touched
+                      "
+                    >
+                      Email is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      placeholder="Enter Password Number here..."
+                      formControlName="user_password"
+                    />
+                    <label
+                      class="text-danger"
+                      *ngIf="
+                        insertLoginForm
+                          .get('user_password')
+                          .hasError('required') &&
+                        insertLoginForm.get('user_password').touched
+                      "
+                    >
+                      Password is <strong>required</strong>
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <button
+                      class="btn btn-primary btn-user btn-block"
+                      type="submit"
+                      [disabled]="insertLoginForm.invalid"
+                    >
+                      Login
+                    </button>
+                    <label class="text-danger" *ngIf="message">{{
+                      message
+                    }}</label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

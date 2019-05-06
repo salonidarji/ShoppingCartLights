@@ -2,9 +2,9 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/userModel");
 
-router.get("/:id?", function(req, res, next) {
-  if (req.params.id) {
-    User.getUser(req.params.id, function(err, rows) {
+router.get("/:item?", function(req, res, next) {
+  if (req.params.item) {
+    User.getUser(req.params.item, function(err, rows) {
       if (err) {
         res.json(err);
       } else {

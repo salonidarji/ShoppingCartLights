@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AuthGuard } from "./auth.guard";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -36,6 +37,8 @@ import { UpdateOrderComponent } from "./order/update-order/update-order.componen
 import { ViewOrderDetailComponent } from "./orderDetail/view-order-detail/view-order-detail.component";
 import { InsertOrderDetailComponent } from "./orderDetail/insert-order-detail/insert-order-detail.component";
 import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/update-order-detail.component";
+import { LoginComponent } from "./login/login.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,9 @@ import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/up
     UpdateOrderComponent,
     ViewOrderDetailComponent,
     InsertOrderDetailComponent,
-    UpdateOrderDetailComponent
+    UpdateOrderDetailComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

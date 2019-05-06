@@ -7,10 +7,10 @@ var User = {
       callback
     );
   },
-  getUser: function(id, callback) {
+  getUser: function(item, callback) {
     return db.query(
-      "select * from user_tbl where pk_user_id=? && is_delete=0 && is_active=1",
-      [id],
+      "select * from user_tbl where user_email=? && user_password=? && is_delete=0 && is_active=1",
+      [item.user_email, item.user_password],
       callback
     );
   },

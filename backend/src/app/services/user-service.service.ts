@@ -12,8 +12,8 @@ export class UserServiceService {
     return this._http.get(this.user_url);
   }
 
-  getUser(id) {
-    return this._http.get(this.user_url + id);
+  getUser(item) {
+    return this._http.get(this.user_url + item);
   }
 
   deleteUser(id) {
