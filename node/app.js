@@ -16,6 +16,7 @@ var user = require("./routes/user");
 var userAddress = require("./routes/userAddress");
 var order = require("./routes/order");
 var orderDetail = require("./routes/orderDetail");
+var sendEmail = require("./routes/sendEmail");
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use("/user", user);
 app.use("/userAddress", userAddress);
 app.use("/order", order);
 app.use("/orderDetail", orderDetail);
+app.use("/sendEmail", sendEmail);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

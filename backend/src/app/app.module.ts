@@ -38,8 +38,9 @@ import { ViewOrderDetailComponent } from "./orderDetail/view-order-detail/view-o
 import { InsertOrderDetailComponent } from "./orderDetail/insert-order-detail/insert-order-detail.component";
 import { UpdateOrderDetailComponent } from "./orderDetail/update-order-detail/update-order-detail.component";
 import { LoginComponent } from "./login/login.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ProfileComponent } from './profile/profile.component';
     UpdateOrderDetailComponent,
     LoginComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
