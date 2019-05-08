@@ -6,8 +6,8 @@ var SendEmail = {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "salonidarji3335@gmail.com", // generated ethereal user
-        pass: "1941333lavishka" // generated ethereal password
+        user: "akshay.rexontechnologies@gmail.com", // generated ethereal user
+        pass: "Rexon@Designer" // generated ethereal password
       },
       tls: {
         rejectUnauthorized: false
@@ -15,7 +15,7 @@ var SendEmail = {
     });
 
     let mailOptions = {
-      from: "salonidarji3335@gmail.com",
+      from: "akshay.rexontechnologies@gmail.com",
       to: item.admin_email,
       subject: "Password = " + item.admin_password,
       html: `<h1>header tag</h1>`

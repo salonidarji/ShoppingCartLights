@@ -43,7 +43,7 @@ export class AdminServiceService {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
     return this._http.post(
-      "https://localhost:3000/sendEmail/",
+      "http://localhost:3000/sendEmail/",
       body,
       httpOptions
     );
