@@ -8,10 +8,13 @@ import { OrderDetailServiceService } from "../../services/order-detail-service.s
   styleUrls: ["./view-order-detail.component.css"]
 })
 export class ViewOrderDetailComponent implements OnInit {
+  flag: string;
   orderDetail_arr: OrderDetail[];
   constructor(private _orderDetail: OrderDetailServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._orderDetail.getAllOrderDetail().subscribe(
       (_data: any) => {
         this.orderDetail_arr = _data;

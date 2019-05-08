@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="flag == 'true'; else notLogin">
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">User Addresss</h1>
 
@@ -72,3 +72,8 @@
     </div>
   </div>
 </div>
+<ng-template #notLogin>
+  <h1 class="h3 mb-2 text-gray-800 text-danger">
+    You Can Not Access This Page...!!!!
+  </h1>
+</ng-template>

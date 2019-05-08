@@ -14,6 +14,7 @@ import { ProductServiceService } from "../../services/product-service.service";
   styleUrls: ["./update-order-detail.component.css"]
 })
 export class UpdateOrderDetailComponent implements OnInit {
+  flag: string;
   updateOrderDetailForm: FormGroup;
   orderDetail_arr: OrderDetail[];
   order_arr: Order[];
@@ -33,6 +34,8 @@ export class UpdateOrderDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

@@ -8,10 +8,13 @@ import { CategoryServiceService } from "../../services/category-service.service"
   styleUrls: ["./view-category.component.css"]
 })
 export class ViewCategoryComponent implements OnInit {
+  flag: string;
   category_arr: Category[];
   constructor(private _category: CategoryServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._category.getAllCategory().subscribe(
       (_data: any) => {
         this.category_arr = _data;

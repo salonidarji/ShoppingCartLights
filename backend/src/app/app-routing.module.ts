@@ -36,48 +36,173 @@ import { ProfileComponent } from "./profile/profile.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  {
+    path: "dashboard",
+    component: DashboardComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    runGuardsAndResolvers: "always"
+  },
   { path: "forgotPassword", component: ForgotPasswordComponent },
-  { path: "viewUser", component: ViewUserComponent },
-  { path: "insertUser", component: InsertUserComponent },
-  { path: "updateUser/:uId", component: UpdateUserComponent },
-  { path: "viewAdmin", component: ViewAdminComponent },
-  { path: "insertAdmin", component: InsertAdminComponent },
-  { path: "updateAdmin/:uId", component: UpdateAdminComponent },
-  { path: "viewCategory", component: ViewCategoryComponent },
-  { path: "insertCategory", component: InsertCategoryComponent },
-  { path: "updateCategory/:uId", component: UpdateCategoryComponent },
-  { path: "viewProduct", component: ViewProductComponent },
-  { path: "insertProduct", component: InsertProductComponent },
-  { path: "updateProduct/:uId", component: UpdateProductComponent },
-  { path: "viewFeature", component: ViewFeatureComponent },
-  { path: "insertFeature", component: InsertFeatureComponent },
-  { path: "updateFeature/:uId", component: UpdateFeatureComponent },
-  { path: "viewProductFeature", component: ViewProductFeatureComponent },
-  { path: "insertProductFeature", component: InsertProductFeatureComponent },
+  {
+    path: "viewUser",
+    component: ViewUserComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertUser",
+    component: InsertUserComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateUser/:uId",
+    component: UpdateUserComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewAdmin",
+    component: ViewAdminComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertAdmin",
+    component: InsertAdminComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateAdmin/:uId",
+    component: UpdateAdminComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewCategory",
+    component: ViewCategoryComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertCategory",
+    component: InsertCategoryComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateCategory/:uId",
+    component: UpdateCategoryComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewProduct",
+    component: ViewProductComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertProduct",
+    component: InsertProductComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateProduct/:uId",
+    component: UpdateProductComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewFeature",
+    component: ViewFeatureComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertFeature",
+    component: InsertFeatureComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateFeature/:uId",
+    component: UpdateFeatureComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewProductFeature",
+    component: ViewProductFeatureComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertProductFeature",
+    component: InsertProductFeatureComponent,
+    runGuardsAndResolvers: "always"
+  },
   {
     path: "updateProductFeature/:uId",
-    component: UpdateProductFeatureComponent
+    component: UpdateProductFeatureComponent,
+    runGuardsAndResolvers: "always"
   },
-  { path: "viewProductImage", component: ViewProductImageComponent },
-  { path: "insertProductImage", component: InsertProductImageComponent },
-  { path: "updateProductImage/:uId", component: UpdateProductImageComponent },
-  { path: "viewUserAddress", component: ViewUserAddressComponent },
-  { path: "insertUserAddress", component: InsertUserAddressComponent },
-  { path: "updateUserAddress/:uId", component: UpdateUserAddressComponent },
-  { path: "viewOrder", component: ViewOrderComponent },
-  { path: "insertOrder", component: InsertOrderComponent },
-  { path: "updateOrder/:uId", component: UpdateOrderComponent },
-  { path: "viewOrderDetail", component: ViewOrderDetailComponent },
-  { path: "insertOrderDetail", component: InsertOrderDetailComponent },
-  { path: "updateOrderDetail/:uId", component: UpdateOrderDetailComponent },
+  {
+    path: "viewProductImage",
+    component: ViewProductImageComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertProductImage",
+    component: InsertProductImageComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateProductImage/:uId",
+    component: UpdateProductImageComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewUserAddress",
+    component: ViewUserAddressComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertUserAddress",
+    component: InsertUserAddressComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateUserAddress/:uId",
+    component: UpdateUserAddressComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewOrder",
+    component: ViewOrderComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertOrder",
+    component: InsertOrderComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateOrder/:uId",
+    component: UpdateOrderComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "viewOrderDetail",
+    component: ViewOrderDetailComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "insertOrderDetail",
+    component: InsertOrderDetailComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateOrderDetail/:uId",
+    component: UpdateOrderDetailComponent,
+    runGuardsAndResolvers: "always"
+  },
   { path: "login", component: LoginComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

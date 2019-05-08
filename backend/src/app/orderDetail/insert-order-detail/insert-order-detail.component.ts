@@ -14,6 +14,7 @@ import { ProductServiceService } from "../../services/product-service.service";
   styleUrls: ["./insert-order-detail.component.css"]
 })
 export class InsertOrderDetailComponent implements OnInit {
+  flag: string;
   insertOrderDetailForm: FormGroup;
   orderDetail_arr: OrderDetail[];
   order_arr: Order[];
@@ -27,6 +28,8 @@ export class InsertOrderDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertOrderDetailForm = this.fb.group({
       fk_order_id: ["", Validators.required],
       fk_product_id: ["", Validators.required],

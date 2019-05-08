@@ -8,10 +8,13 @@ import { ProductServiceService } from "../../services/product-service.service";
   styleUrls: ["./view-product.component.css"]
 })
 export class ViewProductComponent implements OnInit {
+  flag: string;
   product_arr: Product[];
   constructor(private _product: ProductServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._product.getAllProduct().subscribe(
       (_data: any) => {
         this.product_arr = _data;

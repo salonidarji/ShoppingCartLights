@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./insert-category.component.css"]
 })
 export class InsertCategoryComponent implements OnInit {
+  flag: string;
   insertCategoryForm: FormGroup;
   category_arr: Category[];
   constructor(
@@ -19,6 +20,8 @@ export class InsertCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertCategoryForm = this.fb.group({
       category_name: ["", Validators.required],
       fk_parent_id: [""]

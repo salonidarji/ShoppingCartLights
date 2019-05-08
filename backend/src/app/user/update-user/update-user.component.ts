@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./update-user.component.css"]
 })
 export class UpdateUserComponent implements OnInit {
+  flag: string;
   user_arr: User[];
   name: string;
   mobile: string;
@@ -31,6 +32,8 @@ export class UpdateUserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

@@ -4,7 +4,8 @@ import { Product } from "../../models/product";
 import { ProductServiceService } from "../../services/product-service.service";
 import { Router } from "@angular/router";
 import { Category } from "../../models/category";
-import { CategoryServiceService } from "src/app/services/category-service.service";
+import { CategoryServiceService } from "../../services/category-service.service";
+import { ProductImageServiceService } from "../../services/product-image-service.service";
 
 @Component({
   selector: "app-insert-product",
@@ -12,23 +13,31 @@ import { CategoryServiceService } from "src/app/services/category-service.servic
   styleUrls: ["./insert-product.component.css"]
 })
 export class InsertProductComponent implements OnInit {
+  flag: string;
   insertProductForm: FormGroup;
+  insertProductImageForm: FormGroup;
   product_arr: Product[];
   category_arr: Category[];
   constructor(
     private _product: ProductServiceService,
+    private _productImage: ProductImageServiceService,
     private _category: CategoryServiceService,
     private router: Router,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertProductForm = this.fb.group({
       product_name: ["", Validators.required],
       product_desc: ["", Validators.required],
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
       fk_category_id: [""]
+    });
+    this.insertProductImageForm = this.fb.group({
+      image_url: ["", Validators.required]
     });
 
     this._category.getAllCategory().subscribe(
@@ -41,6 +50,14 @@ export class InsertProductComponent implements OnInit {
       function() {
         console.log("category get done");
       }
+    );
+  }
+  file: File;
+  onFileUpload(event) {
+    this.file = event.target.files[0];
+    console.log(this.file.name);
+    TODO: this.insertProductImageForm.controls["image_url"].setValue(
+      this.file.name
     );
   }
 
@@ -58,5 +75,20 @@ export class InsertProductComponent implements OnInit {
         console.log("finally");
       }
     );
+
+    this._productImage
+      .insertProductImage(this.insertProductImageForm.value)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/viewProduct"]);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally product image");
+        }
+      );
   }
 }

@@ -9,9 +9,12 @@ import { UserServiceService } from "../../services/user-service.service";
 })
 export class ViewUserComponent implements OnInit {
   user_arr: User[];
+  flag: string;
   constructor(private _user: UserServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._user.getAllUser().subscribe(
       (_data: any) => {
         this.user_arr = _data;

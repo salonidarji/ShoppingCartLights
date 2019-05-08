@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./update-category.component.css"]
 })
 export class UpdateCategoryComponent implements OnInit {
+  flag: string;
   updateCategoryForm: FormGroup;
   category_arr: Category[];
   id: string;
@@ -21,6 +22,8 @@ export class UpdateCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

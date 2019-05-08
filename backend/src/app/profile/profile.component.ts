@@ -8,6 +8,7 @@ import { AdminServiceService } from "../services/admin-service.service";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
+  flag: string;
   id: string;
   name: string;
   mobile: string;
@@ -16,6 +17,8 @@ export class ProfileComponent implements OnInit {
   constructor(private _admin: AdminServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.id = localStorage.getItem("token");
 
     this._admin.getAdmin(this.id).subscribe(

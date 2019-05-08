@@ -8,12 +8,15 @@ import { Router } from "@angular/router";
   styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
+  flag: string;
   id: string;
   constructor(
     public _authService: AuthenticationServiceService,
     private router: Router
   ) {}
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.id = localStorage.getItem("token");
   }
 

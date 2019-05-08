@@ -8,10 +8,13 @@ import { Order } from "../../models/order";
   styleUrls: ["./view-order.component.css"]
 })
 export class ViewOrderComponent implements OnInit {
+  flag: string;
   order_arr: Order[];
   constructor(private _order: OrderServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._order.getAllOrder().subscribe(
       (_data: any) => {
         this.order_arr = _data;

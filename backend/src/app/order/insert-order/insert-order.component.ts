@@ -12,6 +12,7 @@ import { UserServiceService } from "../../services/user-service.service";
   styleUrls: ["./insert-order.component.css"]
 })
 export class InsertOrderComponent implements OnInit {
+  flag: string;
   insertOrderForm: FormGroup;
   order_arr: Order[];
   user_arr: User[];
@@ -23,6 +24,8 @@ export class InsertOrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertOrderForm = this.fb.group({
       order_date: ["", Validators.required],
       fk_user_id: [""],

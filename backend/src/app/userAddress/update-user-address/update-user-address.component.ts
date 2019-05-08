@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./update-user-address.component.css"]
 })
 export class UpdateUserAddressComponent implements OnInit {
+  flag: string;
   updateUserAddressForm: FormGroup;
   userAddress_arr: UserAddress[];
   user_arr: User[];
@@ -32,6 +33,8 @@ export class UpdateUserAddressComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

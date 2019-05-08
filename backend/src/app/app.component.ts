@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
   title = "Admin";
   id: string;
+  flag: string;
 
   constructor(
     public _authService: AuthenticationServiceService,
@@ -17,6 +18,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
     this.id = localStorage.getItem("token");
   }
 

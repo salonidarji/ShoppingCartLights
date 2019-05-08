@@ -10,6 +10,7 @@ import { AdminServiceService } from "src/app/services/admin-service.service";
   styleUrls: ["./update-admin.component.css"]
 })
 export class UpdateAdminComponent implements OnInit {
+  flag: string;
   admin_arr: Admin[];
   name: string;
   mobile: string;
@@ -26,6 +27,8 @@ export class UpdateAdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

@@ -8,10 +8,13 @@ import { UserAddressServiceService } from "../../services/user-address-service.s
   styleUrls: ["./view-user-address.component.css"]
 })
 export class ViewUserAddressComponent implements OnInit {
+  flag: string;
   userAddress_arr: UserAddress[];
   constructor(private _userAddress: UserAddressServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._userAddress.getAllUserAddress().subscribe(
       (_data: any) => {
         this.userAddress_arr = _data;

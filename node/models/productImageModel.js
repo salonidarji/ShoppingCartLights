@@ -15,9 +15,10 @@ var ProductImage = {
     );
   },
   addProductImage: function(item, callback) {
+    maxId = db.query("select max(pk_product_id) from product_tbl");
     return db.query(
       "Insert into product_image_tbl values(?,?,?,?,?)",
-      ["null", item.image_url, item.fk_product_id, 1, 0],
+      ["null", item.image_url, maxId, 1, 0],
       callback
     );
   },

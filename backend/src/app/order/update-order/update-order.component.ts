@@ -12,6 +12,7 @@ import { UserServiceService } from "../../services/user-service.service";
   styleUrls: ["./update-order.component.css"]
 })
 export class UpdateOrderComponent implements OnInit {
+  flag: string;
   updateOrderForm: FormGroup;
   order_arr: Order[];
   user_arr: User[];
@@ -35,6 +36,8 @@ export class UpdateOrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

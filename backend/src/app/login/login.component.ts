@@ -59,11 +59,13 @@ export class LoginComponent implements OnInit {
     ) {
       console.log("Login successful");
       //this.authService.authLogin(this.model);
+
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem(
         "token",
         this.insertLoginForm.controls.user_email.value
       );
+
       this.router.navigate([this.returnUrl]);
     } else {
       this.message = " Email Address or Password is Wrong..!!!";

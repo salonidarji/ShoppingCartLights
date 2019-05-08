@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./insert-admin.component.css"]
 })
 export class InsertAdminComponent implements OnInit {
+  flag: string;
   insertAdminForm: FormGroup;
   admin_arr: Admin[];
   constructor(
@@ -19,6 +20,8 @@ export class InsertAdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertAdminForm = this.fb.group({
       admin_name: ["", Validators.required],
       admin_password: ["", Validators.required],

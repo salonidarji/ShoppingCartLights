@@ -9,9 +9,12 @@ import { AdminServiceService } from "../../services/admin-service.service";
 })
 export class ViewAdminComponent implements OnInit {
   admin_arr: Admin[];
+  flag: string;
   constructor(private _admin: AdminServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._admin.getAllAdmin().subscribe(
       (_data: any) => {
         this.admin_arr = _data;

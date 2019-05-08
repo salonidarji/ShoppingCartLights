@@ -12,6 +12,7 @@ import { CategoryServiceService } from "src/app/services/category-service.servic
   styleUrls: ["./update-product.component.css"]
 })
 export class UpdateProductComponent implements OnInit {
+  flag: string;
   updateProductForm: FormGroup;
   product_arr: Product[];
   category_arr: Category[];
@@ -25,6 +26,8 @@ export class UpdateProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     let id = this.route.snapshot.paramMap.get("uId");
     this.id = id;
     console.log(id);

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./insert-user.component.css"]
 })
 export class InsertUserComponent implements OnInit {
+  flag: string;
   insertUserForm: FormGroup;
   user_arr: User[];
   constructor(
@@ -19,6 +20,8 @@ export class InsertUserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this.insertUserForm = this.fb.group({
       user_name: ["", Validators.required],
       user_mobile: ["", Validators.required],
