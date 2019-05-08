@@ -25,10 +25,11 @@ export class ViewProductComponent implements OnInit {
     );
   }
 
-  deleteProduct(id) {
-    this._product.deleteProduct(id).subscribe(
+  deleteProduct(p_id, pi_id) {
+    this._product.deleteProduct(p_id, pi_id).subscribe(
       (_data: any) => {
-        this.product_arr = _data;
+        // this.product_arr = _data;
+        // console.log(this.product_arr);
         this.ngOnInit();
       },
       function(err) {

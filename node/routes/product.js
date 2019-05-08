@@ -30,12 +30,12 @@ router.post("/", function(req, res, next) {
     }
   });
 });
-router.delete("/:id", function(req, res, next) {
-  Product.deleteProduct(req.params.id, function(err, count) {
+router.delete("/:p_id&:pi_id", function(req, res, next) {
+  Product.deleteProduct(req.params.p_id, req.params.pi_id, function(err, rows) {
     if (err) {
       res.json(err);
     } else {
-      res.json(count);
+      res.json(rows);
     }
   });
 });
