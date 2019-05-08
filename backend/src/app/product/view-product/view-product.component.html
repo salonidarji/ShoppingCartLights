@@ -1,64 +1,47 @@
 <div class="container-fluid">
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Products</h1>
+  <!-- card -->
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of product_arr">
+      <div class="card" style="width: 18rem;">
+        <img
+          class="card-img-top"
+          src="../../../assets/img/{{ item.image_url }}"
+          alt="Card image cap"
+          height="auto"
+          width="auto"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><b>Name:</b>{{ item.product_name }}</h5>
+          <p class="card-text">
+            <b> Description:</b><br />
+            {{ item.product_desc }}<br />
+            Price: {{ item.product_price }}<br />
+            Sale Price: {{ item.product_sale_price }}<br />
+            Category: {{ item.category_name }}
+          </p>
 
-  <!-- DataTales Example -->
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">
-        All Products
-      </h6>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table
-          class="table table-bordered"
-          id="dataTable"
-          width="100%"
-          cellspacing="0"
-        >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Sale price</th>
-              <th>Category Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody *ngFor="let item of product_arr">
-            <tr>
-              <td>{{ item.product_name }}</td>
-              <td>{{ item.product_desc }}</td>
-              <td>{{ item.product_price }}</td>
-              <td>{{ item.product_sale_price }}</td>
-              <td>{{ item.category_name }}</td>
-              <td colspan="3">
-                <button
-                  class="btn btn-primary btn-md"
-                  (click)="deleteProduct(item.pk_product_id)"
-                >
-                  <span class="fa fa-trash"></span>
-                </button>
-                <!-- <button
-                    class="btn btn-primary btn-md"
-                    (click)="singleproduct(item.pk_product_id)"
-                  >
-                    View
-                  </button> -->
-                &nbsp;
-                <button
-                  class="btn btn-primary btn-md"
-                  routerLink="/updateProduct/{{ item.pk_product_id }}"
-                >
-                  <span class="fa fa-pen"></span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <button
+            class="btn btn-danger btn-md"
+            (click)="deleteProduct(item.pk_product_id)"
+          >
+            <span class="fa fa-trash"></span>
+          </button>
+          <!-- <button
+                      class="btn btn-primary btn-md"
+                      (click)="singleproduct(item.pk_product_id)"
+                    >
+                      View
+                    </button> -->
+          &nbsp;
+          <button
+            class="btn btn-success btn-md"
+            routerLink="/updateProduct/{{ item.pk_product_id }}"
+          >
+            <span class="fa fa-pen"></span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
