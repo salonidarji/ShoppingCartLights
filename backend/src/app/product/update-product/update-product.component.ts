@@ -5,6 +5,8 @@ import { ProductServiceService } from "../../services/product-service.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Category } from "../../models/category";
 import { CategoryServiceService } from "src/app/services/category-service.service";
+import { ProductImageServiceService } from "src/app/services/product-image-service.service";
+import { ProductImage } from "src/app/models/product-image";
 
 @Component({
   selector: "app-update-product",
@@ -15,10 +17,12 @@ export class UpdateProductComponent implements OnInit {
   flag: string;
   updateProductForm: FormGroup;
   product_arr: Product[];
+  productImage_arr: ProductImage[];
   category_arr: Category[];
   id: string;
   constructor(
     private _product: ProductServiceService,
+    private _productImage: ProductImageServiceService,
     private _category: CategoryServiceService,
     private router: Router,
     private fb: FormBuilder,
@@ -59,12 +63,30 @@ export class UpdateProductComponent implements OnInit {
       }
     );
 
+    this._productImage.getProductImage(id).subscribe(
+      (_data: ProductImage[]) => {
+        this.productImage_arr = _data;
+        console.log(this.productImage_arr);
+        this.updateProductForm.controls["image_url"].setValue(
+          this.productImage_arr[0].image_url
+        );
+        console.log(_data);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log();
+      }
+    );
+
     this.updateProductForm = this.fb.group({
       product_name: ["", Validators.required],
       product_desc: ["", Validators.required],
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
-      fk_category_id: [""]
+      fk_category_id: [""],
+      image_url: [""]
     });
 
     this._category.getAllCategory().subscribe(
@@ -84,6 +106,21 @@ export class UpdateProductComponent implements OnInit {
     console.warn(this.updateProductForm.value);
     this._product
       .updateProduct(this.id, this.updateProductForm.value)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/viewProduct"]);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally");
+        }
+      );
+
+    this._productImage
+      .updateProductImage(this.id, this.updateProductForm.value)
       .subscribe(
         data => {
           console.log(data);

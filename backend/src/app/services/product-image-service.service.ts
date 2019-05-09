@@ -22,8 +22,11 @@ export class ProductImageServiceService {
 
   insertProductImage(item) {
     let body = JSON.stringify(item);
+
     const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
     };
     return this._http.post(this.productImage_url, body, httpOptions);
   }

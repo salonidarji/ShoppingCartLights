@@ -9,16 +9,15 @@ var ProductImage = {
   },
   getProductImage: function(id, callback) {
     return db.query(
-      "select * from product_image_tbl where pk_image_id=? && is_delete=0 && is_active=1",
+      "select * from product_image_tbl where fk_product_id=? && is_delete=0 && is_active=1",
       [id],
       callback
     );
   },
   addProductImage: function(item, callback) {
-    maxId = db.query("select max(pk_product_id) from product_tbl");
     return db.query(
-      "Insert into product_image_tbl values(?,?,?,?,?)",
-      ["null", item.image_url, maxId, 1, 0],
+      "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
+      ["null", item.image_url.replace("C:\fakepath ", ""), 1, 0],
       callback
     );
   },

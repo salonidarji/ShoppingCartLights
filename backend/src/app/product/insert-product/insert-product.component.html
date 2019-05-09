@@ -22,6 +22,7 @@
                   class="product"
                   [formGroup]="insertProductForm"
                   (ngSubmit)="onSubmit(insertProductForm.value)"
+                  enctype="multipart/form-data"
                 >
                   <div class="form-group">
                     <input
@@ -119,51 +120,25 @@
                     </select>
                   </div>
 
-                  <form
-                    class="product"
-                    [formGroup]="insertProductImageForm"
-                    (ngSubmit)="onSubmit(insertProductImageForm.value)"
-                  >
-                    <div class="form-group">
-                      <input
-                        type="file"
-                        #imageUrl
-                        (change)="onFileUpload($event)"
-                        [formControl]="image_url"
-                      />
-                      <!-- <input
+                  <div class="form-group">
+                    <input
+                      type="file"
+                      (change)="onFileSelect($event)"
+                      accept=".jpeg , .jpg"
+                      #image_url
+                      formControlName="image_url"
+                    />
+                    <!-- <input
                       type="file"
                       (change)="onFileUpload($event)"
                       class="form-control form-control-productImage"
                       placeholder="Enter url here..."
-                      formControlName="image_url"
                     /> -->
-                      <label
-                        class="text-danger"
-                        *ngIf="
-                          insertProductImageForm
-                            .get('image_url')
-                            .hasError('required') &&
-                          insertProductImageForm.get('image_url').touched
-                        "
-                      >
-                        URL is <strong>required</strong>
-                      </label>
-                    </div>
+                  </div>
 
-                    <button
-                      [hidden]="true"
-                      class="btn btn-primary btn-product btn-block"
-                      type="submit"
-                      #imageSubmit
-                    >
-                      Insert
-                    </button>
-                  </form>
                   <button
                     class="btn btn-primary btn-product btn-block"
                     type="submit"
-                    (click)="imageSubmit.click()"
                     [disabled]="insertProductForm.invalid"
                   >
                     Insert

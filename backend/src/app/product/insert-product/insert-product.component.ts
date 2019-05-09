@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 import { Product } from "../../models/product";
 import { ProductServiceService } from "../../services/product-service.service";
 import { Router } from "@angular/router";
 import { Category } from "../../models/category";
 import { CategoryServiceService } from "../../services/category-service.service";
-import { ProductImageServiceService } from "../../services/product-image-service.service";
+import { ProductImageServiceService } from "src/app/services/product-image-service.service";
 
 @Component({
   selector: "app-insert-product",
@@ -15,9 +16,10 @@ import { ProductImageServiceService } from "../../services/product-image-service
 export class InsertProductComponent implements OnInit {
   flag: string;
   insertProductForm: FormGroup;
-  insertProductImageForm: FormGroup;
   product_arr: Product[];
   category_arr: Category[];
+  file: File = null;
+
   constructor(
     private _product: ProductServiceService,
     private _productImage: ProductImageServiceService,
@@ -34,15 +36,14 @@ export class InsertProductComponent implements OnInit {
       product_desc: ["", Validators.required],
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
-      fk_category_id: [""]
-    });
-    this.insertProductImageForm = this.fb.group({
-      image_url: ["", Validators.required]
+      fk_category_id: [""],
+      image_url: [""]
     });
 
     this._category.getAllCategory().subscribe(
       (data: any) => {
         this.category_arr = data;
+        console.log(this.category_arr);
       },
       function(err) {
         console.log(err);
@@ -52,13 +53,10 @@ export class InsertProductComponent implements OnInit {
       }
     );
   }
-  file: File;
-  onFileUpload(event) {
-    this.file = event.target.files[0];
-    console.log(this.file.name);
-    TODO: this.insertProductImageForm.controls["image_url"].setValue(
-      this.file.name
-    );
+
+  onFileSelect(event) {
+    this.file = <File>event.target.files[0];
+    // this.insertProductForm.get("image_url").setValue(this.file);
   }
 
   onSubmit() {
@@ -77,7 +75,7 @@ export class InsertProductComponent implements OnInit {
     );
 
     this._productImage
-      .insertProductImage(this.insertProductImageForm.value)
+      .insertProductImage(this.insertProductForm.value)
       .subscribe(
         data => {
           console.log(data);
@@ -87,7 +85,7 @@ export class InsertProductComponent implements OnInit {
           console.log(err);
         },
         function() {
-          console.log("finally product image");
+          console.log("finally");
         }
       );
   }

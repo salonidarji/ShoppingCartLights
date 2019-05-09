@@ -3,7 +3,7 @@
   <h1 class="h3 mb-2 text-gray-800">Products</h1>
   <!-- card -->
   <div class="row">
-    <div class="col-md-3" *ngFor="let item of product_arr">
+    <div class="col-md-3" *ngFor="let item of product_arr; let i = index">
       <div class="card" style="width: 18rem;">
         <img
           class="card-img-top"
@@ -44,6 +44,7 @@
         </div>
       </div>
     </div>
+    <br *ngIf="(i + 1) % 4 == 0" />
   </div>
 </div>
 
