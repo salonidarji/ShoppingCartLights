@@ -38,14 +38,15 @@ var Admin = {
   },
   updateAdmin: function(id, item, callback) {
     return db.query(
-      "update admin_tbl set admin_name=? , admin_password=?, admin_email=?, admin_mobile=? where pk_admin_id=?",
-      [
-        item.admin_name,
-        item.admin_password,
-        item.admin_email,
-        item.admin_mobile,
-        id
-      ],
+      "update admin_tbl set admin_name=? , admin_email=?, admin_mobile=? where pk_admin_id=?",
+      [item.admin_name, item.admin_email, item.admin_mobile, id],
+      callback
+    );
+  },
+  changePassword: function(id, item, callback) {
+    return db.query(
+      "update admin_tbl set  admin_password=? where admin_email=?",
+      [item.admin_password, id],
       callback
     );
   }

@@ -16,9 +16,11 @@ export class ProductServiceService {
     return this._http.get(this.product_url + id);
   }
 
-  deleteProduct(p_id, pi_id) {
+  deleteProduct(p_id, pi_id, pf_id) {
     console.log(this.product_url + p_id + "&" + pi_id);
-    return this._http.delete(this.product_url + p_id + "&" + pi_id);
+    return this._http.delete(
+      this.product_url + p_id + "&" + pi_id + "&" + pf_id
+    );
   }
 
   insertProduct(item) {

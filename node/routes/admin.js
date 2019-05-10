@@ -47,5 +47,13 @@ router.put("/:id", function(req, res, next) {
       res.json(rows);
     }
   });
+
+  Admin.changePassword(req.params.id, req.body, function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
 });
 module.exports = router;

@@ -7,6 +7,9 @@ import { Router } from "@angular/router";
 import { Category } from "../../models/category";
 import { CategoryServiceService } from "../../services/category-service.service";
 import { ProductImageServiceService } from "src/app/services/product-image-service.service";
+import { ProductFeatureServiceService } from "src/app/services/product-feature-service.service";
+import { FeatureServiceService } from "src/app/services/feature-service.service";
+import { Feature } from "src/app/models/feature";
 
 @Component({
   selector: "app-insert-product",
@@ -18,11 +21,14 @@ export class InsertProductComponent implements OnInit {
   insertProductForm: FormGroup;
   product_arr: Product[];
   category_arr: Category[];
+  feature_arr: Feature[];
   file: File = null;
 
   constructor(
     private _product: ProductServiceService,
     private _productImage: ProductImageServiceService,
+    private _productFeature: ProductFeatureServiceService,
+    private _feature: FeatureServiceService,
     private _category: CategoryServiceService,
     private router: Router,
     private fb: FormBuilder
@@ -37,7 +43,9 @@ export class InsertProductComponent implements OnInit {
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
       fk_category_id: [""],
-      image_url: [""]
+      image_url: [""],
+      fk_feature_id: [""],
+      feature_value: ["", Validators.required]
     });
 
     this._category.getAllCategory().subscribe(
@@ -50,6 +58,18 @@ export class InsertProductComponent implements OnInit {
       },
       function() {
         console.log("category get done");
+      }
+    );
+
+    this._feature.getAllFeature().subscribe(
+      (dataF: any) => {
+        this.feature_arr = dataF;
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally feature");
       }
     );
   }
@@ -76,6 +96,21 @@ export class InsertProductComponent implements OnInit {
 
     this._productImage
       .insertProductImage(this.insertProductForm.value)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/viewProduct"]);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally");
+        }
+      );
+
+    this._productFeature
+      .insertProductFeature(this.insertProductForm.value)
       .subscribe(
         data => {
           console.log(data);

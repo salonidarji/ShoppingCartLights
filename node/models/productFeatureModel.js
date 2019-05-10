@@ -9,22 +9,15 @@ var ProductFeature = {
   },
   getProductFeature: function(id, callback) {
     return db.query(
-      "select * from product_feature_tbl where pk_product_feature_id=? && is_delete=0 && is_active=1",
+      "select * from product_feature_tbl where fk_product_id=? && is_delete=0 && is_active=1",
       [id],
       callback
     );
   },
   addProductFeature: function(item, callback) {
     return db.query(
-      "Insert into product_feature_tbl values(?,?,?,?,?,?)",
-      [
-        "null",
-        item.fk_feature_id,
-        item.fk_product_id,
-        item.feature_value,
-        1,
-        0
-      ],
+      "Insert into product_feature_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?,?)",
+      ["null", item.fk_feature_id, item.feature_value, 1, 0],
       callback
     );
   },

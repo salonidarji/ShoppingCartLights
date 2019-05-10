@@ -18,6 +18,7 @@ export class ViewProductComponent implements OnInit {
     this._product.getAllProduct().subscribe(
       (_data: any) => {
         this.product_arr = _data;
+        console.log(this.product_arr);
       },
       function(err) {
         console.log(err);
@@ -28,8 +29,8 @@ export class ViewProductComponent implements OnInit {
     );
   }
 
-  deleteProduct(p_id, pi_id) {
-    this._product.deleteProduct(p_id, pi_id).subscribe(
+  deleteProduct(p_id, pi_id, pf_id) {
+    this._product.deleteProduct(p_id, pi_id, pf_id).subscribe(
       (_data: any) => {
         // this.product_arr = _data;
         // console.log(this.product_arr);

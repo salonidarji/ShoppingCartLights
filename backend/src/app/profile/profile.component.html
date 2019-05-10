@@ -1,7 +1,7 @@
 <div class="container" *ngIf="flag == 'true'; else notLogin">
   <div class="col-md-4"></div>
   <div class="col-md-4">
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" align="center">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
       </div>
@@ -24,6 +24,44 @@
             <td>{{ mobile }}</td>
           </tr>
         </table>
+
+        &nbsp;
+
+        <button
+          class="btn btn-danger btn-md"
+          type="button"
+          data-toggle="collapse"
+          data-target="#changePassword"
+          aria-expanded="false"
+          aria-controls="changePassword"
+        >
+          <span class="fa fa-pen"></span> Change Password
+        </button>
+        &nbsp;
+        <div class="collapse" id="changePassword">
+          <div class="card card-body">
+            <form
+              [formGroup]="changePasswordForm"
+              (ngSubmit)="onPasswordChange()"
+            >
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="admin_password"
+                  placeholder="New Password"
+                /><br />
+              </div>
+              <button
+                class="btn btn-success btn-user btn-block"
+                type="submit"
+                (click)="onPasswordChange()"
+              >
+                Change
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

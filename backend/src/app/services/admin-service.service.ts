@@ -48,4 +48,12 @@ export class AdminServiceService {
       httpOptions
     );
   }
+
+  changePassword(id, item) {
+    let body = JSON.stringify(item);
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this._http.put(this.admin_url + id, body, httpOptions);
+  }
 }

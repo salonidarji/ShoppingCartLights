@@ -12,7 +12,10 @@ import { ILogin } from "../login";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  model: ILogin = { user_email: "saloni@gmail.com", user_password: "saloni" };
+  model: ILogin = {
+    user_email: "salonidarji3335@gmail.com",
+    user_password: "saloni"
+  };
   insertLoginForm: FormGroup;
   user_arr: User[];
   returnUrl: string;

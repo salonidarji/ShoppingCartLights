@@ -30,10 +30,10 @@ var Product = {
       callback
     );
   },
-  deleteProduct: function(p_id, pi_id, callback) {
+  deleteProduct: function(p_id, pi_id, pf_id, callback) {
     return db.query(
-      "update product_tbl p , product_image_tbl pi set p.is_delete=1, p.is_active=0 ,pi.is_delete=1, pi.is_active=0 where p.pk_product_id=? && pi.fk_product_id=?",
-      [p_id, pi_id],
+      "update product_tbl p , product_image_tbl pi, product_feature_tbl pf set p.is_delete=1, p.is_active=0 ,pi.is_delete=1, pi.is_active=0 ,pf.is_delete=1, pf.is_active=0 where p.pk_product_id=? && pi.fk_product_id=? && pf.pk_product_feature_id=?",
+      [p_id, pi_id, pf_id],
       callback
     );
   },

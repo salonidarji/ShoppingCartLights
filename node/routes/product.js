@@ -30,14 +30,19 @@ router.post("/", function(req, res, next) {
     }
   });
 });
-router.delete("/:p_id&:pi_id", function(req, res, next) {
-  Product.deleteProduct(req.params.p_id, req.params.pi_id, function(err, rows) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(rows);
+router.delete("/:p_id&:pi_id&:pf_id", function(req, res, next) {
+  Product.deleteProduct(
+    req.params.p_id,
+    req.params.pi_id,
+    req.params.pf_id,
+    function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
     }
-  });
+  );
 });
 router.put("/:id", function(req, res, next) {
   Product.updateProduct(req.params.id, req.body, function(err, rows) {

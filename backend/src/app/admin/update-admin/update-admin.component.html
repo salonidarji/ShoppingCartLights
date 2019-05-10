@@ -45,26 +45,6 @@
 
                   <div class="form-group">
                     <input
-                      type="text"
-                      class="form-control form-control-admin"
-                      placeholder="Enter Password Number here..."
-                      formControlName="admin_password"
-                    />
-                    <label
-                      class="text-danger"
-                      *ngIf="
-                        updateAdminForm
-                          .get('admin_password')
-                          .hasError('required') &&
-                        updateAdminForm.get('admin_password').touched
-                      "
-                    >
-                      Password is <strong>required</strong>
-                    </label>
-                  </div>
-
-                  <div class="form-group">
-                    <input
                       type="email"
                       class="form-control form-control-admin"
                       aria-describedby="emailHelp"

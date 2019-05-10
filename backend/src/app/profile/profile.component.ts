@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Admin } from "../models/admin";
 import { AdminServiceService } from "../services/admin-service.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-profile",
@@ -14,12 +15,19 @@ export class ProfileComponent implements OnInit {
   mobile: string;
   password: string;
   admin_arr: Admin[];
-  constructor(private _admin: AdminServiceService) {}
+  passwordChange: string;
+  changePasswordForm: FormGroup;
+
+  constructor(private _admin: AdminServiceService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
 
     this.id = localStorage.getItem("token");
+
+    this.changePasswordForm = this.fb.group({
+      admin_password: ["", Validators.required]
+    });
 
     this._admin.getAdmin(this.id).subscribe(
       (data: any) => {
@@ -36,5 +44,22 @@ export class ProfileComponent implements OnInit {
         console.log("Admin done");
       }
     );
+  }
+
+  onPasswordChange() {
+    console.log(this.changePasswordForm.value);
+    this._admin
+      .changePassword(this.id, this.changePasswordForm.value)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally password");
+        }
+      );
   }
 }

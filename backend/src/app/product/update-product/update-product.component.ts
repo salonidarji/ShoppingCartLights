@@ -7,6 +7,10 @@ import { Category } from "../../models/category";
 import { CategoryServiceService } from "src/app/services/category-service.service";
 import { ProductImageServiceService } from "src/app/services/product-image-service.service";
 import { ProductImage } from "src/app/models/product-image";
+import { ProductFeatureServiceService } from "src/app/services/product-feature-service.service";
+import { ProductFeature } from "src/app/models/product-feature";
+import { FeatureServiceService } from "src/app/services/feature-service.service";
+import { Feature } from "src/app/models/feature";
 
 @Component({
   selector: "app-update-product",
@@ -17,12 +21,16 @@ export class UpdateProductComponent implements OnInit {
   flag: string;
   updateProductForm: FormGroup;
   product_arr: Product[];
+  productFeature_arr: ProductFeature[];
   productImage_arr: ProductImage[];
   category_arr: Category[];
+  feature_arr: Feature[];
   id: string;
   constructor(
     private _product: ProductServiceService,
     private _productImage: ProductImageServiceService,
+    private _productFeature: ProductFeatureServiceService,
+    private _feature: FeatureServiceService,
     private _category: CategoryServiceService,
     private router: Router,
     private fb: FormBuilder,
@@ -67,8 +75,40 @@ export class UpdateProductComponent implements OnInit {
       (_data: ProductImage[]) => {
         this.productImage_arr = _data;
         console.log(this.productImage_arr);
-        this.updateProductForm.controls["image_url"].setValue(
-          this.productImage_arr[0].image_url
+        // this.updateProductForm.controls["image_url"].setValue(
+        //   this.productImage_arr[0].image_url
+        // );
+        console.log(_data);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log();
+      }
+    );
+
+    this._feature.getAllFeature().subscribe(
+      (dataF: any) => {
+        this.feature_arr = dataF;
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally feature");
+      }
+    );
+
+    this._productFeature.getProductFeature(id).subscribe(
+      (_data: ProductFeature[]) => {
+        this.productFeature_arr = _data;
+        console.log(this.productFeature_arr);
+        this.updateProductForm.controls["fk_feature_id"].setValue(
+          this.productFeature_arr[0].fk_feature_id
+        );
+        this.updateProductForm.controls["feature_value"].setValue(
+          this.productFeature_arr[0].feature_value
         );
         console.log(_data);
       },
@@ -86,7 +126,9 @@ export class UpdateProductComponent implements OnInit {
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
       fk_category_id: [""],
-      image_url: [""]
+      image_url: [""],
+      fk_feature_id: [""],
+      feature_value: ["", Validators.required]
     });
 
     this._category.getAllCategory().subscribe(
@@ -121,6 +163,21 @@ export class UpdateProductComponent implements OnInit {
 
     this._productImage
       .updateProductImage(this.id, this.updateProductForm.value)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/viewProduct"]);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally");
+        }
+      );
+
+    this._productFeature
+      .updateProductFeature(this.id, this.updateProductForm.value)
       .subscribe(
         data => {
           console.log(data);

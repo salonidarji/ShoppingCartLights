@@ -15,7 +15,6 @@ export class UpdateAdminComponent implements OnInit {
   name: string;
   mobile: string;
   email: string;
-  password: string;
   id: string;
 
   updateAdminForm: FormGroup;
@@ -44,9 +43,6 @@ export class UpdateAdminComponent implements OnInit {
         this.updateAdminForm.controls["admin_email"].setValue(
           this.admin_arr[0].admin_email
         );
-        this.updateAdminForm.controls["admin_password"].setValue(
-          this.admin_arr[0].admin_password
-        );
         console.log(_data);
       },
       function(err) {
@@ -60,8 +56,7 @@ export class UpdateAdminComponent implements OnInit {
     this.updateAdminForm = this.fb.group({
       admin_name: [this.name, Validators.required],
       admin_email: [this.email, [Validators.required, Validators.email]],
-      admin_mobile: [this.mobile, Validators.required],
-      admin_password: [this.password, Validators.required]
+      admin_mobile: [this.mobile, Validators.required]
     });
   }
 
