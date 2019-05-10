@@ -1,4 +1,3 @@
 
 move image folder
-change password
 refresh

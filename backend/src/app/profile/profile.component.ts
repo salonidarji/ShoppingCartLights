@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Admin } from "../models/admin";
 import { AdminServiceService } from "../services/admin-service.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AuthenticationServiceService } from "../services/authentication-service.service";
 
 @Component({
   selector: "app-profile",
@@ -18,7 +19,11 @@ export class ProfileComponent implements OnInit {
   passwordChange: string;
   changePasswordForm: FormGroup;
 
-  constructor(private _admin: AdminServiceService, private fb: FormBuilder) {}
+  constructor(
+    private _admin: AdminServiceService,
+    private fb: FormBuilder,
+    private authService: AuthenticationServiceService
+  ) {}
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
@@ -53,6 +58,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.authService.logout();
         },
         function(err) {
           console.log(err);

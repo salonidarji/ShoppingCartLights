@@ -5,6 +5,9 @@ import { User } from "../models/user";
 import { Router } from "@angular/router";
 import { AuthenticationServiceService } from "../services/authentication-service.service";
 import { ILogin } from "../login";
+import { AdminServiceService } from "../services/admin-service.service";
+import { Admin } from "../models/admin";
+import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
   selector: "app-login",
@@ -12,26 +15,28 @@ import { ILogin } from "../login";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  model: ILogin = {
-    user_email: "salonidarji3335@gmail.com",
-    user_password: "saloni"
-  };
+  model: Admin[];
   insertLoginForm: FormGroup;
   user_arr: User[];
   returnUrl: string;
   message: string;
 
   constructor(
-    private _user: UserServiceService,
+    private _admin: AdminServiceService,
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthenticationServiceService
   ) {}
 
   ngOnInit() {
+    this._admin.getAllAdmin().subscribe((data: any) => {
+      this.model = data;
+      console.log(this.model);
+    });
+
     this.insertLoginForm = this.fb.group({
-      user_email: ["", [Validators.required, Validators.email]],
-      user_password: ["", Validators.required]
+      admin_email: ["", [Validators.required, Validators.email]],
+      admin_password: ["", Validators.required]
     });
 
     this.returnUrl = "/dashboard";
@@ -54,23 +59,26 @@ export class LoginComponent implements OnInit {
     //      console.log("finally");
     //    }
     //  );
+    for (let i = 0; i <= this.model.length; i++) {
+      if (
+        this.insertLoginForm.controls.admin_email.value ==
+          this.model[0].admin_email &&
+        this.insertLoginForm.controls.admin_password.value ==
+          this.model[0].admin_password
+      ) {
+        console.log("Login successful");
+        //this.authService.authLogin(this.model);
 
-    if (
-      this.insertLoginForm.controls.user_email.value == this.model.user_email &&
-      this.insertLoginForm.controls.user_password.value ==
-        this.model.user_password
-    ) {
-      console.log("Login successful");
-      //this.authService.authLogin(this.model);
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem(
+          "token",
+          this.insertLoginForm.controls.admin_email.value
+        );
 
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem(
-        "token",
-        this.insertLoginForm.controls.user_email.value
-      );
-
-      this.router.navigate([this.returnUrl]);
-    } else {
+        this.router.navigate([this.returnUrl]);
+      }
+    }
+    if (localStorage.getItem("isLoggedIn") == "false") {
       this.message = " Email Address or Password is Wrong..!!!";
     }
   }

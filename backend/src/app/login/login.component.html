@@ -29,13 +29,13 @@
                       class="form-control form-control-user"
                       aria-describedby="emailHelp"
                       placeholder="Enter Email Address..."
-                      formControlName="user_email"
+                      formControlName="admin_email"
                     />
                     <label
                       class="text-danger"
                       *ngIf="
-                        insertLoginForm.get('user_email').hasError('email') &&
-                        !insertLoginForm.get('user_email').hasError('required')
+                        insertLoginForm.get('admin_email').hasError('email') &&
+                        !insertLoginForm.get('admin_email').hasError('required')
                       "
                     >
                       Please enter a valid email address
@@ -44,9 +44,9 @@
                       class="text-danger"
                       *ngIf="
                         insertLoginForm
-                          .get('user_email')
+                          .get('admin_email')
                           .hasError('required') &&
-                        insertLoginForm.get('user_email').touched
+                        insertLoginForm.get('admin_email').touched
                       "
                     >
                       Email is <strong>required</strong>
@@ -58,15 +58,15 @@
                       type="text"
                       class="form-control form-control-user"
                       placeholder="Enter Password Number here..."
-                      formControlName="user_password"
+                      formControlName="admin_password"
                     />
                     <label
                       class="text-danger"
                       *ngIf="
                         insertLoginForm
-                          .get('user_password')
+                          .get('admin_password')
                           .hasError('required') &&
-                        insertLoginForm.get('user_password').touched
+                        insertLoginForm.get('admin_password').touched
                       "
                     >
                       Password is <strong>required</strong>
