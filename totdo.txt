@@ -1,0 +1,4 @@
+join product and product feature
+    view done
+move image folder
+refresh

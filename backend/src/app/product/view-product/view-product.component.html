@@ -12,15 +12,9 @@
           height="auto"
           width="auto"
         />
+
         <div class="card-body">
           <h5 class="card-title"><b>Name:</b>{{ item.product_name }}</h5>
-          <p class="card-text">
-            <b> Description:</b><br />
-            {{ item.product_desc }}<br />
-            Price: {{ item.product_price }}<br />
-            Sale Price: {{ item.product_sale_price }}<br />
-            Category: {{ item.category_name }}
-          </p>
 
           <button
             class="btn btn-danger btn-md"
@@ -28,12 +22,7 @@
           >
             <span class="fa fa-trash"></span>
           </button>
-          <!-- <button
-                      class="btn btn-primary btn-md"
-                      (click)="singleproduct(item.pk_product_id)"
-                    >
-                      View
-                    </button> -->
+
           &nbsp;
           <button
             class="btn btn-success btn-md"
@@ -41,6 +30,31 @@
           >
             <span class="fa fa-pen"></span>
           </button>
+
+          &nbsp;
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            attr.data-target="#more{{ i }}"
+            aria-expanded="false"
+            attr.aria-controls="more{{ i }}"
+          >
+            More
+          </button>
+          <div class="collapse multi-collapse" id="more{{ i }}">
+            <p class="card-text">
+              <b> Description:</b><br />
+              {{ item.product_desc }}<br />
+              Price: {{ item.product_price }}<br />
+              Sale Price: {{ item.product_sale_price }}<br />
+              Category: {{ item.category_name }}
+            </p>
+            <p class="card-text">
+              <b> Feature:</b><br />
+              {{ item.feature_name }}:{{ item.feature_value }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
