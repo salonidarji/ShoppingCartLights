@@ -1,4 +1,5 @@
 var db = require("../dbconnection");
+var fs = require("fs");
 
 var ProductImage = {
   getAllProductImage: function(callback) {
@@ -15,9 +16,45 @@ var ProductImage = {
     );
   },
   addProductImage: function(item, callback) {
+    var dt = new Date(); //current date and time of server
+
+    var text = ""; //random text
+
+    var possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    var base64d = item.image_url.replace(/^data:image\/jpeg;base64,/, "");
+
+    var path =
+      "./public/images/" +
+      text +
+      dt.getDate() +
+      dt.getMonth() +
+      dt.getMilliseconds() +
+      ".jpeg";
+
+    var path1 =
+      "/images/" +
+      text +
+      dt.getDate() +
+      dt.getMonth() +
+      dt.getMilliseconds() +
+      ".jpeg";
+
+    fs.writeFile(path, base64d, "base64", function(err) {
+      if (err) {
+        return console.log(err);
+      }
+
+      console.log("The file was saved!");
+    });
+
     return db.query(
       "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
-      ["null", item.image_url.replace("C:\fakepath ", ""), 1, 0],
+      ["null", path1, 1, 0],
       callback
     );
   },
@@ -29,9 +66,45 @@ var ProductImage = {
     );
   },
   updateProductImage: function(id, item, callback) {
+    var dt = new Date(); //current date and time of server
+
+    var text = ""; //random text
+
+    var possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    var base64d = item.image_url.replace(/^data:image\/jpeg;base64,/, "");
+
+    var path =
+      "./public/images/" +
+      text +
+      dt.getDate() +
+      dt.getMonth() +
+      dt.getMilliseconds() +
+      ".jpeg";
+
+    var path1 =
+      "/images/" +
+      text +
+      dt.getDate() +
+      dt.getMonth() +
+      dt.getMilliseconds() +
+      ".jpeg";
+
+    fs.writeFile(path, base64d, "base64", function(err) {
+      if (err) {
+        return console.log(err);
+      }
+
+      console.log("The file was saved!");
+    });
+    console.log(path1 + "," + item.fk_product_id + "," + id);
     return db.query(
       "update product_image_tbl set image_url=? , fk_product_id=? where pk_image_id=?",
-      [item.image_url, item.fk_product_id, id],
+      [path1, item.fk_product_id, id],
       callback
     );
   }

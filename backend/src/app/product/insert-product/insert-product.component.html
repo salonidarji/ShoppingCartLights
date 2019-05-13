@@ -125,9 +125,9 @@
                       (change)="onFileSelect($event)"
                       accept=".jpeg , .jpg"
                       #image_url
-                      formControlName="image_url"
                     />
                   </div>
+                  <img [attr.src]="file_srcs[0]" alt="" />
 
                   <div class="form-group">
                     <select
