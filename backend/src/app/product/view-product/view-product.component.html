@@ -41,14 +41,11 @@
           <button
             class="btn btn-primary"
             type="button"
-            data-toggle="collapse"
-            attr.data-target="#more{{ i }}"
-            aria-expanded="false"
-            attr.aria-controls="more{{ i }}"
+            routerLink="/singleProduct/{{ item.pk_product_id }}"
           >
             More
           </button>
-          <div class="collapse multi-collapse" id="more{{ i }}">
+          <!-- <div class="collapse multi-collapse" id="more{{ i }}">
             <p class="card-text">
               <b> Description:</b><br />
               {{ item.product_desc }}<br />
@@ -60,7 +57,7 @@
               <b> Feature:</b><br />
               {{ item.feature_name }}:{{ item.feature_value }}
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

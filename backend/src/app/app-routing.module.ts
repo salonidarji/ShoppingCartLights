@@ -34,6 +34,7 @@ import { LoginComponent } from "./login/login.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { SingleProductComponent } from "./product/single-product/single-product.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -96,6 +97,11 @@ const routes: Routes = [
   {
     path: "viewProduct",
     component: ViewProductComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "singleProduct/:uId",
+    component: SingleProductComponent,
     runGuardsAndResolvers: "always"
   },
   {

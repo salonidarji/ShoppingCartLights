@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+
+  <h1 class="h3 mb-4 text-gray-800">
+    Product Detail
+  </h1>
+  <a routerLink="/viewProduct" class="previous">&laquo; Previous</a>
+  <div class="row" *ngFor="let item of product_arr">
+    <div class="col-md-6">
+      <img
+        src="http://localhost:3000/{{ item.image_url }}"
+        alt="Image Not Found"
+        height="100%"
+        width="100%"
+      />
+    </div>
+    <div class="col-md-6">
+      <div style="align-content:left">
+        <h3>{{ item.product_name }}</h3>
+        <h5>{{ item.product_description }}</h5>
+        <p>
+          M.R.P.: <del>{{ item.product_price }}</del>
+        </p>
+        <p>
+          Price: <span class="text-danger">{{ item.product_sale_price }}</span>
+        </p>
+        <p>
+          You Save:
+          <span class="text-danger">{{
+            item.product_price - item.product_sale_price
+          }}</span>
+        </p>
+        <h4>Features:</h4>
+        <p>{{ item.feature_name }} : {{ item.feature_value }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->

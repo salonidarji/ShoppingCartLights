@@ -41,6 +41,7 @@ import { LoginComponent } from "./login/login.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { SingleProductComponent } from './product/single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
     LoginComponent,
     DashboardComponent,
     ProfileComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    SingleProductComponent
   ],
   imports: [
     BrowserModule,
