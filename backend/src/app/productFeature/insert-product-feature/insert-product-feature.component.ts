@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { ProductFeature } from "../../models/product-feature";
 import { ProductFeatureServiceService } from "../../services/product-feature-service.service";
 import { Product } from "src/app/models/product";
@@ -18,18 +18,26 @@ export class InsertProductFeatureComponent implements OnInit {
   productFeature_arr: ProductFeature[];
   product_arr: Product[];
   feature_arr: Feature[];
+  id: string;
+  flag: string;
+
   constructor(
     private _productFeature: ProductFeatureServiceService,
     private _product: ProductServiceService,
     private _feature: FeatureServiceService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
+    let id = this.route.snapshot.paramMap.get("uId");
+    this.id = id;
     this.insertProductFeatureForm = this.fb.group({
       fk_feature_id: [""],
-      fk_product_id: [""],
+      fk_product_id: [this.id],
       feature_value: ["", Validators.required]
     });
 

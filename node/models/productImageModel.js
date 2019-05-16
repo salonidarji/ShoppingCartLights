@@ -26,7 +26,9 @@ var ProductImage = {
     for (var i = 0; i < 5; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    var base64d = item.image_url.replace(/^data:image\/jpeg;base64,/, "");
+    var temp = JSON.stringify(item);
+    console.log("temp:" + temp);
+    var base64d = temp.replace(/^data:image\/jpeg;base64,/, "");
 
     var path =
       "./public/images/" +
@@ -76,7 +78,7 @@ var ProductImage = {
     for (var i = 0; i < 5; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    var base64d = item.image_url.replace(/^data:image\/jpeg;base64,/, "");
+    var base64d = item.name.replace(/^data:image\/jpeg;base64,/, "");
 
     var path =
       "./public/images/" +

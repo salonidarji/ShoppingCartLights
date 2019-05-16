@@ -19,16 +19,20 @@
         <h3>{{ item.product_name }}</h3>
         <h5>{{ item.product_description }}</h5>
         <p>
-          M.R.P.: <del>{{ item.product_price }}</del>
+          M.R.P.: <i class="fa fa-inr"></i><del>{{ item.product_price }}</del>
         </p>
         <p>
-          Price: <span class="text-danger">{{ item.product_sale_price }}</span>
+          Price:
+          <span class="text-danger"
+            ><i class="fa fa-inr"></i>{{ item.product_sale_price }}</span
+          >
         </p>
         <p>
           You Save:
-          <span class="text-danger">{{
-            item.product_price - item.product_sale_price
-          }}</span>
+          <span class="text-danger"
+            ><i class="fa fa-inr"></i
+            >{{ item.product_price - item.product_sale_price }}</span
+          >
         </p>
         <h4>Features:</h4>
         <p>{{ item.feature_name }} : {{ item.feature_value }}</p>

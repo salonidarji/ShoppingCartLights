@@ -1,5 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormArray,
+  FormControl
+} from "@angular/forms";
 
 import { Product } from "../../models/product";
 import { ProductServiceService } from "../../services/product-service.service";
@@ -23,6 +29,8 @@ export class InsertProductComponent implements OnInit {
   category_arr: Category[];
   feature_arr: Feature[];
   file: File = null;
+
+  image_url: FormArray;
 
   path = "";
 
@@ -51,7 +59,6 @@ export class InsertProductComponent implements OnInit {
       product_price: ["", [Validators.required]],
       product_sale_price: ["", Validators.required],
       fk_category_id: [""],
-      image_url: [""],
       fk_feature_id: [""],
       feature_value: ["", Validators.required]
     });
@@ -83,25 +90,42 @@ export class InsertProductComponent implements OnInit {
   }
 
   onFileSelect(event) {
-    this.file = <File>event.target.files;
-    this.readFiles(this.file);
-    // this.insertProductForm.get("image_url").setValue(this.file);
+    this.image_url = this.fb.array([new FormControl(event.target.files)]);
+
+    //const controls = this.insertProductForm.get("image_url");
+
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = event => {
+          console.log(reader.result);
+
+          this.image_url.push(this.fb.control(reader.result as string));
+        };
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+      console.log(this.image_url.value[0]);
+      console.log(this.image_url.value[0][0].name);
+    }
   }
 
-  fileChange(input) {
+  /* fileChange(input) {
     this.readFiles(input.files);
   }
 
   readFile(file, reader, callback) {
-    reader.onload = () => {
-      callback(reader.result);
+    var filesAmount = file.length;
+    for (let i = 0; i < filesAmount; i++) {
+      reader.onload = event => {
+        console.log(reader.result);
+      };
 
-      this.insertProductForm.controls.image_url.setValue(reader.result);
-      console.log(this.insertProductForm.controls.image_url.value);
-      console.log(reader.result);
-    };
+      reader.readAsDataURL(file[i]);
 
-    reader.readAsDataURL(file);
+    }
   }
 
   readFiles(files, index = 0) {
@@ -200,14 +224,43 @@ export class InsertProductComponent implements OnInit {
 
       callback(dataUrl, img.src.length, dataUrl.length);
     });
-  }
+  }*/
 
   onSubmit() {
     console.warn(this.insertProductForm.value);
     this._product.insertProduct(this.insertProductForm.value).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(["/viewProduct"]);
+        this._productFeature
+          .insertProductFeature(this.insertProductForm.value)
+          .subscribe(
+            data => {
+              console.log(data);
+              for (var i = 0; i < this.image_url.value[0].length; i++) {
+                console.log(this.image_url.value[0][i].name);
+                this._productImage
+                  .insertProductImage(this.image_url.value[0][i])
+                  .subscribe(
+                    data => {
+                      console.log(data);
+                      this.router.navigate(["/viewProduct"]);
+                    },
+                    function(err) {
+                      console.log(err);
+                    },
+                    function() {
+                      console.log("finally");
+                    }
+                  );
+              }
+            },
+            function(err) {
+              console.log(err);
+            },
+            function() {
+              console.log("finally");
+            }
+          );
       },
       function(err) {
         console.log(err);
@@ -216,35 +269,5 @@ export class InsertProductComponent implements OnInit {
         console.log("finally");
       }
     );
-
-    this._productImage
-      .insertProductImage(this.insertProductForm.value)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(["/viewProduct"]);
-        },
-        function(err) {
-          console.log(err);
-        },
-        function() {
-          console.log("finally");
-        }
-      );
-
-    this._productFeature
-      .insertProductFeature(this.insertProductForm.value)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(["/viewProduct"]);
-        },
-        function(err) {
-          console.log(err);
-        },
-        function() {
-          console.log("finally");
-        }
-      );
   }
 }

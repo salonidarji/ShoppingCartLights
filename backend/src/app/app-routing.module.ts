@@ -135,7 +135,7 @@ const routes: Routes = [
     runGuardsAndResolvers: "always"
   },
   {
-    path: "insertProductFeature",
+    path: "insertProductFeature/:uId",
     component: InsertProductFeatureComponent,
     runGuardsAndResolvers: "always"
   },
