@@ -22,8 +22,6 @@ export class ProductImageServiceService {
 
   insertProductImage(item) {
     let body = JSON.stringify(item);
-    console.log("json:" + body);
-
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json"

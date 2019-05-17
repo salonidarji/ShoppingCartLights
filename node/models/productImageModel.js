@@ -16,49 +16,59 @@ var ProductImage = {
     );
   },
   addProductImage: function(item, callback) {
-    var dt = new Date(); //current date and time of server
+    for (var index = 0; index < item.image_url.length; index++) {
+      var dt = new Date(); //current date and time of server
 
-    var text = ""; //random text
+      var text = ""; //random text
 
-    var possible =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+      for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    var temp = JSON.stringify(item);
-    console.log("temp:" + temp);
-    var base64d = temp.replace(/^data:image\/jpeg;base64,/, "");
+      //  console.log(index + ":" + item.image_url[index]);
+      var base64d = item.image_url[index].replace(
+        /^data:image\/jpeg;base64,/,
+        ""
+      );
 
-    var path =
-      "./public/images/" +
-      text +
-      dt.getDate() +
-      dt.getMonth() +
-      dt.getMilliseconds() +
-      ".jpeg";
+      var path =
+        "./public/images/" +
+        text +
+        dt.getDate() +
+        dt.getMonth() +
+        dt.getMilliseconds() +
+        ".jpeg";
 
-    var path1 =
-      "/images/" +
-      text +
-      dt.getDate() +
-      dt.getMonth() +
-      dt.getMilliseconds() +
-      ".jpeg";
+      var path1 =
+        "/images/" +
+        text +
+        dt.getDate() +
+        dt.getMonth() +
+        dt.getMilliseconds() +
+        ".jpeg";
 
-    fs.writeFile(path, base64d, "base64", function(err) {
-      if (err) {
-        return console.log(err);
+      fs.writeFile(path, base64d, "base64", function(err) {
+        if (err) {
+          return console.log(err);
+        }
+
+        console.log("The file was saved!");
+      });
+      if (index == item.image_url.length - 1) {
+        return db.query(
+          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
+          ["null", path1, 1, 0],
+          callback
+        );
+      } else {
+        db.query(
+          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
+          ["null", path1, 1, 0]
+        );
       }
-
-      console.log("The file was saved!");
-    });
-
-    return db.query(
-      "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
-      ["null", path1, 1, 0],
-      callback
-    );
+    }
   },
   deleteProductImage: function(id, callback) {
     return db.query(

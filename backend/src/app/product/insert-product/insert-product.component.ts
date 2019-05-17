@@ -1,11 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl
-} from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { Product } from "../../models/product";
 import { ProductServiceService } from "../../services/product-service.service";
@@ -30,7 +24,7 @@ export class InsertProductComponent implements OnInit {
   feature_arr: Feature[];
   file: File = null;
 
-  image_url: FormArray;
+  model = { image_url: [] };
 
   path = "";
 
@@ -90,42 +84,20 @@ export class InsertProductComponent implements OnInit {
   }
 
   onFileSelect(event) {
-    this.image_url = this.fb.array([new FormControl(event.target.files)]);
-
-    //const controls = this.insertProductForm.get("image_url");
-
-    if (event.target.files && event.target.files[0]) {
-      var filesAmount = event.target.files.length;
-      for (let i = 0; i < filesAmount; i++) {
-        var reader = new FileReader();
-
-        reader.onload = event => {
-          console.log(reader.result);
-
-          this.image_url.push(this.fb.control(reader.result as string));
-        };
-
-        reader.readAsDataURL(event.target.files[i]);
-      }
-      console.log(this.image_url.value[0]);
-      console.log(this.image_url.value[0][0].name);
-    }
-  }
-
-  /* fileChange(input) {
-    this.readFiles(input.files);
+    this.readFiles(event.target.files);
   }
 
   readFile(file, reader, callback) {
-    var filesAmount = file.length;
-    for (let i = 0; i < filesAmount; i++) {
-      reader.onload = event => {
-        console.log(reader.result);
-      };
+    reader.onload = event => {
+      callback(reader.result);
 
-      reader.readAsDataURL(file[i]);
+      this.model.image_url.push(reader.result);
+      console.log(reader.result);
+    };
 
-    }
+    reader.readAsDataURL(file);
+    console.log(this.model);
+    console.log(JSON.stringify(this.model));
   }
 
   readFiles(files, index = 0) {
@@ -224,7 +196,7 @@ export class InsertProductComponent implements OnInit {
 
       callback(dataUrl, img.src.length, dataUrl.length);
     });
-  }*/
+  }
 
   onSubmit() {
     console.warn(this.insertProductForm.value);
@@ -236,23 +208,19 @@ export class InsertProductComponent implements OnInit {
           .subscribe(
             data => {
               console.log(data);
-              for (var i = 0; i < this.image_url.value[0].length; i++) {
-                console.log(this.image_url.value[0][i].name);
-                this._productImage
-                  .insertProductImage(this.image_url.value[0][i])
-                  .subscribe(
-                    data => {
-                      console.log(data);
-                      this.router.navigate(["/viewProduct"]);
-                    },
-                    function(err) {
-                      console.log(err);
-                    },
-                    function() {
-                      console.log("finally");
-                    }
-                  );
-              }
+              console.log(this.model);
+              this._productImage.insertProductImage(this.model).subscribe(
+                data => {
+                  console.log(data);
+                  this.router.navigate(["/viewProduct"]);
+                },
+                function(err) {
+                  console.log(err);
+                },
+                function() {
+                  console.log("finally");
+                }
+              );
             },
             function(err) {
               console.log(err);
