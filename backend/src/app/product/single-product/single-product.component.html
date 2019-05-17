@@ -5,39 +5,74 @@
     Product Detail
   </h1>
   <a routerLink="/viewProduct" class="previous">&laquo; Previous</a>
-  <div class="row" *ngFor="let item of product_arr">
+
+  <div class="row">
     <div class="col-md-6">
-      <img
-        src="http://localhost:3000/{{ item.image_url }}"
-        alt="Image Not Found"
-        height="100%"
-        width="100%"
-      />
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              class="d-block w-100"
+              src="http://localhost:3000{{ mainUrl }}"
+              alt="No Image"
+            />
+          </div>
+          <div class="carousel-item " *ngFor="let image of image_url">
+            <img
+              class="d-block w-100"
+              src="http://localhost:3000{{ image }}"
+              alt="No Image"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
     <div class="col-md-6">
       <div style="align-content:left">
-        <h3>{{ item.product_name }}</h3>
-        <h5>{{ item.product_description }}</h5>
+        <h3>{{ product_name }}</h3>
+        <h5>{{ product_desc }}</h5>
         <p>
-          M.R.P.: <i class="fa fa-inr"></i><del>{{ item.product_price }}</del>
+          M.R.P.: <i class="fa fa-inr"></i><del>{{ product_price }}</del>
         </p>
         <p>
           Price:
           <span class="text-danger"
-            ><i class="fa fa-inr"></i>{{ item.product_sale_price }}</span
+            ><i class="fa fa-inr"></i>{{ product_sale_price }}</span
           >
         </p>
         <p>
           You Save:
           <span class="text-danger"
             ><i class="fa fa-inr"></i
-            >{{ item.product_price - item.product_sale_price }}</span
+            >{{ product_price - product_sale_price }}</span
           >
         </p>
         <h4>Features:</h4>
-        <p>{{ item.feature_name }} : {{ item.feature_value }}</p>
+        <p>{{ feature_name }} : {{ feature_value }}</p>
       </div>
     </div>
   </div>
+  <!-- /.container-fluid -->
 </div>
-<!-- /.container-fluid -->

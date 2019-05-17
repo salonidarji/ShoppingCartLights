@@ -58,14 +58,14 @@ var ProductImage = {
       });
       if (index == item.image_url.length - 1) {
         return db.query(
-          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
-          ["null", path1, 1, 0],
+          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?,?)",
+          ["null", path1, 1, 1, 0],
           callback
         );
       } else {
         db.query(
           "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
-          ["null", path1, 1, 0]
+          ["null", path1, 0, 1, 0]
         );
       }
     }

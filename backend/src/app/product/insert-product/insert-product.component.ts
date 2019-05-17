@@ -60,7 +60,6 @@ export class InsertProductComponent implements OnInit {
     this._category.getAllCategory().subscribe(
       (data: any) => {
         this.category_arr = data;
-        console.log(this.category_arr);
       },
       function(err) {
         console.log(err);
@@ -96,8 +95,6 @@ export class InsertProductComponent implements OnInit {
     };
 
     reader.readAsDataURL(file);
-    console.log(this.model);
-    console.log(JSON.stringify(this.model));
   }
 
   readFiles(files, index = 0) {
@@ -202,16 +199,16 @@ export class InsertProductComponent implements OnInit {
     console.warn(this.insertProductForm.value);
     this._product.insertProduct(this.insertProductForm.value).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this._productFeature
           .insertProductFeature(this.insertProductForm.value)
           .subscribe(
             data => {
-              console.log(data);
-              console.log(this.model);
+              // console.log(data);
+              // console.log(this.model);
               this._productImage.insertProductImage(this.model).subscribe(
                 data => {
-                  console.log(data);
+                  //console.log(data);
                   this.router.navigate(["/viewProduct"]);
                 },
                 function(err) {
