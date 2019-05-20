@@ -30,6 +30,11 @@ export class UpdateProductComponent implements OnInit {
   pImageId: number;
   pFeatureId: number;
 
+  model = {
+    image_url: [],
+    fk_product_id: this.route.snapshot.paramMap.get("uId")
+  };
+
   path = "";
 
   public file_srcs: string[] = [];
@@ -162,21 +167,14 @@ export class UpdateProductComponent implements OnInit {
   }
 
   onFileSelect(event) {
-    this.file = <File>event.target.files;
-    this.readFiles(this.file);
-    // this.updateProductForm.get("image_url").setValue(this.file);
-  }
-
-  fileChange(input) {
-    this.readFiles(input.files);
+    this.readFiles(event.target.files);
   }
 
   readFile(file, reader, callback) {
-    reader.onload = () => {
+    reader.onload = event => {
       callback(reader.result);
 
-      this.updateProductForm.controls.image_url.setValue(reader.result);
-      console.log(this.updateProductForm.controls.image_url.value);
+      this.model.image_url.push(reader.result);
       console.log(reader.result);
     };
 
@@ -287,38 +285,35 @@ export class UpdateProductComponent implements OnInit {
       .updateProduct(this.id, this.updateProductForm.value)
       .subscribe(
         data => {
-          console.log(data);
-          this.router.navigate(["/viewProduct"]);
-        },
-        function(err) {
-          console.log(err);
-        },
-        function() {
-          console.log("finally");
-        }
-      );
-
-    this._productImage
-      .updateProductImage(this.pImageId, this.updateProductForm.value)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(["/viewProduct"]);
-        },
-        function(err) {
-          console.log(err);
-        },
-        function() {
-          console.log("finally");
-        }
-      );
-
-    this._productFeature
-      .updateProductFeature(this.pFeatureId, this.updateProductForm.value)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(["/viewProduct"]);
+          // console.log(data);
+          this._productFeature
+            .updateProductFeature(this.pFeatureId, this.updateProductForm.value)
+            .subscribe(
+              data => {
+                // console.log(data);
+                console.log(this.model);
+                this._productImage
+                  .updateProductImage(this.pImageId, this.model)
+                  .subscribe(
+                    data => {
+                      //console.log(data);
+                      this.router.navigate(["/viewProduct"]);
+                    },
+                    function(err) {
+                      console.log(err);
+                    },
+                    function() {
+                      console.log("finally");
+                    }
+                  );
+              },
+              function(err) {
+                console.log(err);
+              },
+              function() {
+                console.log("finally");
+              }
+            );
         },
         function(err) {
           console.log(err);

@@ -70,7 +70,13 @@
           >
         </p>
         <h4>Features:</h4>
-        <p>{{ feature_name }} : {{ feature_value }}</p>
+        <p *ngIf="feature_arr[0] && feature_arr[0][0] && productFeature_arr[0]">
+          <ng-container *ngFor="let i of number_arr">
+            {{ feature_arr[i][0].feature_name }} :
+            {{ productFeature_arr[i].feature_value }}
+            <br />
+          </ng-container>
+        </p>
       </div>
     </div>
   </div>

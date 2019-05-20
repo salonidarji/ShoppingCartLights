@@ -8,7 +8,6 @@ import { FeatureServiceService } from "../../services/feature-service.service";
 import { Feature } from "../../models/feature";
 import { ProductFeature } from "../../models/product-feature";
 import { ProductFeatureServiceService } from "../../services/product-feature-service.service";
-import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
   selector: "app-single-product",
@@ -19,7 +18,7 @@ export class SingleProductComponent implements OnInit {
   flag: string;
   id: string;
   product_arr: Product[];
-  feature_arr: Feature[];
+  feature_arr: Feature[] = [];
   productFeature_arr: ProductFeature[];
   productImage_arr: ProductImage[];
 
@@ -31,7 +30,9 @@ export class SingleProductComponent implements OnInit {
   feature_value: string;
   public feature_id: number;
   image_url: string[] = [];
+  number_arr: number[] = [];
   mainUrl: string;
+  Fid: number;
 
   constructor(
     private router: Router,
@@ -88,23 +89,30 @@ export class SingleProductComponent implements OnInit {
     this._productFeature.getProductFeature(id).subscribe(
       (_data: any) => {
         this.productFeature_arr = _data;
-        this.feature_value = this.productFeature_arr[0].feature_value;
-        this.feature_id = this.productFeature_arr[0].fk_feature_id;
-        console.log(this.productFeature_arr);
+        var i;
+        for (i = 0; i < this.productFeature_arr.length; i++) {
+          console.log(this.productFeature_arr[i].fk_feature_id);
+          this.feature_id = this.productFeature_arr[i].fk_feature_id;
+          console.log(this.productFeature_arr);
+          this.number_arr.push(i);
+          this.Fid = this.feature_id;
 
-        this._feature.getFeature(this.feature_id).subscribe(
-          (_data: any) => {
-            this.feature_arr = _data;
-            this.feature_name = this.feature_arr[0].feature_name;
-            console.log(this.feature_arr);
-          },
-          function(err) {
-            console.log(err);
-          },
-          function() {
-            console.log("feature done");
-          }
-        );
+          console.log("id got:" + this.Fid);
+          this._feature.getFeature(this.Fid).subscribe(
+            (_data: any) => {
+              console.log(this.Fid);
+              this.feature_arr.push(_data);
+              console.log(this.feature_arr);
+            },
+            function(err) {
+              console.log(err);
+            },
+            function() {
+              console.log("feature done");
+            }
+          );
+          console.log(this.number_arr);
+        }
       },
       function(err) {
         console.log(err);

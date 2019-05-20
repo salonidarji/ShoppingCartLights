@@ -123,17 +123,19 @@
                   <div class="form-group">
                     <input
                       type="file"
+                      multiple
                       (change)="onFileSelect($event)"
                       accept=".jpeg , .jpg"
                       #image_url
                     />
-                    <!-- <input
-                      type="file"
-                      (change)="onFileUpload($event)"
-                      class="form-control form-control-productImage"
-                      placeholder="Enter url here..."
-                    /> -->
                   </div>
+                  <img
+                    *ngFor="let item of file_srcs"
+                    [attr.src]="item"
+                    alt=""
+                    height="50"
+                    width="50"
+                  />
 
                   <div class="form-group">
                     <select
