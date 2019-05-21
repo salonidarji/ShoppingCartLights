@@ -69,13 +69,15 @@ export class SingleProductComponent implements OnInit {
 
     this._productImage.getProductImage(id).subscribe(
       (_data: any) => {
+        console.log(_data);
         this.productImage_arr = _data;
         console.log(this.productImage_arr[0]);
-        this.mainUrl = this.productImage_arr[0].image_url;
-        for (var i = 1; i < this.productImage_arr.length; i++) {
-          this.image_url.push(this.productImage_arr[i].image_url);
+        if (_data != "undefined") {
+          this.mainUrl = this.productImage_arr[0].image_url;
+          for (var i = 1; i < this.productImage_arr.length; i++) {
+            this.image_url.push(this.productImage_arr[i].image_url);
+          }
         }
-
         console.log(this.image_url);
       },
       function(err) {
@@ -119,6 +121,21 @@ export class SingleProductComponent implements OnInit {
       },
       function() {
         console.log("product feature done");
+      }
+    );
+  }
+
+  removeImage() {
+    this._productImage.deleteProductImage(this.id).subscribe(
+      (data: any) => {
+        alert("images deleted");
+        this.router.navigate(["/viewProduct"]);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally of remove image");
       }
     );
   }

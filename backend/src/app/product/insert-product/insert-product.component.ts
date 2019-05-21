@@ -205,7 +205,7 @@ export class InsertProductComponent implements OnInit {
           .subscribe(
             data => {
               // console.log(data);
-              // console.log(this.model);
+              console.log(this.model);
               this._productImage.insertProductImage(this.model).subscribe(
                 data => {
                   //console.log(data);

@@ -73,7 +73,7 @@ export class InsertProductFeatureComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(["/viewProductFeature"]);
+          this.router.navigate(["/viewProduct"]);
         },
         function(err) {
           console.log(err);

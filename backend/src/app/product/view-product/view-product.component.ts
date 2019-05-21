@@ -29,8 +29,9 @@ export class ViewProductComponent implements OnInit {
     );
   }
 
-  deleteProduct(p_id, pi_id, pf_id) {
-    this._product.deleteProduct(p_id, pi_id, pf_id).subscribe(
+  deleteProduct(id) {
+    console.log(id);
+    this._product.deleteProduct(id).subscribe(
       (_data: any) => {
         // this.product_arr = _data;
         // console.log(this.product_arr);

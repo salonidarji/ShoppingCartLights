@@ -27,7 +27,7 @@ var ProductImage = {
       for (var i = 0; i < 5; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-      //  console.log(index + ":" + item.image_url[index]);
+      //console.log(index + ":" + item.image_url[index]);
       var base64d = item.image_url[index].replace(
         /^data:image\/jpeg;base64,/,
         ""
@@ -64,7 +64,7 @@ var ProductImage = {
         );
       } else {
         db.query(
-          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?)",
+          "Insert into product_image_tbl values(?,?,(select max(pk_product_id) from product_tbl),?,?,?)",
           ["null", path1, 0, 1, 0]
         );
       }
@@ -72,7 +72,7 @@ var ProductImage = {
   },
   deleteProductImage: function(id, callback) {
     return db.query(
-      "update product_image_tbl set is_delete=1, is_active=0 where pk_image_id=?",
+      "update product_image_tbl set is_delete=1, is_active=0 where fk_product_id=?",
       [id],
       callback
     );

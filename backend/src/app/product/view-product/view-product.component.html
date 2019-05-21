@@ -18,13 +18,7 @@
 
           <button
             class="btn btn-danger btn-md"
-            (click)="
-              deleteProduct(
-                item.pk_product_id,
-                item.fk_product_id,
-                item.pk_product_feature_id
-              )
-            "
+            (click)="deleteProduct(item.pk_product_id)"
           >
             <span class="fa fa-trash"></span>
           </button>
