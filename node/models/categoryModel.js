@@ -7,9 +7,9 @@ var Category = {
       callback
     );
   },
-  getCategory: function(id, callback) {
+  getProductByCategory: function(id, callback) {
     return db.query(
-      "select * from category_tbl where pk_category_id=? && is_delete=0 && is_active=1",
+      "select * from product_tbl p ,product_image_tbl pi where p.fk_category_id=? && p.pk_product_id=pi.fk_product_id && p.is_delete=0 && p.is_active=1 && pi.is_delete=0 && pi.is_active=1 && pi.is_cover=1",
       [id],
       callback
     );
