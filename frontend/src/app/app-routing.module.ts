@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ContentComponent } from "./content/content.component";
 import { SingleProductComponent } from "./single-product/single-product.component";
+import { ProductCategoryComponent } from "./product-category/product-category.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: "singleProduct",
     component: SingleProductComponent
+  },
+  {
+    path: "productByCategory/:uId",
+    component: ProductCategoryComponent
   }
 ];
 

@@ -12,7 +12,7 @@ export class CategoryServiceService {
     return this._http.get(this.category_url);
   }
 
-  getCategory(id) {
+  getProductByCategory(id) {
     return this._http.get(this.category_url + id);
   }
 
