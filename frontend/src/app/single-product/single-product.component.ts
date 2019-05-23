@@ -29,6 +29,8 @@ export class SingleProductComponent implements OnInit {
   public feature_id: number;
   Fid: number;
   id: string;
+  imgNew: string = "";
+  quantity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,5 +114,11 @@ export class SingleProductComponent implements OnInit {
         console.log("single product image done");
       }
     );
+
+    console.log("quantity:" + this.quantity);
+  }
+
+  replaceImage(image) {
+    this.imgNew = image;
   }
 }
