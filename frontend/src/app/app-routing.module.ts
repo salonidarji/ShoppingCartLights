@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ContentComponent
   },
   {
-    path: "singleProduct",
+    path: "singleProduct/:uId",
     component: SingleProductComponent
   },
   {
