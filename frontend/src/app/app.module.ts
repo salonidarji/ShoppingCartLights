@@ -12,6 +12,7 @@ import { ProductComponent } from "./product/product.component";
 import { SingleProductComponent } from "./single-product/single-product.component";
 import { ContentComponent } from "./content/content.component";
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { ProductAllComponent } from './product-all/product-all.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductCategoryComponent } from './product-category/product-category.co
     ProductComponent,
     SingleProductComponent,
     ContentComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    ProductAllComponent
   ],
   imports: [
     BrowserModule,

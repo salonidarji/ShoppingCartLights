@@ -1,0 +1,90 @@
+<div id="content" class="site-content" tabindex="-1">
+  <div class="col-full">
+    <div class="row">
+      <nav class="woocommerce-breadcrumb">
+        <a routerLink="/content">Home</a>
+        <span class="delimiter">
+          <i class="tm tm-breadcrumbs-arrow-right"></i> </span
+        ><a routerLink="/singleProduct">All Products</a>
+      </nav>
+      <!-- .woocommerce-breadcrumb -->
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <div class="product product-type-simple">
+            <!-- .single-product-wrapper -->
+            <div
+              class="tm-related-products-carousel section-products-carousel"
+              id="tm-related-products-carousel"
+              data-ride="tm-slick-carousel"
+              data-wrap=".products"
+            >
+              <section class="related">
+                <header class="section-header">
+                  <h2 class="section-title">Products</h2>
+                  <nav class="custom-slick-nav"></nav>
+                </header>
+                <!-- .section-header -->
+                <div class="products">
+                  <div class="product" *ngFor="let item of product_arr">
+                    <div class="yith-wcwl-add-to-wishlist">
+                      <a href="" rel="nofollow" class="add_to_wishlist">
+                        Add to Wishlist</a
+                      >
+                    </div>
+                    <a
+                      routerLink="/singleProduct/{{ item.pk_product_id }}"
+                      class="woocommerce-LoopProduct-link"
+                    >
+                      <img
+                        src="http://localhost:3000/{{ item.image_url }}"
+                        width="224"
+                        height="197"
+                        class="wp-post-image"
+                        alt="Not Available"
+                      />
+                      <span class="price">
+                        <i class="fa fa-inr"></i>
+                        <del>
+                          <span class="amount">{{ item.product_price }} </span>
+                        </del>
+                        <br />
+                        <i class="fa fa-inr"></i>
+                        <span class="amount">
+                          {{ item.product_sale_price }}</span
+                        >
+                      </span>
+                      <!-- /.price -->
+                      <h2 class="woocommerce-loop-product__title">
+                        {{ item.product_name }}
+                      </h2>
+                    </a>
+                    <div class="hover-area">
+                      <a
+                        class="button add_to_cart_button"
+                        href="cart.html"
+                        rel="nofollow"
+                        >Add to cart</a
+                      >
+                      <a class="add-to-compare-link" href="compare.html"
+                        >Add to compare</a
+                      >
+                    </div>
+                  </div>
+                  <!-- /.product-outer -->
+                </div>
+              </section>
+              <!-- .single-product-wrapper -->
+            </div>
+            <!-- .tm-related-products-carousel -->
+          </div>
+          <!-- .product -->
+        </main>
+        <!-- #main -->
+      </div>
+      <!-- #primary -->
+    </div>
+    <!-- .row -->
+  </div>
+  <!-- .col-full -->
+</div>
+<!-- #content -->
