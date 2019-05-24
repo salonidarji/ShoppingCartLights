@@ -13,6 +13,9 @@ import { SingleProductComponent } from "./single-product/single-product.componen
 import { ContentComponent } from "./content/content.component";
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductAllComponent } from './product-all/product-all.component';
+import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { NotLoginComponent } from './not-login/not-login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ProductAllComponent } from './product-all/product-all.component';
     SingleProductComponent,
     ContentComponent,
     ProductCategoryComponent,
-    ProductAllComponent
+    ProductAllComponent,
+    LoginSignupComponent,
+    NotLoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

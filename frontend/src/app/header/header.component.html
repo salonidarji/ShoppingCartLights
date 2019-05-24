@@ -1,4 +1,5 @@
-<header id="masthead" class="site-header header-v5" style="background-image: none; ">
+<!-- *ngIf="flag == 'true'; else notLogin" -->
+<header id="masthead" class="site-header header-v5" style="background-image: none;" >
   <div class="col-full desktop-only">
       <div class="techmarket-sticky-wrap">
           <div class="row">
@@ -733,9 +734,14 @@
                       <li class="menu-item animate-dropdown">
                           <a title="Logitech Sale" href="product-category.html">Logitech Sale</a>
                       </li>
-                      <li class="menu-item animate-dropdown">
-                          <a title="Headphones Sale" href="product-category.html">Headphones Sale</a>
-                      </li>
+
+                      <li *ngIf="id == ''" class="menu-item animate-dropdown">
+                        <a title="Login/Register" routerLink="/loginSignup">Login/Signup</a>
+                    </li>
+                    <li *ngIf="id != ''" class="menu-item animate-dropdown">
+                        <a title="Logout" (click)="logout()">Logout</a>
+                    </li>
+
                       <li class="techmarket-flex-more-menu-item dropdown">
                           <a title="..." href="#" data-toggle="dropdown" class="dropdown-toggle">...</a>
                           <ul class="overflow-items dropdown-menu"></ul>
@@ -1339,3 +1345,9 @@
   <!-- .handheld-only -->
 </header>
 <!-- .header-v5 -->
+
+
+<!-- <ng-template #notLogin>
+    <app-not-login></app-not-login>
+  </ng-template> -->
+  

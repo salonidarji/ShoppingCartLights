@@ -7,7 +7,6 @@ import { AuthenticationServiceService } from "../services/authentication-service
 import { ILogin } from "../login";
 import { AdminServiceService } from "../services/admin-service.service";
 import { Admin } from "../models/admin";
-import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
   selector: "app-login",
@@ -45,20 +44,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.insertLoginForm.value);
-    //  this._user.getUser(this.insertLoginForm.value).subscribe(
-    //    data => {
-    //      console.log(data);
-    //      alert("model data done");
-    //         this.model.values(data;
 
-    //    },
-    //    function(err) {
-    //      console.log(err);
-    //    },
-    //    function() {
-    //      console.log("finally");
-    //    }
-    //  );
     for (let i = 0; i <= this.model.length; i++) {
       if (
         this.insertLoginForm.controls.admin_email.value ==

@@ -35,25 +35,4 @@ export class AdminServiceService {
     };
     return this._http.put(this.admin_url + id, body, httpOptions);
   }
-
-  sendEmail(item) {
-    let body = JSON.stringify(item);
-    console.log("json:" + item);
-    const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
-    };
-    return this._http.post(
-      "http://localhost:3000/sendEmail/",
-      body,
-      httpOptions
-    );
-  }
-
-  changePassword(id, item) {
-    let body = JSON.stringify(item);
-    const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
-    };
-    return this._http.put(this.admin_url + id, body, httpOptions);
-  }
 }
