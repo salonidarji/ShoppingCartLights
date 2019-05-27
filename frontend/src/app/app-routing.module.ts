@@ -6,6 +6,8 @@ import { ProductCategoryComponent } from "./product-category/product-category.co
 import { ProductAllComponent } from "./product-all/product-all.component";
 import { LoginSignupComponent } from "./login-signup/login-signup.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { CartComponent } from "./cart/cart.component";
+import { CheckoutComponent } from "./checkout/checkout.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: "forgotPassword",
     component: ForgotPasswordComponent
+  },
+  {
+    path: "cart",
+    component: CartComponent
+  },
+  {
+    path: "checkout",
+    component: CheckoutComponent
   },
   {
     path: "singleProduct/:uId",

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 import { User } from "../models/User";
-import { UserServiceService } from "../services/User-service.service";
+import { UserServiceService } from "../services/user-service.service";
 
 @Component({
   selector: "app-forgot-password",
@@ -27,7 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.user_arr = data;
-          console.log("array:" + this.user_arr[0]);
+          console.log("array:" + this.user_arr);
           this._user.sendEmail(this.user_arr[0]).subscribe(
             (data: any) => {
               console.log(data);
