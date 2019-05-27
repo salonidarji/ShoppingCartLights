@@ -23,13 +23,14 @@ export class ForgotPasswordComponent implements OnInit {
     console.warn(this.forgotPasswordForm.value);
 
     this._user
-      .getUser(this.forgotPasswordForm.controls.user_email.value)
+      .getUserForPassword(this.forgotPasswordForm.controls.user_email.value)
       .subscribe(
         (data: any) => {
           this.user_arr = data;
           console.log("array:" + this.user_arr[0]);
           this._user.sendEmail(this.user_arr[0]).subscribe(
-            () => {
+            (data: any) => {
+              console.log(data);
               alert("Check Your Registerd email id");
             },
             function(err) {

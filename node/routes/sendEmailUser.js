@@ -11,4 +11,14 @@ router.post("/", function(req, res) {
   });
 });
 
+router.get("/:id", function(req, res) {
+  SendEmailUser.getUser(req.params.id, function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 module.exports = router;

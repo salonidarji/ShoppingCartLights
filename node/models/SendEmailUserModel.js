@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+var db = require("../dbConnection");
+
 var SendEmailUser = {
   sendMail: function(item, callback) {
     let transporter = nodemailer.createTransport({
@@ -17,12 +19,20 @@ var SendEmailUser = {
     let mailOptions = {
       from: "akshay.rexontechnologies@gmail.com",
       to: item.user_email,
-      subject: "Password = " + item.user_password,
-      html: `<h1>header tag</h1>`
+      subject: "Password from Forgot Password",
+      html: `<p> Your Password is:  ${item.user_password} </p>`
     };
 
     let info = transporter.sendMail(mailOptions);
-    //callback(info);
+    callback(info);
+  },
+
+  getUser: function(id, callback) {
+    return db.query(
+      "select * from user_tbl where user_email=? && is_delete=0 && is_active=1",
+      [id],
+      callback
+    );
   }
 
   //sendMail().catch(console.error);

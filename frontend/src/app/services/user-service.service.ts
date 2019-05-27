@@ -16,6 +16,10 @@ export class UserServiceService {
     return this._http.get(this.user_url + item);
   }
 
+  getUserForPassword(id) {
+    return this._http.get("http://localhost:3000/sendEmailUser/" + id);
+  }
+
   deleteUser(id) {
     return this._http.delete(this.user_url + id);
   }
