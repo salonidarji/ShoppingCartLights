@@ -19,6 +19,7 @@ var order = require("./routes/order");
 var orderDetail = require("./routes/orderDetail");
 var sendEmail = require("./routes/sendEmail");
 var sendEmailUser = require("./routes/sendEmailUser");
+var cart = require("./routes/cart");
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use("/order", order);
 app.use("/orderDetail", orderDetail);
 app.use("/sendEmail", sendEmail);
 app.use("/sendEmailUser", sendEmailUser);
+app.use("/cart", cart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

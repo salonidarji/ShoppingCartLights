@@ -8,6 +8,8 @@ import { Feature } from "../models/feature";
 import { FeatureServiceService } from "../services/feature-service.service";
 import { ProductImage } from "../models/product-image";
 import { ProductImageServiceService } from "../services/product-image-service.service";
+import { CartServiceService } from "../services/cart-service.service";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-single-product",
@@ -15,6 +17,8 @@ import { ProductImageServiceService } from "../services/product-image-service.se
   styleUrls: ["./single-product.component.css"]
 })
 export class SingleProductComponent implements OnInit {
+  insertCartForm: FormGroup;
+
   product_arr: Product[];
   feature_arr: Feature[] = [];
   productFeature_arr: ProductFeature[];
@@ -28,7 +32,8 @@ export class SingleProductComponent implements OnInit {
   mainUrl: string;
   public feature_id: number;
   Fid: number;
-  id: string;
+  userId: string;
+  productId: string;
   imgNew: string = "";
   quantity: number = 1;
 
@@ -37,12 +42,15 @@ export class SingleProductComponent implements OnInit {
     private _product: ProductServiceService,
     private _productFeature: ProductFeatureServiceService,
     private _feature: FeatureServiceService,
-    private _productImage: ProductImageServiceService
+    private _productImage: ProductImageServiceService,
+    private _cart: CartServiceService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get("uId");
-    this.id = id;
+    this.productId = id;
+    this.userId = localStorage.getItem("token");
     this._product.getProduct(id).subscribe(
       (data: any) => {
         this.product_arr = data;
@@ -120,5 +128,30 @@ export class SingleProductComponent implements OnInit {
 
   replaceImage(image) {
     this.imgNew = image;
+  }
+
+  addToCart(product_id) {
+    if (this.userId != "") {
+      this.insertCartForm = this.fb.group({
+        fk_user_email_id: [this.userId],
+        fk_product_id: [product_id],
+        product_qty: [this.quantity]
+      });
+
+      this._cart.insertCart(this.insertCartForm.value).subscribe(
+        (data: any) => {
+          console.log(this.insertCartForm.value);
+          alert("Product Successfully added to Cart");
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("add to cart done");
+        }
+      );
+    } else {
+      alert("please Do Login first...!!!");
+    }
   }
 }
