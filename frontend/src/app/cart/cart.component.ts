@@ -4,6 +4,7 @@ import { Cart } from "../models/cart";
 import { _createNgProbe } from "@angular/platform-browser/src/dom/debug/ng_probe";
 import { ProductServiceService } from "../services/product-service.service";
 import { Product } from "../models/product";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-cart",
@@ -13,7 +14,7 @@ import { Product } from "../models/product";
 export class CartComponent implements OnInit {
   flag: string;
   id: string;
-  fillFlag = 0;
+  cartForm: FormGroup;
 
   cart_arr: Cart[] = [];
   public product_arr: any[] = [];
@@ -31,7 +32,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private _cart: CartServiceService,
-    private _product: ProductServiceService
+    private _product: ProductServiceService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -80,16 +82,26 @@ export class CartComponent implements OnInit {
     );
   }
 
-  total(value, i) {
-    if (this.qty_arr[i] == 0) {
+  total(pk_cart_id, i) {
+    if (this.qty_arr[i] <= 1) {
       this.qty_arr[i] = 1;
     }
 
-    this.total_arr[i] = value * <any>this.productPrice_arr[i];
+    this.total_arr[i] = this.qty_arr[i] * <any>this.productPrice_arr[i];
     this.grandTotal = 0;
     for (let i = 0; i < this.total_arr.length; i++) {
       this.grandTotal += this.total_arr[i];
     }
+
+    this.cartForm = this.fb.group({
+      product_qty: [this.qty_arr[i]]
+    });
+
+    this._cart
+      .updateCart(pk_cart_id, this.cartForm.value)
+      .subscribe((data: any) => {
+        console.log(data);
+      });
   }
 
   deleteItem(pk_cart_id) {
@@ -97,4 +109,6 @@ export class CartComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  updateCart() {}
 }

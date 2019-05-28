@@ -37,8 +37,8 @@ var Cart = {
   },
   updateCart: function(id, item, callback) {
     return db.query(
-      "update cart_tbl set fk_product_id=? , product_qty=? where pk_cart_id=? && fk_user_email_id=?",
-      [item.fk_product_id, item.product_qty, id, item.fk_user_email_id],
+      "update cart_tbl set product_qty=? where pk_cart_id=?",
+      [item.product_qty, id],
       callback
     );
   }

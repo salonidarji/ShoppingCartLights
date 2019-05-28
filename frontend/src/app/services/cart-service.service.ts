@@ -28,7 +28,7 @@ export class CartServiceService {
     return this._http.post(this.cart_url, body, httpOptions);
   }
 
-  updatecart(id, item) {
+  updateCart(id, item) {
     let body = JSON.stringify(item);
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
