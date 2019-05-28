@@ -114,7 +114,7 @@
                                             <form enctype="multipart/form-data" method="post" class="cart">
                                                 <div class="quantity">
                                                     <label for="quantity-input">Quantity</label>
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" [(ngModel)]="quantity" name="quantity" id="quantity-input">
+                                                    <input type="number" size="4" class="input-text qty text" title="Qty" [(ngModel)]="quantity" (change)="checkValue()" name="quantity" id="quantity-input">
                                                 </div>
                                                 <!-- .quantity -->
                                                 <br/>

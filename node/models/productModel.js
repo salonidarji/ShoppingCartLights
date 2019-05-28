@@ -9,7 +9,7 @@ var Product = {
   },
   getProduct: function(id, callback) {
     return db.query(
-      "Select * from product_tbl p where pk_product_id=? && p.is_delete=0 && p.is_active=1",
+      "Select * from product_tbl p,product_image_tbl pi where p.pk_product_id=pi.fk_product_id && pk_product_id=? && p.is_delete=0 && p.is_active=1",
       [id],
       callback
     );

@@ -154,4 +154,10 @@ export class SingleProductComponent implements OnInit {
       alert("please Do Login first...!!!");
     }
   }
+
+  checkValue() {
+    if (this.quantity <= 0) {
+      this.quantity = 1;
+    }
+  }
 }
