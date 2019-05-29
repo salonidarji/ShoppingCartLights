@@ -9,7 +9,7 @@ var Order = {
   },
   getOrder: function(id, callback) {
     return db.query(
-      "select * from order_tbl where pk_order_id=? && is_delete=0 && is_active=1",
+      "select * from order_tbl where fk_user_id=? && is_delete=0 && is_active=1",
       [id],
       callback
     );

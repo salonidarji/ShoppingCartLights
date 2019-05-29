@@ -8,6 +8,7 @@ import { LoginSignupComponent } from "./login-signup/login-signup.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { CartComponent } from "./cart/cart.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
+import { OrderHistoryComponent } from "./order-history/order-history.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: "checkout",
     component: CheckoutComponent
+  },
+  {
+    path: "orderHistory",
+    component: OrderHistoryComponent
   },
   {
     path: "singleProduct/:uId",

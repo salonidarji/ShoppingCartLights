@@ -8,6 +8,7 @@ import { UserAddressServiceService } from "../services/user-address-service.serv
 import { CartServiceService } from "../services/cart-service.service";
 import { Cart } from "../models/cart";
 import { ProductServiceService } from "../services/product-service.service";
+import { OrderDetailServiceService } from "../services/order-detail-service.service";
 
 @Component({
   selector: "app-checkout",
@@ -16,6 +17,7 @@ import { ProductServiceService } from "../services/product-service.service";
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
+  orderDetailForm: FormGroup;
   id: string;
   flag: string;
   address_arr: UserAddress[];
@@ -42,7 +44,8 @@ export class CheckoutComponent implements OnInit {
     private _user: UserServiceService,
     private _address: UserAddressServiceService,
     private _cart: CartServiceService,
-    private _product: ProductServiceService
+    private _product: ProductServiceService,
+    private _orderDetail: OrderDetailServiceService
   ) {}
 
   ngOnInit() {
@@ -124,8 +127,6 @@ export class CheckoutComponent implements OnInit {
     this._order.insertOrder(this.checkoutForm.value).subscribe(
       data => {
         console.log(data);
-        alert("Your Order is Placed");
-        this.router.navigate(["/content"]);
       },
       function(err) {
         console.log(err);
@@ -134,6 +135,31 @@ export class CheckoutComponent implements OnInit {
         console.log("finally");
       }
     );
+
+    for (var i = 0; i < this.cart_arr.length; i++) {
+      this.orderDetailForm = this.fb.group({
+        fk_product_id: [this.cart_arr[i].fk_product_id],
+        detail_qty: [this.cart_arr[i].product_qty, Validators.required],
+        detail_price: [
+          this.total_arr[i] / this.qty_arr[i] - this.shipping,
+          Validators.required
+        ]
+      });
+
+      console.log(this.orderDetailForm.value);
+      this._orderDetail.insertOrderDetail(this.orderDetailForm.value).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/orderHistory"]);
+        },
+        function(err) {
+          console.log(err);
+        },
+        function() {
+          console.log("finally");
+        }
+      );
+    }
   }
 
   selectAddress(id) {

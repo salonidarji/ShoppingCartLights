@@ -18,6 +18,7 @@ import { NotLoginComponent } from './not-login/not-login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     NotLoginComponent,
     ForgotPasswordComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

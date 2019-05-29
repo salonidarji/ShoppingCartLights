@@ -9,23 +9,15 @@ var OrderDetail = {
   },
   getOrderDetail: function(id, callback) {
     return db.query(
-      "select * from order_detail_tbl where pk_detail_id=? && is_delete=0 && is_active=1",
+      "select * from order_detail_tbl where fk_order_id=? && is_delete=0 && is_active=1",
       [id],
       callback
     );
   },
   addOrderDetail: function(item, callback) {
     return db.query(
-      "Insert into order_detail_tbl values(?,?,?,?,?,?,?)",
-      [
-        "null",
-        item.fk_order_id,
-        item.fk_product_id,
-        item.detail_qty,
-        item.detail_price,
-        1,
-        0
-      ],
+      "Insert into order_detail_tbl values(?,(select max(pk_order_id) from order_tbl),?,?,?,?,?)",
+      ["null", item.fk_product_id, item.detail_qty, item.detail_price, 1, 0],
       callback
     );
   },
