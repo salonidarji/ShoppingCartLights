@@ -9,7 +9,7 @@ var UserAddress = {
   },
   getUserAddress: function(id, callback) {
     return db.query(
-      "select * from user_address_tbl where pk_address_id=? && is_delete=0 && is_active=1",
+      "select * from user_address_tbl where fk_user_id=? && is_delete=0 && is_active=1",
       [id],
       callback
     );

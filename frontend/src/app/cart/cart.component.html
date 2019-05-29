@@ -58,7 +58,7 @@
                                                   </td>
                                                   <td data-title="Total" class="product-subtotal">
                                                       <span class="woocommerce-Price-amount amount">
-                                                          <span  *ngIf="qty_arr && productPrice_arr" class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{total_arr[i] }}
+                                                          <span  *ngIf="qty_arr[i] && productPrice_arr[i]" class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{total_arr[i] }}
                                                       </span>
                                                       <a (click)="deleteItem(item.pk_cart_id)" title="Remove this item" class="remove" >×</a>
                                                   </td>
@@ -87,18 +87,19 @@
                                                   <tr class="cart-subtotal">
                                                       <th>Subtotal</th>
                                                       <td data-title="Subtotal">
-                                                          <span class="woocommerce-Price-amount amount">
-                                                              <span class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{grandTotal}}</span>
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span  class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{grandTotal}}</span>
+
                                                       </td>
                                                   </tr>
                                                   
-                                                  <tr class="shipping">
+                                                   <tr class="shipping">
                                                         <th>Shipping</th>
                                                         <td data-title="Shipping">
                                                             <span class="woocommerce-Price-amount amount">
                                                                 <span class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{shipping}}</span>
                                                         </td>
-                                                  </tr>
+                                                  </tr> 
                                                   <tr class="order-total">
                                                       <th>Total</th>
                                                       <td data-title="Total">
