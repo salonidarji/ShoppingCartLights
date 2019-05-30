@@ -53,7 +53,7 @@
                                                   <td class="product-quantity" data-title="Quantity">
                                                       <div class="quantity">
                                                           <label for="quantity-input-1">Quantity</label>
-                                                          <input *ngIf="qty_arr" id="quantity-input-1" type="number" name="cart[e2230b853516e7b05d79744fbd4c9c13][qty]" value="{{qty_arr[i]}}" [(ngModel)]="qty_arr[i]" (change)="total(item.pk_cart_id,i)" title="Qty" class="input-text qty text" size="4">
+                                                          <input *ngIf="qty_arr" id="quantity-input-1" type="number" name="cart[e2230b853516e7b05d79744fbd4c9c13][qty]" [attr.value]="qty_arr[i]" [(ngModel)]="qty_arr[i]" (change)="total(item.pk_cart_id,i)" title="Qty" class="input-text qty text" size="4">
                                                       </div>
                                                   </td>
                                                   <td data-title="Total" class="product-subtotal">

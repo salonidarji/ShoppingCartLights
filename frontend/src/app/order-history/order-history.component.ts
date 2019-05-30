@@ -17,9 +17,10 @@ export class OrderHistoryComponent implements OnInit {
 
   totalPrice: number = 0;
 
-  orderDetail_arr: OrderDetail[];
+  public orderDetail_arr: OrderDetail[] = [];
   order_arr: Order[];
   product_arr: Product[] = [];
+
   constructor(
     private _order: OrderServiceService,
     private _orderDetail: OrderDetailServiceService,
@@ -33,42 +34,40 @@ export class OrderHistoryComponent implements OnInit {
     this._order.getOrder(this.id).subscribe(
       (data: any) => {
         this.order_arr = data;
-        console.log(this.order_arr);
-        for (var i = 0; i < this.order_arr.length; i++) {
-          this._orderDetail
-            .getOrderDetail(this.order_arr[i].pk_order_id)
-            .subscribe(
-              (data: any) => {
-                this.orderDetail_arr = data;
-                console.log(this.orderDetail_arr);
-                for (var j = 0; j < this.orderDetail_arr.length; j++) {
-                  this._product
-                    .getProduct(this.orderDetail_arr[j].fk_product_id)
-                    .subscribe(
-                      (data: any) => {
-                        this.product_arr = data;
-                        console.log(this.product_arr);
-                        this.totalPrice +=
-                          <any>this.product_arr[0].product_sale_price *
-                          this.orderDetail_arr[0].detail_qty;
-                      },
-                      function(err) {
-                        console.log(err);
-                      },
-                      function() {
-                        console.log("product done");
+        this._orderDetail
+          .getOrderDetail(this.order_arr[0].pk_order_id)
+          .subscribe(
+            (data: any) => {
+              this.orderDetail_arr = data;
+              for (var j = 0; j < this.orderDetail_arr.length; j++) {
+                this._product
+                  .getProduct(this.orderDetail_arr[j].fk_product_id)
+                  .subscribe(
+                    (data: any) => {
+                      this.product_arr.push(data);
+
+                      for (var i = 0; i < this.product_arr.length; i++) {
+                        this.totalPrice += parseInt(
+                          this.product_arr[i][0].product_sale_price
+                        );
                       }
-                    );
-                }
-              },
-              function(err) {
-                console.log(err);
-              },
-              function() {
-                console.log("order detail done");
+                    },
+                    function(err) {
+                      console.log(err);
+                    },
+                    function() {
+                      console.log("product done");
+                    }
+                  );
               }
-            );
-        }
+            },
+            function(err) {
+              console.log(err);
+            },
+            function() {
+              console.log("order detail done");
+            }
+          );
       },
       function(err) {
         console.log(err);

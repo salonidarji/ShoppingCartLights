@@ -127,6 +127,32 @@ export class CheckoutComponent implements OnInit {
     this._order.insertOrder(this.checkoutForm.value).subscribe(
       data => {
         console.log(data);
+        for (var i = 0; i < this.cart_arr.length; i++) {
+          this.orderDetailForm = this.fb.group({
+            fk_product_id: [this.cart_arr[i].fk_product_id],
+            detail_qty: [this.cart_arr[i].product_qty, Validators.required],
+            detail_price: [
+              this.total_arr[i] / this.qty_arr[i],
+              Validators.required
+            ]
+          });
+
+          console.log(this.orderDetailForm.value);
+          this._orderDetail
+            .insertOrderDetail(this.orderDetailForm.value)
+            .subscribe(
+              data => {
+                console.log(data);
+                this.router.navigate(["/orderHistory"]);
+              },
+              function(err) {
+                console.log(err);
+              },
+              function() {
+                console.log("finally");
+              }
+            );
+        }
       },
       function(err) {
         console.log(err);
@@ -135,31 +161,6 @@ export class CheckoutComponent implements OnInit {
         console.log("finally");
       }
     );
-
-    for (var i = 0; i < this.cart_arr.length; i++) {
-      this.orderDetailForm = this.fb.group({
-        fk_product_id: [this.cart_arr[i].fk_product_id],
-        detail_qty: [this.cart_arr[i].product_qty, Validators.required],
-        detail_price: [
-          this.total_arr[i] / this.qty_arr[i] - this.shipping,
-          Validators.required
-        ]
-      });
-
-      console.log(this.orderDetailForm.value);
-      this._orderDetail.insertOrderDetail(this.orderDetailForm.value).subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(["/orderHistory"]);
-        },
-        function(err) {
-          console.log(err);
-        },
-        function() {
-          console.log("finally");
-        }
-      );
-    }
   }
 
   selectAddress(id) {

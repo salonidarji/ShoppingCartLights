@@ -84,7 +84,7 @@
                             class="woocommerce-table__product-name product-name"
                           >
                             <a href="single-product-fullwidth.html">{{
-                              itemP.product_name
+                              itemP[0].product_name
                             }}</a>
                             <strong class="product-quantity"
                               >× {{ orderDetail_arr[i].detail_qty }}</strong
@@ -97,7 +97,7 @@
                               <span class="woocommerce-Price-currencySymbol"
                                 ><i class="fa fa-inr"></i></span
                               >{{
-                                itemP.product_sale_price *
+                                itemP[0].product_sale_price *
                                   orderDetail_arr[i].detail_qty
                               }}</span
                             >
