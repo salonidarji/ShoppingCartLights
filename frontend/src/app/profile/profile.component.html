@@ -13,69 +13,120 @@
         <main id="main" class="site-main">
           <div class="type-page hentry">
             <div class="entry-content">
-              <div class="light-bg team-member-wrapper">
-                <div class="col-full">
-                  <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4">
-                      <div class="team-member circle">
-                        <img
-                          src="assets/images/team-member/4.jpg"
-                          alt="Not Available"
-                          height="auto"
-                          width="auto"
-                        />
-                        <div class="profile">
-                          <h3>
-                            {{ name }}
-                            <small class="description">{{ id }}</small>
-                            <small class="description">{{ mobile }}</small>
-                          </h3>
-                        </div>
-
-                        <button
-                          class="btn btn-danger btn-md"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#changePassword"
-                          aria-expanded="false"
-                          aria-controls="changePassword"
-                        >
-                          <span class="fa fa-pen"></span> Change Password
-                        </button>
-                        &nbsp;
-                        <div class="collapse" id="changePassword">
-                          <div class="card card-body">
-                            <form
-                              [formGroup]="changePasswordForm"
-                              (ngSubmit)="onPasswordChange()"
-                            >
-                              <div class="form-group">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  formControlName="user_password"
-                                  placeholder="New Password"
-                                /><br />
-                              </div>
-                              <button
-                                class="btn btn-success btn-user btn-block"
-                                type="submit"
-                                (click)="onPasswordChange()"
+              <div class="woocommerce">
+                <div class="light-bg team-member-wrapper">
+                  <div class="col-full">
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4" align="center">
+                        <div class="team-member circle">
+                          <img
+                            src="assets/images/team-member/4.jpg"
+                            alt="Not Available"
+                            style="height: 250px; width: 250px"
+                          />
+                          <div>
+                            <h3>
+                              &nbsp; &nbsp; {{ name }}<br />
+                              <small
+                                class="description"
+                                style="font-size: 15px;"
+                                ><span class="fa fa-envelope"></span> :
+                                {{ id }}</small
+                              ><br />
+                              <small class="description" style="font-size: 15px"
+                                ><span class="fa fa-mobile"></span> :
+                                {{ mobile }}</small
                               >
-                                Change
-                              </button>
-                            </form>
+                            </h3>
+                          </div>
+
+                          <button
+                            class="btn btn-danger btn-md"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#changePassword"
+                            aria-expanded="false"
+                            aria-controls="changePassword"
+                          >
+                            <span class="fa fa-pen"></span> Change Password
+                          </button>
+                          <br />
+                          <br />
+                          <div class="collapse" id="changePassword">
+                            <div class="card card-body">
+                              <form
+                                [formGroup]="changePasswordForm"
+                                (ngSubmit)="onPasswordChange()"
+                              >
+                                <div class="form-group">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="user_password"
+                                    placeholder="Enter New Password"
+                                  />
+                                </div>
+                                <button
+                                  class="btn btn-success btn-user btn-block"
+                                  type="submit"
+                                  (click)="onPasswordChange()"
+                                >
+                                  Change
+                                </button>
+                              </form>
+                            </div>
                           </div>
                         </div>
                       </div>
+                      <!-- .col -->
+
+                      <div class="col-md-4"></div>
                     </div>
-                    <!-- .col -->
-                    <div class="col-sm-4"></div>
+                    <!-- .row -->
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <section class="related">
+                          <header class="section-header">
+                            <h2 class="section-title">Your Recent Address</h2>
+                            <nav class="custom-slick-nav"></nav>
+                          </header>
+                          <!-- .section-header -->
+                          <div class="products">
+                            <div
+                              class="product"
+                              *ngFor="let item of address_arr; let i = index"
+                            >
+                              <h2
+                                class="woocommerce-loop-product__title text-primary"
+                              >
+                                {{ item.address_name }}
+                              </h2>
+
+                              <p>Address: {{ item.address_line_1 }}</p>
+                              <p>{{ item.address_line_2 }}</p>
+                              <p>{{ item.address_landmark }}</p>
+                              <p>{{ item.address_city }}</p>
+                              <p>Pincode: {{ item.address_pincode }}</p>
+
+                              <div class="hover-area">
+                                <a class="button add_to_cart_button">{{
+                                  item.address_name
+                                }}</a>
+                              </div>
+                            </div>
+                            <!-- /.product-outer -->
+                            &nbsp; &nbsp;
+                          </div>
+                        </section>
+                      </div>
+                      <div class="clear"></div>
+                      <!-- .single-product-wrapper -->
+                    </div>
                   </div>
-                  <!-- .row -->
+                  <!-- .container -->
                 </div>
-                <!-- .container -->
               </div>
             </div>
             <!-- .entry-content -->

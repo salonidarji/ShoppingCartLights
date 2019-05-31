@@ -3,6 +3,8 @@ import { User } from "../models/user";
 import { UserServiceService } from "../services/user-service.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationServiceService } from "../services/authentication-service.service";
+import { UserAddressServiceService } from "../services/user-address-service.service";
+import { Address } from "cluster";
 
 @Component({
   selector: "app-profile",
@@ -17,12 +19,14 @@ export class ProfileComponent implements OnInit {
   mobile: string;
   password: string;
   user_arr: User[];
+  address_arr: Address[];
   passwordChange: string;
   changePasswordForm: FormGroup;
   getUserForm: FormGroup;
 
   constructor(
     private _user: UserServiceService,
+    private _address: UserAddressServiceService,
     private fb: FormBuilder,
     private authService: AuthenticationServiceService
   ) {}
@@ -52,6 +56,19 @@ export class ProfileComponent implements OnInit {
       },
       function() {
         console.log("User done");
+      }
+    );
+
+    this._address.getUserAddress(this.id).subscribe(
+      (data: any) => {
+        this.address_arr = data;
+        console.log(this.address_arr);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("address done");
       }
     );
   }
