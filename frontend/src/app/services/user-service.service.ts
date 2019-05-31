@@ -13,7 +13,11 @@ export class UserServiceService {
   }
 
   getUser(item) {
-    return this._http.get(this.user_url + item);
+    let body = JSON.stringify(item);
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this._http.get(this.user_url, body, httpOptions);
   }
 
   getUserForPassword(id) {
@@ -58,6 +62,10 @@ export class UserServiceService {
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
-    return this._http.put(this.user_url + id, body, httpOptions);
+    return this._http.put(
+      "http://localhost:3000/profile/" + id,
+      body,
+      httpOptions
+    );
   }
 }

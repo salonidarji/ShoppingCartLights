@@ -64,6 +64,10 @@ export class LoginSignupComponent implements OnInit {
 
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("token", this.loginForm.controls.user_email.value);
+        localStorage.setItem(
+          "password",
+          this.loginForm.controls.user_password.value
+        );
 
         this.router.navigate([this.returnUrl]);
       }

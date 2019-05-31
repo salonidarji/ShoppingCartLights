@@ -1,0 +1,97 @@
+<div id="content" class="site-content" *ngIf="flag == 'true'; else notLogin">
+  <div class="col-full">
+    <div class="row">
+      <nav class="woocommerce-breadcrumb">
+        <a routerLink="/">Home</a>
+        <span class="delimiter">
+          <i class="tm tm-breadcrumbs-arrow-right"></i>
+        </span>
+        Profile
+      </nav>
+      <!-- .woocommerce-breadcrumb -->
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <div class="type-page hentry">
+            <div class="entry-content">
+              <div class="light-bg team-member-wrapper">
+                <div class="col-full">
+                  <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                      <div class="team-member circle">
+                        <img
+                          src="assets/images/team-member/4.jpg"
+                          alt="Not Available"
+                          height="auto"
+                          width="auto"
+                        />
+                        <div class="profile">
+                          <h3>
+                            {{ name }}
+                            <small class="description">{{ id }}</small>
+                            <small class="description">{{ mobile }}</small>
+                          </h3>
+                        </div>
+
+                        <button
+                          class="btn btn-danger btn-md"
+                          type="button"
+                          data-toggle="collapse"
+                          data-target="#changePassword"
+                          aria-expanded="false"
+                          aria-controls="changePassword"
+                        >
+                          <span class="fa fa-pen"></span> Change Password
+                        </button>
+                        &nbsp;
+                        <div class="collapse" id="changePassword">
+                          <div class="card card-body">
+                            <form
+                              [formGroup]="changePasswordForm"
+                              (ngSubmit)="onPasswordChange()"
+                            >
+                              <div class="form-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  formControlName="user_password"
+                                  placeholder="New Password"
+                                /><br />
+                              </div>
+                              <button
+                                class="btn btn-success btn-user btn-block"
+                                type="submit"
+                                (click)="onPasswordChange()"
+                              >
+                                Change
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- .col -->
+                    <div class="col-sm-4"></div>
+                  </div>
+                  <!-- .row -->
+                </div>
+                <!-- .container -->
+              </div>
+            </div>
+            <!-- .entry-content -->
+          </div>
+          <!-- .hentry -->
+        </main>
+        <!-- #main -->
+      </div>
+      <!-- #primary -->
+    </div>
+    <!-- .row -->
+  </div>
+  <!-- .col-full -->
+</div>
+<!-- #content -->
+
+<ng-template #notLogin>
+  <app-not-login></app-not-login>
+</ng-template>

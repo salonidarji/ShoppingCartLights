@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { CartComponent } from "./cart/cart.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { OrderHistoryComponent } from "./order-history/order-history.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: "checkout",
     component: CheckoutComponent
+  },
+  {
+    path: "profile",
+    component: ProfileComponent
   },
   {
     path: "orderHistory",
