@@ -20,6 +20,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UpdateAddressComponent } from './update-address/update-address.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProfileComponent } from './profile/profile.component';
     CartComponent,
     CheckoutComponent,
     OrderHistoryComponent,
-    ProfileComponent
+    ProfileComponent,
+    UpdateAddressComponent
   ],
   imports: [
     BrowserModule,

@@ -16,8 +16,8 @@ export class UserAddressServiceService {
     return this._http.get(this.userAddress_url + id);
   }
 
-  deleteUserAddress(id) {
-    return this._http.delete(this.userAddress_url + id);
+  deleteUserAddress(address_id, id) {
+    return this._http.delete(this.userAddress_url + address_id + "/" + id);
   }
 
   insertUserAddress(item) {

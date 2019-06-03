@@ -4,7 +4,7 @@ import { UserServiceService } from "../services/user-service.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationServiceService } from "../services/authentication-service.service";
 import { UserAddressServiceService } from "../services/user-address-service.service";
-import { Address } from "cluster";
+import { UserAddress } from "../models/user-address";
 
 @Component({
   selector: "app-profile",
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   mobile: string;
   password: string;
   user_arr: User[];
-  address_arr: Address[];
+  address_arr: UserAddress[];
   passwordChange: string;
   changePasswordForm: FormGroup;
   getUserForm: FormGroup;
@@ -35,15 +35,12 @@ export class ProfileComponent implements OnInit {
 
     this.id = localStorage.getItem("token");
     this.loginPassword = localStorage.getItem("password");
-    this.getUserForm = this.fb.group({
-      user_email: [this.loginPassword],
-      user_password: [this.loginPassword]
-    });
+
     this.changePasswordForm = this.fb.group({
       user_password: ["", Validators.required]
     });
 
-    this._user.getUser(this.getUserForm.value).subscribe(
+    this._user.getUser(this.id).subscribe(
       (data: any) => {
         this.user_arr = data;
         console.log(this.user_arr);
@@ -88,5 +85,14 @@ export class ProfileComponent implements OnInit {
         console.log("finally password");
       }
     );
+  }
+
+  deleteAddress(pk_address_id) {
+    this._address
+      .deleteUserAddress(pk_address_id, this.id)
+      .subscribe((data: any) => {
+        alert("Address Deleted");
+        this.ngOnInit();
+      });
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { identifierModuleUrl } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root"
@@ -12,12 +13,8 @@ export class UserServiceService {
     return this._http.get(this.user_url);
   }
 
-  getUser(item) {
-    let body = JSON.stringify(item);
-    const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
-    };
-    return this._http.get(this.user_url, body, httpOptions);
+  getUser(id) {
+    return this._http.get("http://localhost:3000/profile/" + id);
   }
 
   getUserForPassword(id) {

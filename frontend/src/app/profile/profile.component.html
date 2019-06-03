@@ -111,9 +111,18 @@
                               <p>Pincode: {{ item.address_pincode }}</p>
 
                               <div class="hover-area">
-                                <a class="button add_to_cart_button">{{
-                                  item.address_name
-                                }}</a>
+                                <span>
+                                  <button class="btn btn-success" routerLink="/updateAddress/{{item.pk_address_id}}">
+                                    Edit
+                                  </button>
+                                  &nbsp;&nbsp;
+                                  <button
+                                    class="btn btn-danger"
+                                    (click)="deleteAddress(item.pk_address_id)"
+                                  >
+                                    Delete
+                                  </button>
+                                </span>
                               </div>
                             </div>
                             <!-- /.product-outer -->

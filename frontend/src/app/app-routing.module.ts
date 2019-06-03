@@ -10,6 +10,7 @@ import { CartComponent } from "./cart/cart.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { OrderHistoryComponent } from "./order-history/order-history.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { UpdateAddressComponent } from "./update-address/update-address.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: "singleProduct/:uId",
     component: SingleProductComponent
+  },
+  {
+    path: "updateAddress/:uId",
+    component: UpdateAddressComponent
   },
   {
     path: "productByCategory/:uId",
