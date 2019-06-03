@@ -162,7 +162,7 @@
                 <!-- .woocommerce-order -->
               </div>
               <!-- .woocommerce -->
-              <div class="woocommerce">
+              <div class="woocommerce" *ngIf="order_arr.length < 0">
                 <h3 class="text-danger">No Order History..!!!</h3>
               </div>
             </div>
