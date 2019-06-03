@@ -34,10 +34,10 @@ var UserAddress = {
       callback
     );
   },
-  deleteUserAddress: function(id, callback) {
+  deleteUserAddress: function(address_id, id, callback) {
     return db.query(
-      "update user_address_tbl set is_delete=1, is_active=0 where pk_address_id=?",
-      [id],
+      "update user_address_tbl set is_delete=1, is_active=0 where pk_address_id=? && fk_user_id=?",
+      [address_id, id],
       callback
     );
   },

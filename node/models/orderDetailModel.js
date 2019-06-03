@@ -23,7 +23,7 @@ var OrderDetail = {
   },
   deleteOrderDetail: function(id, callback) {
     return db.query(
-      "update order_detail_tbl set is_delete=1, is_active=0 where pk_detail_id=?",
+      "update order_detail_tbl set is_delete=1, is_active=0 where fk_order_id=?",
       [id],
       callback
     );

@@ -7,6 +7,13 @@ var Profile = {
       [item.user_password, id],
       callback
     );
+  },
+  getUser: function(id, callback) {
+    return db.query(
+      "select * from user_tbl where user_email=? && is_delete=0 && is_active=1",
+      [id],
+      callback
+    );
   }
 };
 module.exports = Profile;

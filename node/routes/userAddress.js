@@ -30,8 +30,11 @@ router.post("/", function(req, res, next) {
     }
   });
 });
-router.delete("/:id", function(req, res, next) {
-  UserAddress.deleteUserAddress(req.params.id, function(err, count) {
+router.delete("/:address_id/:id", function(req, res, next) {
+  UserAddress.deleteUserAddress(req.params.address_id, req.params.id, function(
+    err,
+    count
+  ) {
     if (err) {
       res.json(err);
     } else {
