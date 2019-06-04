@@ -28,7 +28,7 @@
               <th>Landmark</th>
               <th>Pincode</th>
               <th>City</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
 
@@ -43,27 +43,16 @@
               <td>{{ item.address_landmark }}</td>
               <td>{{ item.address_pincode }}</td>
               <td>{{ item.address_city }}</td>
-              <td colspan="3">
+              <!-- <td colspan="3">
                 <button
                   class="btn btn-primary btn-md"
                   (click)="deleteOrder(item.pk_order_id)"
                 >
                   <span class="fa fa-trash"></span>
                 </button>
-                <!-- <button
-                      class="btn btn-primary btn-md"
-                      (click)="singleOrder(item.pk_Order_id)"
-                    >
-                      View
-                    </button> -->
-                &nbsp;
-                <button
-                  class="btn btn-primary btn-md"
-                  routerLink="/updateOrder/{{ item.pk_order_id }}"
-                >
-                  <span class="fa fa-pencil"></span>
-                </button>
-              </td>
+               
+                
+              </td> -->
             </tr>
           </tbody>
         </table>

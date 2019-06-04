@@ -22,7 +22,7 @@ var SendEmail = {
     };
 
     let info = transporter.sendMail(mailOptions);
-    //callback(info);
+    callback(info);
   }
 
   //sendMail().catch(console.error);

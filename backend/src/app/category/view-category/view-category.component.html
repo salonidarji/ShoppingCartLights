@@ -31,7 +31,7 @@
               <td>{{ item.fk_parent_id }}</td>
               <td colspan="3">
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-danger btn-md"
                   (click)="deleteCategory(item.pk_category_id)"
                 >
                   <span class="fa fa-trash"></span>
@@ -44,7 +44,7 @@
                   </button> -->
                 &nbsp;
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-success btn-md"
                   routerLink="/updateCategory/{{ item.pk_category_id }}"
                 >
                   <span class="fa fa-pencil"></span>

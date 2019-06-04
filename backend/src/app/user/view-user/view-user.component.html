@@ -33,7 +33,7 @@
               <td>{{ item.user_mobile }}</td>
               <td colspan="3">
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-danger btn-md"
                   (click)="deleteUser(item.pk_user_id)"
                 >
                   <span class="fa fa-trash"></span>
@@ -46,7 +46,7 @@
                 </button> -->
                 &nbsp;
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-success btn-md"
                   routerLink="/updateUser/{{ item.pk_user_id }}"
                 >
                   <span class="fa fa-pencil"></span>

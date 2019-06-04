@@ -23,7 +23,7 @@
               <th>Product</th>
               <th>Quantity</th>
               <th>Price</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
 
@@ -33,27 +33,15 @@
               <td>{{ item.product_name }}</td>
               <td>{{ item.detail_qty }}</td>
               <td>{{ item.detail_price }}</td>
-              <td colspan="3">
+              <!-- <td colspan="3">
                 <button
                   class="btn btn-primary btn-md"
                   (click)="deleteOrderDetail(item.pk_detail_id)"
                 >
                   <span class="fa fa-trash"></span>
                 </button>
-                <!-- <button
-                    class="btn btn-primary btn-md"
-                    (click)="singleorderDetail(item.pk_orderDetail_id)"
-                  >
-                    View
-                  </button> -->
-                &nbsp;
-                <button
-                  class="btn btn-primary btn-md"
-                  routerLink="/updateOrderDetail/{{ item.pk_detail_id }}"
-                >
-                  <span class="fa fa-pencil"></span>
-                </button>
-              </td>
+                
+              </td> -->
             </tr>
           </tbody>
         </table>

@@ -29,7 +29,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.admin_arr = data;
           console.log("array:" + this.admin_arr[0]);
           this._admin.sendEmail(this.admin_arr[0]).subscribe(
-            () => {
+            (data: any) => {
               alert("Check Your Registerd email id");
             },
             function(err) {

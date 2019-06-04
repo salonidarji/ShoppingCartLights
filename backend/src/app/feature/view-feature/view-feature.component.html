@@ -29,7 +29,7 @@
               <td>{{ item.feature_name }}</td>
               <td colspan="3">
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-danger btn-md"
                   (click)="deleteFeature(item.pk_feature_id)"
                 >
                   <span class="fa fa-trash"></span>
@@ -42,7 +42,7 @@
                   </button> -->
                 &nbsp;
                 <button
-                  class="btn btn-primary btn-md"
+                  class="btn btn-success btn-md"
                   routerLink="/updateFeature/{{ item.pk_feature_id }}"
                 >
                   <span class="fa fa-pencil"></span>
