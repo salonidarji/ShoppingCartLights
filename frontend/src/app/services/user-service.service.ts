@@ -54,6 +54,32 @@ export class UserServiceService {
     );
   }
 
+  EmailVerification(item) {
+    let body = JSON.stringify(item);
+    console.log("json:" + item);
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this._http.post(
+      "http://localhost:3000/EmailVerification/",
+      body,
+      httpOptions
+    );
+  }
+
+  verify(id, item) {
+    let body = JSON.stringify(item);
+    console.log("json:" + item);
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this._http.put(
+      "http://localhost:3000/EmailVerification/" + id,
+      body,
+      httpOptions
+    );
+  }
+
   changePassword(id, item) {
     let body = JSON.stringify(item);
     const httpOptions = {

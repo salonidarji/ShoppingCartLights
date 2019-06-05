@@ -18,6 +18,7 @@ export class LoginSignupComponent implements OnInit {
   message: string;
   insertUserForm: FormGroup;
   user_arr_signup: User[];
+  verify_arr: User[] = [];
 
   constructor(
     private _user: UserServiceService,
@@ -78,12 +79,26 @@ export class LoginSignupComponent implements OnInit {
   }
 
   onSignup() {
-    console.warn(this.insertUserForm.value);
+    console.warn(this.insertUserForm.value.user_email);
     this._user.insertUser(this.insertUserForm.value).subscribe(
-      data => {
+      (data: any) => {
         console.log(data);
-        alert("You are registered Successfully.");
-        this.router.navigate(["/content"]);
+        this.verify_arr.push(data);
+        console.log(this.verify_arr);
+
+        console.log(this.verify_arr[0].user_email);
+        this._user.EmailVerification(this.verify_arr[0]).subscribe(
+          (data: any) => {
+            console.log(data);
+            alert("Verify Your Registerd email id");
+          },
+          function(err) {
+            console.log(err);
+          },
+          function() {
+            console.log("email send");
+          }
+        );
       },
       function(err) {
         console.log(err);

@@ -3,7 +3,7 @@ var db = require("../dbconnection");
 var User = {
   getAllUser: function(callback) {
     return db.query(
-      "Select * from user_tbl where is_delete=0 && is_active=1",
+      "Select * from user_tbl where is_delete=0 && is_active=1 && is_verified=1",
       callback
     );
   },
@@ -16,14 +16,16 @@ var User = {
   },
   addUser: function(item, callback) {
     return db.query(
-      "Insert into user_tbl values(?,?,?,?,?,?,?)",
+      "Insert into user_tbl values(?,?,?,?,?,?,?,?,?)",
       [
         "null",
         item.user_name,
         item.user_email,
         item.user_mobile,
         item.user_password,
+        0,
         1,
+        0,
         0
       ],
       callback

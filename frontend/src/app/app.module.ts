@@ -21,6 +21,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateAddressComponent } from './update-address/update-address.component';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UpdateAddressComponent } from './update-address/update-address.componen
     CheckoutComponent,
     OrderHistoryComponent,
     ProfileComponent,
-    UpdateAddressComponent
+    UpdateAddressComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,

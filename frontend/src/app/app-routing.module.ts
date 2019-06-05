@@ -11,6 +11,7 @@ import { CheckoutComponent } from "./checkout/checkout.component";
 import { OrderHistoryComponent } from "./order-history/order-history.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { UpdateAddressComponent } from "./update-address/update-address.component";
+import { VerificationComponent } from "./verification/verification.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: "loginSignup",
     component: LoginSignupComponent
+  },
+  {
+    path: "verification/:uId",
+    component: VerificationComponent
   },
   {
     path: "forgotPassword",
