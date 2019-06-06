@@ -1,86 +1,122 @@
-<section class="section-products-with-image">
-  <header class="section-header">
-    <div class="col-full">
-      <div class="row">
-        <div class="product-info">
-          <h2 class="section-title">Desktops PCs</h2>
-          <div class="description">
-            Donec id malesuada elit. Donec tempor sit amet est ac blandit.
-            Phasellus ac sem nisl. Vestibulum aliquam, ligula in pretium congue,
-            massa felis ultrices metus, nec mattis elit diam lobortis justo. Ut
-            dapibus gravida eros ac bibendum. Phasellus ac tempus libero. Mauris
-            eleifend, mi at viverra scelerisque, dolor leo luctus justo, id
-            fermentum tellus nisl eget est.
-          </div>
-        </div>
-        <div class="product-image">
-          <img alt="" src="assets/images/products/landing-1.png" />
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- .section-header -->
-  <div class="woocommerce columns-5">
-    <div class="products">
-      <div class="product " *ngFor="let item of product_arr; let i = index">
-        <ng-container *ngIf="i > product_arr.length - 6">
-          <a
-            class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
-            routerLink="/singleProduct/{{ item.pk_product_id }}"
-          >
-            <img
-              width="224"
-              height="197"
-              alt=""
-              class="attachment-shop_catalog size-shop_catalog wp-post-image"
-              src="http://localhost:3000{{ item.image_url }}"
-            />
-            <span class="price">
-              <span class="woocommerce-Price-amount amount">
-                <del
-                  ><span class="woocommerce-Price-currencySymbol">
-                    <i class="fa fa-inr"></i>
-                    {{ item.product_sale_price }}</span
-                  ></del
+<section class="section-products-carousel-tabs">
+  <div class="section-products-carousel-tabs-wrap">
+    <header class="section-header">
+      <h2 class="section-title">Hot Best Sellers</h2>
+      <!-- <ul role="tablist" class="nav justify-content-end">
+              <li class="nav-item"><a class="nav-link active" href="#tab-59f89f0aa989c0" data-toggle="tab">Top 20</a></li>
+              <li class="nav-item"><a class="nav-link " href="#tab-59f89f0aa989c1" data-toggle="tab">Audio &amp; Video</a></li>
+              <li class="nav-item"><a class="nav-link " href="#tab-59f89f0aa989c2" data-toggle="tab">Laptops &amp; Computers</a></li>
+              <li class="nav-item"><a class="nav-link " href="#tab-59f89f0aa989c3" data-toggle="tab">Video Cameras</a></li>
+          </ul> -->
+    </header>
+    <!-- .section-header -->
+    <div class="tab-content">
+      <div id="tab-59f89f0aa989c0" class="tab-pane active" role="tabpanel">
+        <div
+          class="products-carousel"
+          data-ride="tm-slick-carousel"
+          data-wrap=".products"
+          data-slick='{"infinite":false,"slidesToShow":7,"slidesToScroll":7,"dots":true,"arrows":false,"responsive":[{"breakpoint":700,"settings":{"slidesToShow":2,"slidesToScroll":2}},{"breakpoint":780,"settings":{"slidesToShow":3,"slidesToScroll":3}},{"breakpoint":1200,"settings":{"slidesToShow":4,"slidesToScroll":4}},{"breakpoint":1400,"settings":{"slidesToShow":5,"slidesToScroll":5}}]}'
+        >
+          <div class="container-fluid">
+            <div class="woocommerce">
+              <div class="products">
+                <div
+                  class="product"
+                  *ngFor="let item of product_arr; let i = index"
                 >
-              </span>
-              <br />
-              <span class="woocommerce-Price-amount amount">
-                <span class="woocommerce-Price-currencySymbol">
-                  <i class="fa fa-inr"></i> </span
-                >{{ item.product_sale_price }}
-              </span>
-            </span>
-            <!-- .price -->
-            <h2 class="woocommerce-loop-product__title">
-              {{ item.product_name }}
-            </h2>
-          </a>
-          <!-- .woocommerce-LoopProduct-link -->
-          <div class="techmarket-product-rating">
-            <div class="star-rating" title="Rated 0 out of 5">
-              <span style="width:0%">
-                <strong class="rating">5</strong> out of 5</span
-              >
+                  <ng-container *ngIf="i > product_arr.length - 6">
+                    <a
+                      class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+                      routerLink="/singleProduct/{{ item.pk_product_id }}"
+                    >
+                      <img
+                        width="224"
+                        height="197"
+                        alt=""
+                        class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                        src="http://localhost:3000{{ item.image_url }}"
+                      />
+                      <span class="price">
+                        <span class="woocommerce-Price-amount amount">
+                          <del
+                            ><span class="woocommerce-Price-currencySymbol">
+                              <i class="fa fa-inr"></i>
+                              {{ item.product_price }}</span
+                            ></del
+                          >
+                        </span>
+                        <br />
+                        <span class="woocommerce-Price-amount amount">
+                          <span class="woocommerce-Price-currencySymbol">
+                            <i class="fa fa-inr"></i> </span
+                          >{{ item.product_sale_price }}
+                        </span>
+                      </span>
+                      <!-- .price -->
+                      <h2 class="woocommerce-loop-product__title">
+                        {{ item.product_name }}
+                      </h2>
+                    </a>
+                    <!-- .woocommerce-LoopProduct-link -->
+                    <div class="techmarket-product-rating">
+                      <div class="star-rating" title="Rated 0 out of 5">
+                        <span style="width:0%">
+                          <strong class="rating">5</strong> out of 5</span
+                        >
+                      </div>
+                      <span class="review-count">(0)</span>
+                    </div>
+                    <div class="hover-area">
+                      <a class="button" (click)="addToCart(item.pk_product_id)"
+                        >Add to cart</a
+                      >
+                      <a class="add-to-compare-link" href="compare.html"
+                        >Add to compare</a
+                      >
+                    </div>
+                    <!-- .hover-area -->
+                  </ng-container>
+                </div>
+                <!-- .product -->
+              </div>
             </div>
-            <span class="review-count">(0)</span>
+            <!-- .woocommerce -->
           </div>
-          <div class="hover-area">
-            <a class="button" (click)="addToCart(item.pk_product_id)"
-              >Add to cart</a
-            >
-            <a class="add-to-compare-link" href="compare.html"
-              >Add to compare</a
-            >
-          </div>
-          <!-- .hover-area -->
-        </ng-container>
+          <!-- .container-fluid -->
+        </div>
+        <!-- .products-carousel -->
       </div>
-      <!-- .product -->
+      <!-- .tab-pane -->
     </div>
-    <!-- .products -->
+    <!-- .tab-content -->
   </div>
-  <!-- .woocommerce -->
-  <a routerLink="/productAll" class="load-more-button">Show All Products</a>
+  <!-- .section-products-carousel-tabs-wrap -->
 </section>
-<!-- .section-products-with-image -->
+<!-- .section-products-carousel-tabs -->
+<div class="banner full-width-banner">
+  <a routerLink="/productAll">
+    <div
+      style="background-size: cover; background-position: center center; background-image: url( assets/images/banner/full-width.png); height: 236px;"
+      class="banner-bg"
+    >
+      <div class="caption">
+        <div class="banner-info">
+          <h3 class="title">
+            <strong>Extremely Portable</strong>, learn <br />
+            to ride in just 3 minutes
+          </h3>
+          <h4 class="subtitle">Travel up to 22km in a single charge</h4>
+        </div>
+        <span class="banner-action button"
+          >Shop More
+          <i class="feature-icon d-flex ml-4 tm tm-long-arrow-right"></i>
+        </span>
+      </div>
+      <!-- /.caption -->
+    </div>
+    <!-- /.banner-b -->
+  </a>
+  <!-- /.section-header -->
+</div>
+<!-- /.banner -->

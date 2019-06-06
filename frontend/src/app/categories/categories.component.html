@@ -1,53 +1,28 @@
-<section class="section-recent-posts-with-categories">
-  <div class="center-block">
-    <h2 class="section-title">Welcome in Gaming World.</h2>
-    <div class="description">
-      Nullam dignissim elit ut urna rutrum, a fermentum mi auctor. Mauris
-      efficitur magna orci, et dignissim lacus scelerisque sit amet. Proin
-      malesuada tincidunt nisl ac commodo. Vivamus eleifend porttitor ex sit
-      amet suscipit. Vestibulum at ullamcorper lacus, vel facilisis arcu.
-      Aliquam erat volutpat.
-    </div>
-    <ul class="nav nav-inline categories">
-      <li class="nav-item">
-        <a href="blog-single.html" class="nav-link">Accessories</a>
-      </li>
-      <li class="nav-item">
-        <a href="blog-single.html" class="nav-link">Design</a>
-      </li>
-      <li class="nav-item">
-        <a href="blog-single.html" class="nav-link">Desktop PCs</a>
-      </li>
-      <li class="nav-item">
-        <a href="blog-single.html" class="nav-link">Events</a>
-      </li>
-    </ul>
-    <!-- .nav -->
-  </div>
-  <!-- .center-block -->
-  <div class="post-items-wrap">
-    <div class="post-items">
-      <div class="post-item" *ngFor="let item of category_arr">
-        <a
-          routerLink="/productByCategory/{{ item.pk_category_id }}"
-          class="post-thumbnail"
-        >
+<section class="section-product-categories">
+  <header class="section-header">
+    <h1 class="woocommerce-products-header__title page-title">
+      Categories
+    </h1>
+  </header>
+  <div class="woocommerce columns-5">
+    <div class="product-loop-categories">
+      <div class="product-category product " *ngFor="let item of category_arr">
+        <a routerLink="/productByCategory/{{ item.pk_category_id }}">
           <img
-            width="270"
-            height="270"
-            alt=""
-            class="attachment-techmarket-blog-carousel size-techmarket-blog-carousel wp-post-image"
-            src="assets/images/blog/sm-1.jpg"
+            src="assets/images/category/21.png"
+            alt="Ultrabooks"
+            width="224"
+            height="197"
           />
-          <h3 align="center" class="post-title">
+          <h2 class="woocommerce-loop-category__title">
             {{ item.category_name }}
-          </h3>
+            <mark class="count">(5)</mark>
+          </h2>
         </a>
       </div>
-      <!-- .post-item -->
     </div>
-    <!-- .post-items -->
+    <!-- .product-loop-categories -->
   </div>
-  <!-- .post-items-wrap -->
+  <!-- .woocommerce -->
 </section>
-<!-- .section-recent-posts-with-categories -->
+<!-- .section-product-categories -->
