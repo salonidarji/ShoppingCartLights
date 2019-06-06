@@ -86,7 +86,6 @@ export class LoginSignupComponent implements OnInit {
         this.verify_arr.push(data);
         console.log(this.verify_arr);
 
-        console.log(this.verify_arr[0].user_email);
         this._user.EmailVerification(this.verify_arr[0]).subscribe(
           (data: any) => {
             console.log(data);

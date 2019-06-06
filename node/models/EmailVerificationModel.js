@@ -4,12 +4,13 @@ var db = require("../dbconnection");
 var EmailVerification = {
   sendMail: function(item, callback) {
     let url = "http://localhost:4200/verification/" + item.user_email;
-    let rand = Math.floor(Math.random() * 9999);
+    const rand = Math.floor(Math.random() * 9999);
     console.log("rand: " + rand);
-    db.query(
-      "update user_tbl set verification_code=? where pk_user_id=(select max(pk_user_id) from user_tbl)",
-      [rand]
-    );
+
+    db.query("update user_tbl set verification_code=? where user_email=?", [
+      rand,
+      item.user_email
+    ]);
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
