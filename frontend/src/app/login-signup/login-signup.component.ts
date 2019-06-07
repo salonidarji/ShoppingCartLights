@@ -75,9 +75,9 @@ export class LoginSignupComponent implements OnInit {
 
     if (localStorage.getItem("isLoggedIn") == "false") {
       this.message = " Email Address or Password is Wrong..!!!";
+    } else {
+      console.log("login");
     }
-    console.log(localStorage.getItem("isLoggedIn"));
-    console.log(this.message);
   }
 
   onSignup() {

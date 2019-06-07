@@ -44,7 +44,6 @@ export class ProductComponent implements OnInit {
         (data: any) => {
           console.log(this.insertCartForm.value);
           alert("Product Successfully added to Cart");
-          this.router.navigate(["/"]);
         },
         function(err) {
           console.log(err);

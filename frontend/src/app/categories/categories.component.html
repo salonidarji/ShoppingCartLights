@@ -6,10 +6,13 @@
   </header>
   <div class="woocommerce columns-5">
     <div class="product-loop-categories">
-      <div class="product-category product " *ngFor="let item of category_arr">
+      <div
+        class="product-category product "
+        *ngFor="let item of category_arr; let i = index"
+      >
         <a routerLink="/productByCategory/{{ item.pk_category_id }}">
           <img
-            src="assets/images/category/21.png"
+            src="assets/images/custom/category/cat{{ i + 1 }}.png"
             alt="Ultrabooks"
             width="224"
             height="197"

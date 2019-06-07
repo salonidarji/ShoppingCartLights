@@ -7,9 +7,12 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ContentComponent implements OnInit {
   flag: string;
+  id: string;
+
   constructor() {}
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
+    this.id = localStorage.getItem("token");
   }
 }

@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("header init");
     this.flag = localStorage.getItem("isLoggedIn");
     this.id = localStorage.getItem("token");
 
@@ -99,9 +100,8 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     console.log("Logout");
     this._authService.logout();
-    alert("You have log out..!!!");
 
-    this.router.navigate(["/content"]);
+    this.ngOnInit();
   }
 
   deleteItem(pk_cart_id) {
