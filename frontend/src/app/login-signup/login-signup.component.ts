@@ -56,11 +56,10 @@ export class LoginSignupComponent implements OnInit {
 
     for (let i = 0; i < this.model.length; i++) {
       if (
-        this.loginForm.controls.user_email.value == this.model[i].user_email &&
-        this.loginForm.controls.user_password.value ==
+        this.loginForm.controls.user_email.value === this.model[i].user_email &&
+        this.loginForm.controls.user_password.value ===
           this.model[i].user_password
       ) {
-        alert("Login successful");
         //this.authService.authLogin(this.model);
 
         localStorage.setItem("isLoggedIn", "true");
@@ -73,9 +72,12 @@ export class LoginSignupComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     }
+
     if (localStorage.getItem("isLoggedIn") == "false") {
       this.message = " Email Address or Password is Wrong..!!!";
     }
+    console.log(localStorage.getItem("isLoggedIn"));
+    console.log(this.message);
   }
 
   onSignup() {

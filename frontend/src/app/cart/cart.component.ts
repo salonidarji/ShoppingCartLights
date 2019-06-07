@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CartServiceService } from "../services/cart-service.service";
 import { Cart } from "../models/cart";
-import { _createNgProbe } from "@angular/platform-browser/src/dom/debug/ng_probe";
 import { ProductServiceService } from "../services/product-service.service";
 import { Product } from "../models/product";
 import { FormGroup, FormBuilder } from "@angular/forms";
@@ -46,7 +45,7 @@ export class CartComponent implements OnInit {
         for (var i = 0; i < this.cart_arr.length; i++) {
           this.productId = this.cart_arr[i].fk_product_id;
           this.qty_arr.push(this.cart_arr[i].product_qty);
-          console.log(this.productId);
+          console.log(this.qty_arr);
           this._product.getProduct(this.productId).subscribe(
             (data: any) => {
               this.product_arr = data;
@@ -106,6 +105,10 @@ export class CartComponent implements OnInit {
 
   deleteItem(pk_cart_id) {
     this._cart.deleteCart(pk_cart_id).subscribe((data: any) => {
+      this.grandTotal = 0;
+      this.total_arr.forEach(element => {
+        element = 0;
+      });
       this.ngOnInit();
     });
   }

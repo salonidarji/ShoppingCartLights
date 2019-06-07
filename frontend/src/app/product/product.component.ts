@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Product } from "../models/product";
 import { ProductServiceService } from "../services/product-service.service";
 import { CartServiceService } from "../services/cart-service.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-product",
@@ -18,7 +19,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private _product: ProductServiceService,
     private _cart: CartServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class ProductComponent implements OnInit {
         (data: any) => {
           console.log(this.insertCartForm.value);
           alert("Product Successfully added to Cart");
+          this.router.navigate(["/"]);
         },
         function(err) {
           console.log(err);

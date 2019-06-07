@@ -51,6 +51,7 @@ export class ProductAllComponent implements OnInit {
         (data: any) => {
           console.log(this.insertCartForm.value);
           alert("Product Successfully added to Cart");
+          this.ngOnInit();
         },
         function(err) {
           console.log(err);
