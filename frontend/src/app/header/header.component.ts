@@ -106,6 +106,10 @@ export class HeaderComponent implements OnInit {
 
   deleteItem(pk_cart_id) {
     this._cart.deleteCart(pk_cart_id).subscribe((data: any) => {
+      this.grandTotal = 0;
+      this.total_arr.forEach(element => {
+        element = 0;
+      });
       this.ngOnInit();
     });
   }

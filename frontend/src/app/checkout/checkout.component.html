@@ -205,33 +205,21 @@
                                                         </table>
                                                         <!-- /.woocommerce-checkout-review-order-table -->
                                                         <div class="woocommerce-checkout-payment" id="payment">
-                                                            <ul class="wc_payment_methods payment_methods methods">
-                                                                <li class="wc_payment_method payment_method_bacs">
-                                                                    <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
-                                                                    <label for="payment_method_bacs">Direct bank transfer</label>
-                                                                </li>
-                                                                <li class="wc_payment_method payment_method_cheque">
-                                                                    <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque">
-                                                                    <label for="payment_method_cheque">Check payments </label>
-                                                                </li>
-                                                                <li class="wc_payment_method payment_method_cod">
-                                                                    <input type="radio" data-order_button_text="" value="cod" name="payment_method" class="input-radio" id="payment_method_cod">
-                                                                    <label for="payment_method_cod">Cash on delivery </label>
-                                                                </li>
-                                                            </ul>
+                                                         
                                                             <div class="form-row place-order">
-                                                                <p class="form-row terms wc-terms-and-conditions woocommerce-validated">
+                                                                <!-- <p class="form-row terms wc-terms-and-conditions woocommerce-validated">
                                                                     <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                                                                        <input type="checkbox" id="terms" name="terms" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox">
+                                                                        <input type="checkbox" formControlName="term" id="terms" name="terms" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox">
                                                                         <span>I’ve read and accept the <a class="woocommerce-terms-and-conditions-link" href="terms-and-conditions.html">terms &amp; conditions</a></span>
                                                                         <span class="required">*</span>
                                                                     </label>
                                                                     <input type="hidden" value="1" name="terms-field">
-                                                                </p>
-                                                                <button type="submit" class="button wc-forward text-center">Place order</button>
+                                                                </p> -->
+                                                                <button type="submit"  *ngIf="checkoutForm.valid" class="button wc-forward text-center">Place order</button>
                                                             </div>
                                                         </div>
                                                         <!-- /.woocommerce-checkout-payment -->
+                                                       
                                                     </div>
                                                     <!-- /.order-review-wrapper -->
                                                 </div>
