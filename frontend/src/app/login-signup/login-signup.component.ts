@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 import { UserServiceService } from "../services/user-service.service";
 import { User } from "../models/user";
@@ -20,6 +20,8 @@ export class LoginSignupComponent implements OnInit {
   user_arr_signup: User[];
   verify_arr: User[] = [];
 
+  @Output() public LoginId: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     private _user: UserServiceService,
     private router: Router,
@@ -38,7 +40,7 @@ export class LoginSignupComponent implements OnInit {
       user_password: ["", Validators.required]
     });
 
-    this.returnUrl = "/content";
+    this.returnUrl = "/";
     this.authService.logout();
 
     this.insertUserForm = this.fb.group({
@@ -68,8 +70,8 @@ export class LoginSignupComponent implements OnInit {
           "password",
           this.loginForm.controls.user_password.value
         );
-
-        this.router.navigate([this.returnUrl]);
+        this.LoginId.emit(localStorage.getItem("tokken"));
+        window.location.href = "/";
       }
     }
 

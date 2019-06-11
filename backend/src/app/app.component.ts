@@ -25,8 +25,7 @@ export class AppComponent {
   logout(): void {
     console.log("Logout");
     this._authService.logout();
-    alert("You have log out..!!!");
     this.id = "";
-    this.router.navigate(["/login"]);
+    this.ngOnInit();
   }
 }

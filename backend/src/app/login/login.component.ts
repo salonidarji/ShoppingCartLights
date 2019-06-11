@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           this.insertLoginForm.controls.admin_email.value
         );
 
-        this.router.navigate([this.returnUrl]);
+        window.location.href = "/";
       }
     }
     if (localStorage.getItem("isLoggedIn") == "false") {

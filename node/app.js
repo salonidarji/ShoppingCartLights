@@ -23,6 +23,7 @@ var cart = require("./routes/cart");
 var profile = require("./routes/profile");
 var EmailVerification = require("./routes/EmailVerification");
 var payment = require("./routes/payment");
+var wishlist = require("./routes/wishlist");
 
 var app = express();
 
@@ -59,6 +60,7 @@ app.use("/cart", cart);
 app.use("/profile", profile);
 app.use("/emailVerification", EmailVerification);
 app.use("/payment", payment);
+app.use("/wishlist", wishlist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

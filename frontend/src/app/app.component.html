@@ -1,6 +1,6 @@
 <div id="page" class="hfeed site">
   <app-header></app-header>
   <!-- ============================================================= Header End ============================================================= -->
-  <router-outlet></router-outlet>
+  <router-outlet (LoginId)="alert($event)"></router-outlet>
   <app-footer></app-footer>
 </div>
