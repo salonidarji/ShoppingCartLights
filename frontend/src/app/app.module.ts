@@ -22,6 +22,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateAddressComponent } from './update-address/update-address.component';
 import { VerificationComponent } from './verification/verification.component';
+import { ShowWishlistComponent } from './show-wishlist/show-wishlist.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { VerificationComponent } from './verification/verification.component';
     OrderHistoryComponent,
     ProfileComponent,
     UpdateAddressComponent,
-    VerificationComponent
+    VerificationComponent,
+    ShowWishlistComponent
   ],
   imports: [
     BrowserModule,

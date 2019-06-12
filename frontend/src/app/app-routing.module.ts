@@ -12,6 +12,7 @@ import { OrderHistoryComponent } from "./order-history/order-history.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { UpdateAddressComponent } from "./update-address/update-address.component";
 import { VerificationComponent } from "./verification/verification.component";
+import { ShowWishlistComponent } from "./show-wishlist/show-wishlist.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: "profile",
     component: ProfileComponent
+  },
+  {
+    path: "showWishlist",
+    component: ShowWishlistComponent
   },
   {
     path: "orderHistory",

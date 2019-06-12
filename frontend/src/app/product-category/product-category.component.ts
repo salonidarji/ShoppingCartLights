@@ -18,6 +18,7 @@ export class ProductCategoryComponent implements OnInit {
   wishProdId: number[] = [];
   insertWishlistForm: FormGroup;
   id: string;
+  userEmail: string;
 
   pName: string;
   constructor(
@@ -29,7 +30,7 @@ export class ProductCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("uId");
-
+    this.userEmail = localStorage.getItem("token");
     this._category.getProductByCategory(this.id).subscribe(
       (data: any) => {
         this.product_arr = data;
@@ -44,7 +45,7 @@ export class ProductCategoryComponent implements OnInit {
       }
     );
 
-    this._wishlist.getAllWishlist().subscribe(
+    this._wishlist.getWishlist(this.userEmail).subscribe(
       (data: any) => {
         this.wishlist_arr = data;
         console.log(this.wishlist_arr);
@@ -66,7 +67,7 @@ export class ProductCategoryComponent implements OnInit {
 
   addToWishlist(product_id) {
     this.insertWishlistForm = this.fb.group({
-      fk_user_email: [this.id],
+      fk_user_email: [this.userEmail],
       fk_product_id: [product_id]
     });
 

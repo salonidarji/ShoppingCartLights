@@ -1,0 +1,142 @@
+<div id="content" class="site-content">
+  <div class="col-full">
+    <div class="row">
+      <nav class="woocommerce-breadcrumb">
+        <a routerLink="/">Home</a>
+        <span class="delimiter">
+          <i class="tm tm-breadcrumbs-arrow-right"></i>
+        </span>
+        Wishlist
+      </nav>
+      <!-- .woocommerce-breadcrumb -->
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <div class="type-page hentry">
+            <header class="entry-header">
+              <div class="page-header-caption">
+                <h1 class="entry-title" style="text-align: center;">
+                  Wishlist
+                </h1>
+              </div>
+            </header>
+            <!-- .entry-header -->
+            <div class="entry-content" *ngIf="wishlist_arr">
+              <div class="woocommerce" *ngIf="wishlist_arr.length > 0">
+                <form class="woocommerce-cart-form" method="post" action="#">
+                  <table class="shop_table cart wishlist_table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th class="product-name">
+                          <span class="nobr">Product Name</span>
+                        </th>
+                        <th class="product-price">
+                          <span class="nobr">
+                            Unit Price
+                          </span>
+                        </th>
+                        <th class="product-stock-status">
+                          <span class="nobr">
+                            Stock Status
+                          </span>
+                        </th>
+                        <th class="product-add-to-cart"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of wishlist_arr; let i = index">
+                        <td style="align-content:right;">
+                          <div>
+                            <button
+                              title="Remove this product"
+                              class="btn btn-danger"
+                              (click)="deleteFromWishlist(item.fk_product_id)"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        </td>
+                        <td *ngIf="product_arr[i]">
+                          <a
+                            routerLink="/singleProduct/{{ item.fk_product_id }}"
+                          >
+                            <img
+                              width="100px"
+                              height="100px"
+                              alt="not available"
+                              class="wp-post-image"
+                              src="http://localhost:3000{{
+                                product_arr[i][0].image_url
+                              }}"
+                            />
+                          </a>
+                        </td>
+                        <td class="product-name" *ngIf="product_arr[i]">
+                          <a
+                            routerLink="/singleProduct/{{ item.fk_product_id }}"
+                            style="color: #626060;font-weight: 400;"
+                          >
+                            {{ product_arr[i][0].product_name }}
+                          </a>
+                        </td>
+                        <td class="product-price" *ngIf="product_arr[i]">
+                          <ins>
+                            <span class="woocommerce-Price-amount amount">
+                              <span class="woocommerce-Price-currencySymbol"
+                                ><i class="fa fa-inr"></i></span
+                              >{{ product_arr[i][0].product_sale_price }}</span
+                            >
+                          </ins>
+                          &nbsp;
+                          <del style="color: #b8b8b8;">
+                            <span
+                              class="woocommerce-Price-amount amount"
+                              style="color: #b8b8b8;"
+                            >
+                              <span class="woocommerce-Price-currencySymbol"
+                                ><i class="fa fa-inr"></i></span
+                              >{{ product_arr[i][0].product_price }}</span
+                            >
+                          </del>
+                        </td>
+                        <td class="product-stock-status">
+                          <span class="wishlist-in-stock">In Stock</span>
+                        </td>
+                        <td class="product-add-to-cart">
+                          <button
+                            class="button"
+                            (click)="addToCart(item.fk_product_id)"
+                          >
+                            Add to Cart
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- .wishlist_table -->
+                </form>
+              </div>
+              <!-- .woocommerce -->
+              <div class="woocommerce" *ngIf="wishlist_arr.length == 0">
+                <div align="center">
+                  <h5>Your Wishlist is Empty</h5>
+                  <a class="text-primary" routerLink="/productAll"
+                    >Click here To Add!!!</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- .entry-content -->
+          </div>
+          <!-- .hentry -->
+        </main>
+        <!-- #main -->
+      </div>
+      <!-- #primary -->
+    </div>
+    <!-- .row -->
+  </div>
+  <!-- .col-full -->
+</div>
+<!-- #content -->

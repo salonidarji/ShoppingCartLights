@@ -2,7 +2,10 @@ var db = require("../dbconnection");
 
 var Wishlist = {
   getAllWishlist: function(callback) {
-    return db.query("Select * from wishlist_tbl", callback);
+    return db.query(
+      "Select * from wishlist_tbl where wishlist_value=1",
+      callback
+    );
   },
   getWishlist: function(id, callback) {
     return db.query(

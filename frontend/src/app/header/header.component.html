@@ -168,20 +168,12 @@
                 <!-- .input-group -->
             </form>
             <!-- .navbar-search -->
-            <ul class="header-compare nav navbar-nav">
-                <li class="nav-item">
-                    <a href="compare.html" class="nav-link">
-                        <i class="tm tm-compare"></i>
-                        <span id="top-cart-compare-count" class="value">3</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- .header-compare -->
+           
             <ul class="header-wishlist nav navbar-nav">
                 <li class="nav-item">
-                    <a href="wishlist.html" class="nav-link">
-                        <i class="tm tm-favorites"></i>
-                        <span id="top-cart-wishlist-count" class="value">3</span>
+                    <a routerLink="/showWishlist" class="nav-link">
+                        <i class="tm tm-favorites" style="color: red;"></i>
+                        <span *ngIf="wishlist_arr" id="top-cart-wishlist-count" class="value">{{ wishlist_arr.length }}</span>
                     </a>
                 </li>
             </ul>

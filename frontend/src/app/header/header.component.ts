@@ -6,6 +6,8 @@ import { Category } from "../models/category";
 import { CartServiceService } from "../services/cart-service.service";
 import { Cart } from "../models/cart";
 import { ProductServiceService } from "../services/product-service.service";
+import { WishlistServiceService } from "../services/wishlist-service.service";
+import { Wishlist } from "../models/wishlist";
 
 @Component({
   selector: "app-header",
@@ -18,6 +20,8 @@ export class HeaderComponent implements OnInit {
 
   category_arr: Category[];
   cart_arr: Cart[] = [];
+  wishlist_arr: Wishlist[];
+
   public product_arr: any[] = [];
   product_id: number;
 
@@ -35,6 +39,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private _category: CategoryServiceService,
     private _cart: CartServiceService,
+    private _wishlist: WishlistServiceService,
     private _product: ProductServiceService
   ) {}
 
@@ -93,6 +98,19 @@ export class HeaderComponent implements OnInit {
       },
       function() {
         //console.log("cart get done");
+      }
+    );
+
+    this._wishlist.getAllWishlist().subscribe(
+      (data: any) => {
+        this.wishlist_arr = data;
+        console.log(this.wishlist_arr);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally wishlist");
       }
     );
   }
