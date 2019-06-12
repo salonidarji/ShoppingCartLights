@@ -3,6 +3,8 @@ import { Product } from "../models/product";
 import { ProductServiceService } from "../services/product-service.service";
 import { CartServiceService } from "../services/cart-service.service";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { Wishlist } from "../models/wishlist";
+import { WishlistServiceService } from "../services/wishlist-service.service";
 
 @Component({
   selector: "app-product-all",
@@ -11,12 +13,17 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class ProductAllComponent implements OnInit {
   product_arr: Product[];
+  wishlist_arr: Wishlist[];
+  wishProdId: number[] = [];
   insertCartForm: FormGroup;
   id: string;
   pName: string;
+  insertWishlistForm: FormGroup;
+
   constructor(
     private _product: ProductServiceService,
     private _cart: CartServiceService,
+    private _wishlist: WishlistServiceService,
     private fb: FormBuilder
   ) {}
 
@@ -35,6 +42,25 @@ export class ProductAllComponent implements OnInit {
       },
       function() {
         console.log("products done");
+      }
+    );
+
+    this._wishlist.getWishlist(this.id).subscribe(
+      (data: any) => {
+        this.wishlist_arr = data;
+        console.log(this.wishlist_arr);
+        for (var k = 0; k < this.wishlist_arr.length; k++) {
+          if (this.wishlist_arr[k].wishlist_value == 1) {
+            this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+          }
+        }
+        console.log(this.wishProdId);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally wishlist");
       }
     );
   }
@@ -63,5 +89,37 @@ export class ProductAllComponent implements OnInit {
     } else {
       alert("please Do Login first...!!!");
     }
+  }
+
+  addToWishlist(product_id) {
+    this.insertWishlistForm = this.fb.group({
+      fk_user_email: [this.id],
+      fk_product_id: [product_id]
+    });
+
+    this._wishlist.insertWishlist(this.insertWishlistForm.value).subscribe(
+      (data: any) => {
+        console.log(data);
+        for (var k = 0; k < this.wishlist_arr.length; k++) {
+          if (this.wishlist_arr[k].wishlist_value == 1) {
+            this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+          }
+        }
+      },
+      function(err) {
+        console.log(err);
+      }
+    );
+  }
+
+  deleteFromWishlist(product_id) {
+    this._wishlist.deleteWishlist(product_id).subscribe((data: any) => {
+      console.log(data);
+      for (var k = 0; k < this.wishProdId.length; k++) {
+        if (this.wishProdId[k] == product_id) {
+          this.wishProdId.splice(k, 1);
+        }
+      }
+    });
   }
 }

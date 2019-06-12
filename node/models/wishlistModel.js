@@ -9,7 +9,7 @@ var Wishlist = {
   },
   getWishlist: function(id, callback) {
     return db.query(
-      "select * from wishlist_tbl where fk_user_email=? ",
+      "select * from wishlist_tbl where fk_user_email=? && wishlist_value=1 ",
       [id],
       callback
     );

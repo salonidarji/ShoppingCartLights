@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit {
       }
     );
 
-    this._wishlist.getAllWishlist().subscribe(
+    this._wishlist.getWishlist(this.id).subscribe(
       (data: any) => {
         this.wishlist_arr = data;
         console.log(this.wishlist_arr);

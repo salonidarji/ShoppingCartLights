@@ -169,7 +169,7 @@
             </form>
             <!-- .navbar-search -->
            
-            <ul class="header-wishlist nav navbar-nav">
+            <ul class="header-wishlist nav navbar-nav" *ngIf="id != ''">
                 <li class="nav-item">
                     <a routerLink="/showWishlist" class="nav-link">
                         <i class="tm tm-favorites" style="color: red;"></i>
@@ -178,7 +178,7 @@
                 </li>
             </ul>
             <!-- .header-wishlist -->
-            <ul id="site-header-cart" class="site-header-cart menu">
+            <ul id="site-header-cart" class="site-header-cart menu" *ngIf="id != ''">
                 <li class="animate-dropdown dropdown ">
                     <a class="cart-contents" href="cart.html" data-toggle="dropdown" title="View your shopping cart">
                         <i class="tm tm-shopping-bag"></i>

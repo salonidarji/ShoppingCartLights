@@ -25,12 +25,34 @@
                 </header>
                 <!-- .section-header -->
                 <div class="products">
-                  <div class="product" *ngFor="let item of product_arr">
-                    <div class="yith-wcwl-add-to-wishlist">
-                      <a href="" rel="nofollow" class="add_to_wishlist">
-                        Add to Wishlist</a
+                  <div
+                    class="product col-md-2"
+                    *ngFor="let item of product_arr"
+                  >
+                    <div
+                      class="yith-wcwl-add-to-wishlist"
+                      style="text-align: right;"
+                    >
+                      <button
+                        *ngIf="wishProdId.indexOf(item.pk_product_id) == -1"
+                        type="button"
+                        rel="nofollow"
+                        style="background-color: rgb(255, 230, 8); "
+                        (click)="addToWishlist(item.pk_product_id)"
                       >
+                        <i class="fa fa-heart fa-lg"></i>
+                      </button>
+                      <button
+                        *ngIf="wishProdId.indexOf(item.pk_product_id) > -1"
+                        type="button"
+                        rel="nofollow"
+                        style="background-color: rgb(255, 230, 8); "
+                        (click)="deleteFromWishlist(item.pk_product_id)"
+                      >
+                        <i class="fa fa-heart fa-lg" style="color:red;"></i>
+                      </button>
                     </div>
+                    <br />
                     <a
                       routerLink="/singleProduct/{{ item.pk_product_id }}"
                       class="woocommerce-LoopProduct-link"
@@ -64,9 +86,6 @@
                         (click)="addToCart(item.pk_product_id)"
                         rel="nofollow"
                         >Add to cart</a
-                      >
-                      <a class="add-to-compare-link" href="compare.html"
-                        >Add to compare</a
                       >
                     </div>
                   </div>
