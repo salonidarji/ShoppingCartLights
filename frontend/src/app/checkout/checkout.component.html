@@ -1,4 +1,4 @@
-<div id="content" class="site-content">
+<div id="content" class="site-content" *ngIf="flag == 'true'; else notLogin">
   <div class="col-full">
       <div class="row">
           <nav class="woocommerce-breadcrumb">
@@ -249,3 +249,7 @@
   <!-- .col-full -->
 </div>
 <!-- #content -->
+
+<ng-template #notLogin>
+    <app-not-login></app-not-login>
+</ng-template>

@@ -13,6 +13,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { UpdateAddressComponent } from "./update-address/update-address.component";
 import { VerificationComponent } from "./verification/verification.component";
 import { ShowWishlistComponent } from "./show-wishlist/show-wishlist.component";
+import { NotLoginComponent } from "./not-login/not-login.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: "productByCategory/:uId",
     component: ProductCategoryComponent
+  },
+  {
+    path: "**",
+    component: NotLoginComponent
   }
 ];
 
