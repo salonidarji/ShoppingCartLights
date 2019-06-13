@@ -25,6 +25,10 @@ const routes: Routes = [
     component: ProductAllComponent
   },
   {
+    path: "productAll/:uId",
+    component: ProductAllComponent
+  },
+  {
     path: "loginSignup",
     component: LoginSignupComponent
   },

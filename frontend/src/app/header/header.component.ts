@@ -8,6 +8,7 @@ import { Cart } from "../models/cart";
 import { ProductServiceService } from "../services/product-service.service";
 import { WishlistServiceService } from "../services/wishlist-service.service";
 import { Wishlist } from "../models/wishlist";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-header",
@@ -17,6 +18,8 @@ import { Wishlist } from "../models/wishlist";
 export class HeaderComponent implements OnInit {
   flag: string;
   id: string;
+
+  searchForm: FormGroup;
 
   category_arr: Category[];
   cart_arr: Cart[] = [];
@@ -40,6 +43,7 @@ export class HeaderComponent implements OnInit {
     private _category: CategoryServiceService,
     private _cart: CartServiceService,
     private _wishlist: WishlistServiceService,
+    private fb: FormBuilder,
     private _product: ProductServiceService
   ) {}
 
@@ -113,6 +117,11 @@ export class HeaderComponent implements OnInit {
         console.log("finally wishlist");
       }
     );
+
+    this.searchForm = this.fb.group({
+      search_product: [""],
+      search_category: [""]
+    });
   }
 
   logout(): void {
@@ -130,5 +139,53 @@ export class HeaderComponent implements OnInit {
       });
       this.ngOnInit();
     });
+  }
+
+  onSearch() {
+    console.log(this.searchForm.controls["search_category"].value);
+    // category = yes product =no
+    if (
+      this.searchForm.controls["search_category"].value != "" &&
+      this.searchForm.controls["search_product"].value == ""
+    ) {
+      this._category
+        .getProductByCategory(this.searchForm.controls["search_category"].value)
+        .subscribe((data: any) => {
+          this.router.navigate([
+            "/productByCategory",
+            this.searchForm.controls["search_category"].value
+          ]);
+        });
+    } // category = yes product =yes
+    else if (
+      this.searchForm.controls["search_category"].value != "" &&
+      this.searchForm.controls["search_product"].value != ""
+    ) {
+      this._category
+        .getProductByCategory(this.searchForm.controls["search_category"].value)
+        .subscribe((data: any) => {
+          this.router.navigate([
+            "/productByCategory",
+            this.searchForm.controls["search_category"].value
+          ]);
+        });
+    } // category = no product =yes
+    else if (
+      this.searchForm.controls["search_category"].value == "" &&
+      this.searchForm.controls["search_product"].value != ""
+    ) {
+      this._product.getAllProduct().subscribe((data: any) => {
+        this.router.navigate([
+          "/productAll",
+          this.searchForm.controls["search_product"].value
+        ]);
+      });
+    } // category = no product =no
+    else if (
+      this.searchForm.controls["search_category"].value == "" &&
+      this.searchForm.controls["search_product"].value == ""
+    ) {
+      this.router.navigate(["/productAll"]);
+    }
   }
 }

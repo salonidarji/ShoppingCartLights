@@ -144,13 +144,14 @@
                 </ul>
             </div>
             <!-- .departments-menu -->
-            <form class="navbar-search" method="get" action="https://transvelo.github.io/techmarket-html/home-v1.html">
+            <form class="navbar-search" [formGroup]="searchForm"
+            (ngSubmit)="onSearch(searchForm.value)">
                 <label class="sr-only screen-reader-text" for="search">Search for:</label>
                 <div class="input-group">
-                    <input type="text" id="search" class="form-control search-field product-search-field" dir="ltr" value="" name="s" placeholder="Search for products" />
+                    <input type="text" formControlName="search_product" id="search" class="form-control search-field product-search-field" dir="ltr" value="" name="s" placeholder="Search for products" />
                     <div class="input-group-addon search-categories">
-                        <select name='product_cat' id='product_cat' class='postform resizeselect'>
-                            <option value='0' selected='selected'>All Categories</option>
+                        <select formControlName="search_category" name='product_cat' id='product_cat' class='postform resizeselect'>
+                            <option value='' selected='selected'>All Categories</option>
                             <option *ngFor="let item of category_arr"  class="level-0" value={{item.pk_category_id}}>{{item.category_name}}</option>
                             
                         </select>

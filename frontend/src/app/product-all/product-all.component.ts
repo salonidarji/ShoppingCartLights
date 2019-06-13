@@ -5,6 +5,7 @@ import { CartServiceService } from "../services/cart-service.service";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Wishlist } from "../models/wishlist";
 import { WishlistServiceService } from "../services/wishlist-service.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-product-all",
@@ -12,38 +13,46 @@ import { WishlistServiceService } from "../services/wishlist-service.service";
   styleUrls: ["./product-all.component.css"]
 })
 export class ProductAllComponent implements OnInit {
-  product_arr: Product[];
+  product_arr: Product[] = [];
   wishlist_arr: Wishlist[];
   wishProdId: number[] = [];
   insertCartForm: FormGroup;
   id: string;
   pName: string;
   insertWishlistForm: FormGroup;
+  productName: string;
 
   constructor(
     private _product: ProductServiceService,
     private _cart: CartServiceService,
     private _wishlist: WishlistServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.id = localStorage.getItem("token");
     console.log("id:" + this.id);
+    console.log("uid: " + this.route.snapshot.paramMap.get("uId"));
+    if (this.route.snapshot.paramMap.get("uId") != null) {
+      this.productName = this.route.snapshot.paramMap.get("uId");
 
-    this._product.getAllProduct().subscribe(
-      (data: any) => {
+      this._product.getAllProduct().subscribe((data: any) => {
+        for (var p = 0; p < data.length; p++) {
+          if (data[p].product_name == this.productName) {
+            this.product_arr.push(data[0]);
+            console.log(this.product_arr);
+            this.pName = this.product_arr[0].product_name;
+          }
+        }
+      });
+    } else {
+      this._product.getAllProduct().subscribe((data: any) => {
         this.product_arr = data;
         console.log(this.product_arr);
         this.pName = this.product_arr[0].product_name;
-      },
-      function(err) {
-        console.log(err);
-      },
-      function() {
-        console.log("products done");
-      }
-    );
+      });
+    }
 
     this._wishlist.getWishlist(this.id).subscribe(
       (data: any) => {
