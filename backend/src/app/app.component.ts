@@ -26,6 +26,6 @@ export class AppComponent {
     console.log("Logout");
     this._authService.logout();
     this.id = "";
-    this.ngOnInit();
+    window.location.href = "/";
   }
 }
