@@ -14,7 +14,7 @@ import { Wishlist } from "../models/wishlist";
   styleUrls: ["./product.component.css"]
 })
 export class ProductComponent implements OnInit {
-  product_arr: Product[];
+  product_arr: Product[] = [];
   wishlist_arr: Wishlist[];
   wishProdId: number[] = [];
   insertCartForm: FormGroup;
@@ -31,8 +31,10 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this._product.getAllProduct().subscribe((data: any) => {
-      this.product_arr = data;
-      console.log(this.product_arr);
+      // this.product_arr = data;
+      for (var i = 0; i < 6; i++) {
+        this.product_arr.push(data[i]);
+      }
     });
 
     this.id = localStorage.getItem("token");

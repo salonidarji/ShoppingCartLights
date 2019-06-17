@@ -43,55 +43,54 @@
                     </button>
                   </div>
                   <br />
-                  <ng-container *ngIf="i > product_arr.length - 6">
-                    <a
-                      class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
-                      routerLink="/singleProduct/{{ item.pk_product_id }}"
-                    >
-                      <img
-                        width="224"
-                        height="197"
-                        alt=""
-                        class="attachment-shop_catalog size-shop_catalog wp-post-image"
-                        src="http://localhost:3000{{ item.image_url }}"
-                      />
-                      <span class="price">
-                        <span class="woocommerce-Price-amount amount">
-                          <del
-                            ><span class="woocommerce-Price-currencySymbol">
-                              <i class="fa fa-inr"></i>
-                              {{ item.product_price }}</span
-                            ></del
-                          >
-                        </span>
-                        <br />
-                        <span class="woocommerce-Price-amount amount">
-                          <span class="woocommerce-Price-currencySymbol">
-                            <i class="fa fa-inr"></i> </span
-                          >{{ item.product_sale_price }}
-                        </span>
-                      </span>
-                      <!-- .price -->
-                      <h2 class="woocommerce-loop-product__title">
-                        {{ item.product_name }}
-                      </h2>
-                    </a>
-                    <!-- .woocommerce-LoopProduct-link -->
-                    <div class="techmarket-product-rating">
-                      <div class="star-rating" title="Rated 0 out of 5">
-                        <span style="width:0%">
-                          <strong class="rating">5</strong> out of 5</span
+
+                  <a
+                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+                    routerLink="/singleProduct/{{ item.pk_product_id }}"
+                  >
+                    <img
+                      width="224"
+                      height="197"
+                      alt=""
+                      class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                      src="http://localhost:3000{{ item.image_url }}"
+                    />
+                    <span class="price">
+                      <span class="woocommerce-Price-amount amount">
+                        <del
+                          ><span class="woocommerce-Price-currencySymbol">
+                            <i class="fa fa-inr"></i>
+                            {{ item.product_price }}</span
+                          ></del
                         >
-                      </div>
-                      <span class="review-count">(0)</span>
-                    </div>
-                    <div class="hover-area">
-                      <a class="button" (click)="addToCart(item.pk_product_id)"
-                        >Add to cart</a
+                      </span>
+                      <br />
+                      <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">
+                          <i class="fa fa-inr"></i> </span
+                        >{{ item.product_sale_price }}
+                      </span>
+                    </span>
+                    <!-- .price -->
+                    <h2 class="woocommerce-loop-product__title">
+                      {{ item.product_name }}
+                    </h2>
+                  </a>
+                  <!-- .woocommerce-LoopProduct-link -->
+                  <div class="techmarket-product-rating">
+                    <div class="star-rating" title="Rated 0 out of 5">
+                      <span style="width:0%">
+                        <strong class="rating">5</strong> out of 5</span
                       >
                     </div>
-                    <!-- .hover-area -->
-                  </ng-container>
+                    <span class="review-count">(0)</span>
+                  </div>
+                  <div class="hover-area">
+                    <a class="button" (click)="addToCart(item.pk_product_id)"
+                      >Add to cart</a
+                    >
+                  </div>
+                  <!-- .hover-area -->
                 </div>
                 <!-- .product -->
               </div>

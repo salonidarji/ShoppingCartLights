@@ -14,7 +14,7 @@ export class ViewProductComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-
+    console.log("flag: " + this.flag);
     this._product.getAllProduct().subscribe(
       (_data: any) => {
         this.product_arr = _data;
