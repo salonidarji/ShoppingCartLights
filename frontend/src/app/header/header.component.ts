@@ -67,26 +67,42 @@ export class HeaderComponent implements OnInit {
     this._cart.getCartByUser(this.id).subscribe(
       (data: any) => {
         this.cart_arr = data;
+        var tempProdId: number = 0;
         for (var i = 0; i < this.cart_arr.length; i++) {
           this.productId = this.cart_arr[i].fk_product_id;
           this.qty_arr.push(this.cart_arr[i].product_qty);
-          console.log(this.productId);
+          console.log(this.qty_arr);
+
           this._product.getProduct(this.productId).subscribe(
             (data: any) => {
-              this.product_arr = data;
+              this.product_arr.push(data);
               console.log(this.product_arr);
+              console.log("before temp: " + tempProdId);
               for (var j = 0; j < this.product_arr.length; j++) {
-                this.productPrice_arr.push(
-                  this.product_arr[j].product_sale_price
+                console.log(
+                  "product j:" + this.product_arr[j][0].pk_product_id
                 );
-                this.productName_arr.push(this.product_arr[j].product_name);
-                this.productImage_arr.push(this.product_arr[j].image_url);
-                this.total_arr[j] =
-                  this.qty_arr[j] * <any>this.productPrice_arr[j];
-                if (j == this.product_arr.length - 1) {
-                  this.grandTotal += this.total_arr[j];
+                if (this.product_arr[j][0].pk_product_id != tempProdId) {
+                  tempProdId = this.product_arr[j][0].pk_product_id;
+                  this.productName_arr.push(
+                    this.product_arr[j][0].product_name
+                  );
+                  this.productImage_arr.push(this.product_arr[j][0].image_url);
+
+                  this.productPrice_arr.push(
+                    this.product_arr[j][0].product_sale_price
+                  );
+                  this.total_arr[j] =
+                    this.qty_arr[j] * <any>this.productPrice_arr[j];
+                  if (j == this.product_arr.length - 1) {
+                    this.grandTotal += this.total_arr[j];
+                  }
                 }
               }
+              console.log("priceArr: " + this.productPrice_arr);
+              console.log("nameArr: " + this.productName_arr);
+              console.log("qtyArr: " + this.qty_arr);
+              console.log("totalArr: " + this.total_arr);
             },
             function(err) {
               console.log(err);

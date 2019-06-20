@@ -55,6 +55,9 @@
                       class="attachment-shop_catalog size-shop_catalog wp-post-image"
                       src="http://localhost:3000{{ item.image_url }}"
                     />
+                    <h2 class="woocommerce-loop-product__title">
+                      {{ item.product_name }}
+                    </h2>
                     <span class="price">
                       <span class="woocommerce-Price-amount amount">
                         <del
@@ -72,9 +75,6 @@
                       </span>
                     </span>
                     <!-- .price -->
-                    <h2 class="woocommerce-loop-product__title">
-                      {{ item.product_name }}
-                    </h2>
                   </a>
                   <!-- .woocommerce-LoopProduct-link -->
                   <div class="techmarket-product-rating">

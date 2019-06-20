@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit {
   insertCartForm: FormGroup;
   insertWishlistForm: FormGroup;
   id: string;
+  heartColor = "";
 
   constructor(
     private _product: ProductServiceService,
@@ -71,7 +72,7 @@ export class ProductComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          alert("Product Successfully added to Cart");
+          this.router.navigate(["/cart"]);
         },
         function(err) {
           console.log(err);
@@ -86,29 +87,37 @@ export class ProductComponent implements OnInit {
   }
 
   addToWishlist(product_id) {
-    this.insertWishlistForm = this.fb.group({
-      fk_user_email: [this.id],
-      fk_product_id: [product_id]
-    });
+    if (this.id != "") {
+      this.insertWishlistForm = this.fb.group({
+        fk_user_email: [this.id],
+        fk_product_id: [product_id],
+        wishlist_value: [1]
+      });
 
-    this._wishlist.insertWishlist(this.insertWishlistForm.value).subscribe(
-      (data: any) => {
-        console.log(data);
-        for (var k = 0; k < this.wishlist_arr.length; k++) {
-          if (this.wishlist_arr[k].wishlist_value == 1) {
-            this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+      this._wishlist.insertWishlist(this.insertWishlistForm.value).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.wishlist_arr.push(data);
+          for (var k = 0; k < this.wishlist_arr.length; k++) {
+            if (this.wishlist_arr[k].wishlist_value == 1) {
+              this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+            }
           }
+        },
+        function(err) {
+          console.log(err);
         }
-      },
-      function(err) {
-        console.log(err);
-      }
-    );
+      );
+    } else {
+      alert("Please do login first");
+      this.router.navigate(["/loginSignup"]);
+    }
   }
 
   deleteFromWishlist(product_id) {
     this._wishlist.deleteWishlist(product_id).subscribe((data: any) => {
       console.log(data);
+      this.heartColor = "";
       for (var k = 0; k < this.wishProdId.length; k++) {
         if (this.wishProdId[k] == product_id) {
           this.wishProdId.splice(k, 1);

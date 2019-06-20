@@ -11,7 +11,7 @@
       <!-- .woocommerce-breadcrumb -->
       <div id="primary" class="content-area">
         <main id="main" class="site-main">
-          <div class="type-page hentry">
+          <div class="type-page hentry" *ngIf="notAllowedFlag == 0">
             <div class="entry-content">
               <div class="woocommerce">
                 <div class="light-bg team-member-wrapper">
@@ -60,6 +60,12 @@
                                 (ngSubmit)="onPasswordChange()"
                               >
                                 <div class="form-group">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="user_old_password"
+                                    placeholder="Enter Old Password"
+                                  />
                                   <input
                                     type="text"
                                     class="form-control"
@@ -112,7 +118,12 @@
 
                               <div class="hover-area">
                                 <span>
-                                  <button class="btn btn-success" routerLink="/updateAddress/{{item.pk_address_id}}">
+                                  <button
+                                    class="btn btn-success"
+                                    routerLink="/updateAddress/{{
+                                      item.pk_address_id
+                                    }}"
+                                  >
                                     Edit
                                   </button>
                                   &nbsp;&nbsp;
@@ -141,6 +152,27 @@
             <!-- .entry-content -->
           </div>
           <!-- .hentry -->
+          <div *ngIf="notAllowedFlag == 1">
+            <div class="error404">
+              <div class="info-404">
+                <h2 class="title"></h2>
+                <p class="lead error-text">*** Old Password is Wrong ***</p>
+                <p class="lead">
+                  You Don't have correct access to change password..!!!
+                </p>
+                <div class="sub-form-row">
+                  <div class="widget woocommerce widget_product_search">
+                    <form class="search-form">
+                      <button class="button" type="button" (click)="tryAgain()">
+                        Try Again
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- .sub-form-row -->
+            </div>
+          </div>
         </main>
         <!-- #main -->
       </div>

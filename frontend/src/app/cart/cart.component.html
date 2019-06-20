@@ -53,12 +53,12 @@
                                                   <td class="product-quantity" data-title="Quantity">
                                                       <div class="quantity">
                                                           <label for="quantity-input-1">Quantity</label>
-                                                          <input *ngIf="qty_arr" id="quantity-input-1" type="number" name="cart[e2230b853516e7b05d79744fbd4c9c13][qty]"  [(ngModel)]="qty_arr[i]" (change)="total(item.pk_cart_id,i)" title="Qty" class="input-text qty text" size="4">
+                                                          <input *ngIf="qty_arr" id="quantity-input-1" type="number"  [attr.value]="qty_arr[i]" [ngModelOptions]="{standalone: true}" [(ngModel)]="qty_arr[i]" (change)="total(item.pk_cart_id,i)" min="1" title="Qty" class="input-text qty text" size="4">
                                                       </div>
                                                   </td>
                                                   <td data-title="Total" class="product-subtotal">
                                                       <span class="woocommerce-Price-amount amount">
-                                                          <span  *ngIf="qty_arr[i] && productPrice_arr[i]" class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{total_arr[i] }}
+                                                          <span  *ngIf="qty_arr && productPrice_arr" class="woocommerce-Price-currencySymbol"><i class="fa fa-inr"></i></span>{{total_arr[i] }}
                                                       </span>
                                                       <a (click)="deleteItem(item.pk_cart_id)" title="Remove this item" class="remove" >×</a>
                                                   </td>
@@ -67,9 +67,7 @@
                                               <tr>
                                                   <td class="actions" colspan="6">
                                                       <div class="coupon">
-                                                          <label for="coupon_code">Coupon:</label>
-                                                          <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                          <input type="submit" value="Apply coupon" name="apply_coupon" class="button">
+                                                          
                                                       </div>
                                                       <input type="submit" value="Shop More" routerLink="/productAll" name="update_cart" class="button">
                                                   </td>
@@ -93,7 +91,7 @@
                                                       </td>
                                                   </tr>
                                                   
-                                                   <tr class="shipping">
+                                                   <tr class="cart-subtotal">
                                                         <th>Shipping</th>
                                                         <td data-title="Shipping">
                                                             <span class="woocommerce-Price-amount amount">

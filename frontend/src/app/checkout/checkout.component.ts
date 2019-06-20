@@ -86,36 +86,45 @@ export class CheckoutComponent implements OnInit {
     this._cart.getCartByUser(this.id).subscribe(
       (data: any) => {
         this.cart_arr = data;
+        var tempProdId: number = 0;
+        for (var i = 0; i < this.cart_arr.length; i++) {
+          this.productId = this.cart_arr[i].fk_product_id;
+          this.qty_arr.push(this.cart_arr[i].product_qty);
+          console.log(this.qty_arr);
 
-        if (this.cart_arr.length > 0) {
-          for (var i = 0; i < this.cart_arr.length; i++) {
-            this.productId = this.cart_arr[i].fk_product_id;
-            this.qty_arr.push(this.cart_arr[i].product_qty);
-            console.log(this.productId);
-            this._product.getProduct(this.productId).subscribe(
-              (data: any) => {
-                this.product_arr = data;
-                console.log(this.product_arr);
-                for (var j = 0; j < this.product_arr.length; j++) {
-                  this.productPrice_arr.push(
-                    this.product_arr[j].product_sale_price
+          this._product.getProduct(this.productId).subscribe(
+            (data: any) => {
+              this.product_arr.push(data);
+              console.log(this.product_arr);
+              console.log("before temp: " + tempProdId);
+              for (var j = 0; j < this.product_arr.length; j++) {
+                console.log(
+                  "product j:" + this.product_arr[j][0].pk_product_id
+                );
+                if (this.product_arr[j][0].pk_product_id != tempProdId) {
+                  tempProdId = this.product_arr[j][0].pk_product_id;
+                  this.productName_arr.push(
+                    this.product_arr[j][0].product_name
                   );
-                  this.productName_arr.push(this.product_arr[j].product_name);
+
+                  this.productPrice_arr.push(
+                    this.product_arr[j][0].product_sale_price
+                  );
                   this.total_arr[j] =
                     this.qty_arr[j] * <any>this.productPrice_arr[j];
                   if (j == this.product_arr.length - 1) {
                     this.grandTotal += this.total_arr[j];
                   }
                 }
-              },
-              function(err) {
-                console.log(err);
-              },
-              function() {
-                console.log("product done");
               }
-            );
-          }
+            },
+            function(err) {
+              console.log(err);
+            },
+            function() {
+              console.log("product done");
+            }
+          );
         }
       },
       function(err) {

@@ -5,7 +5,7 @@ import { CartServiceService } from "../services/cart-service.service";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Wishlist } from "../models/wishlist";
 import { WishlistServiceService } from "../services/wishlist-service.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-product-all",
@@ -27,7 +27,8 @@ export class ProductAllComponent implements OnInit {
     private _cart: CartServiceService,
     private _wishlist: WishlistServiceService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -85,7 +86,7 @@ export class ProductAllComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          alert("Product Successfully added to Cart");
+          this.router.navigate(["/cart"]);
           this.ngOnInit();
         },
         function(err) {
@@ -101,24 +102,31 @@ export class ProductAllComponent implements OnInit {
   }
 
   addToWishlist(product_id) {
-    this.insertWishlistForm = this.fb.group({
-      fk_user_email: [this.id],
-      fk_product_id: [product_id]
-    });
+    if (this.id != "") {
+      this.insertWishlistForm = this.fb.group({
+        fk_user_email: [this.id],
+        fk_product_id: [product_id],
+        wishlist_value: [1]
+      });
 
-    this._wishlist.insertWishlist(this.insertWishlistForm.value).subscribe(
-      (data: any) => {
-        console.log(data);
-        for (var k = 0; k < this.wishlist_arr.length; k++) {
-          if (this.wishlist_arr[k].wishlist_value == 1) {
-            this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+      this._wishlist.insertWishlist(this.insertWishlistForm.value).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.wishlist_arr.push(data);
+          for (var k = 0; k < this.wishlist_arr.length; k++) {
+            if (this.wishlist_arr[k].wishlist_value == 1) {
+              this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
+            }
           }
+        },
+        function(err) {
+          console.log(err);
         }
-      },
-      function(err) {
-        console.log(err);
-      }
-    );
+      );
+    } else {
+      alert("Please do login first");
+      this.router.navigate(["/loginSignup"]);
+    }
   }
 
   deleteFromWishlist(product_id) {

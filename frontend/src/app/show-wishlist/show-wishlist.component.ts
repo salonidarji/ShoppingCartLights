@@ -20,6 +20,7 @@ export class ShowWishlistComponent implements OnInit {
   insertCartForm: FormGroup;
   insertWishlistForm: FormGroup;
   id: string;
+  flag: string;
 
   constructor(
     private _product: ProductServiceService,
@@ -30,6 +31,7 @@ export class ShowWishlistComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
     this.id = localStorage.getItem("token");
 
     this._wishlist.getWishlist(this.id).subscribe(
@@ -91,6 +93,7 @@ export class ShowWishlistComponent implements OnInit {
       for (var k = 0; k < this.wishProdId.length; k++) {
         if (this.wishProdId[k] == product_id) {
           this.wishlist_arr.splice(k, 1);
+          window.location.href = "/showWishlist";
         }
       }
     });

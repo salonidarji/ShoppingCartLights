@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   passwordChange: string;
   changePasswordForm: FormGroup;
   getUserForm: FormGroup;
+  notAllowedFlag = 0;
 
   constructor(
     private _user: UserServiceService,
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
     this.loginPassword = localStorage.getItem("password");
 
     this.changePasswordForm = this.fb.group({
+      user_old_password: ["", Validators.required],
       user_password: ["", Validators.required]
     });
 
@@ -73,18 +75,27 @@ export class ProfileComponent implements OnInit {
   onPasswordChange() {
     console.log(this.changePasswordForm.value);
     console.log("id:" + this.id);
-    this._user.changePassword(this.id, this.changePasswordForm.value).subscribe(
-      data => {
-        console.log(data);
-        this.authService.logout();
-      },
-      function(err) {
-        console.log(err);
-      },
-      function() {
-        console.log("finally password");
-      }
-    );
+    if (
+      this.changePasswordForm.controls["user_old_password"].value ==
+      this.password
+    ) {
+      this._user
+        .changePassword(this.id, this.changePasswordForm.value)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.authService.logout();
+          },
+          function(err) {
+            console.log(err);
+          },
+          function() {
+            console.log("finally password");
+          }
+        );
+    } else {
+      this.notAllowedFlag = 1;
+    }
   }
 
   deleteAddress(pk_address_id) {
@@ -94,5 +105,9 @@ export class ProfileComponent implements OnInit {
         alert("Address Deleted");
         this.ngOnInit();
       });
+  }
+
+  tryAgain() {
+    window.location.href = "/profile";
   }
 }

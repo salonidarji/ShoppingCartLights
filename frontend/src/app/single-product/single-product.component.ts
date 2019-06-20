@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ProductServiceService } from "../services/product-service.service";
 import { Product } from "../models/product";
 import { ProductFeatureServiceService } from "../services/product-feature-service.service";
@@ -44,7 +44,8 @@ export class SingleProductComponent implements OnInit {
     private _feature: FeatureServiceService,
     private _productImage: ProductImageServiceService,
     private _cart: CartServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -141,7 +142,7 @@ export class SingleProductComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          alert("Product Successfully added to Cart");
+          this.router.navigate(["/cart"]);
         },
         function(err) {
           console.log(err);

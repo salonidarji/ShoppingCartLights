@@ -67,6 +67,9 @@
                         class="wp-post-image"
                         alt="Not Available"
                       />
+                      <h2 class="woocommerce-loop-product__title">
+                        {{ item.product_name }}
+                      </h2>
                       <span class="price">
                         <i class="fa fa-inr"></i>
                         <del>
@@ -79,14 +82,11 @@
                         >
                       </span>
                       <!-- /.price -->
-                      <h2 class="woocommerce-loop-product__title">
-                        {{ item.product_name }}
-                      </h2>
                     </a>
                     <div class="hover-area">
                       <a
                         class="button add_to_cart_button"
-                        routerLink="/cart"
+                        (click)="addToCart(item.pk_product_id)"
                         rel="nofollow"
                         >Add to cart</a
                       >

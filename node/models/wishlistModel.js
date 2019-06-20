@@ -17,7 +17,7 @@ var Wishlist = {
   addWishlist: function(item, callback) {
     return db.query(
       "Insert into wishlist_tbl values(?,?,?,?)",
-      ["null", 1, item.fk_product_id, item.fk_user_email],
+      ["null", item.wishlist_value, item.fk_product_id, item.fk_user_email],
       callback
     );
   },
