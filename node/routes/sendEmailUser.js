@@ -21,4 +21,14 @@ router.get("/:id", function(req, res) {
   });
 });
 
+router.delete("/:id", function(req, res, next) {
+  SendEmailUser.deleteCartByUserId(req.params.id, function(err, count) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(count);
+    }
+  });
+});
+
 module.exports = router;

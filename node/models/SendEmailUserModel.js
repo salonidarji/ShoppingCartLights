@@ -33,6 +33,13 @@ var SendEmailUser = {
       [id],
       callback
     );
+  },
+  deleteCartByUserId: function(id, callback) {
+    return db.query(
+      "update cart_tbl set is_delete=1, is_active=0 where fk_user_email_id=?",
+      [id],
+      callback
+    );
   }
 
   //sendMail().catch(console.error);

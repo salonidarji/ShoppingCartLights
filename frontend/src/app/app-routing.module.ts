@@ -14,6 +14,7 @@ import { UpdateAddressComponent } from "./update-address/update-address.componen
 import { VerificationComponent } from "./verification/verification.component";
 import { ShowWishlistComponent } from "./show-wishlist/show-wishlist.component";
 import { NotLoginComponent } from "./not-login/not-login.component";
+import { PaySuccessComponent } from "./pay-success/pay-success.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: "orderHistory",
     component: OrderHistoryComponent
+  },
+  {
+    path: "paySuccess",
+    component: PaySuccessComponent
   },
   {
     path: "singleProduct/:uId",

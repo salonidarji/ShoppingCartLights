@@ -20,6 +20,10 @@ export class CartServiceService {
     return this._http.delete(this.cart_url + id);
   }
 
+  deleteCartByUser(id) {
+    return this._http.delete("http://localhost:3000/sendEmailUser/" + id);
+  }
+
   insertCart(item: any) {
     let body = JSON.stringify(item);
     const httpOptions = {

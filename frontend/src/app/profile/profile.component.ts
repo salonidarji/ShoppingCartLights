@@ -112,21 +112,20 @@ export class ProfileComponent implements OnInit {
   }
 
   newAddress() {
-    //TODO: add new address & also on checkout add new addres if address is not selected
-    // console.warn(this.insertUserAddressForm.value);
-    // this._userAddress
-    //   .insertUserAddress(this.insertUserAddressForm.value)
-    //   .subscribe(
-    //     data => {
-    //       console.log(data);
-    //       this.router.navigate(["/viewUserAddress"]);
-    //     },
-    //     function(err) {
-    //       console.log(err);
-    //     },
-    //     function() {
-    //       console.log("finally");
-    //     }
-    //   );
+    /* console.warn(this.insertUserAddressForm.value);
+     this._userAddress
+       .insertUserAddress(this.insertUserAddressForm.value)
+       .subscribe(
+         data => {
+           console.log(data);
+           this.router.navigate(["/viewUserAddress"]);
+         },
+         function(err) {
+           console.log(err);
+         },
+         function() {
+           console.log("finally");
+         }
+       );*/
   }
 }

@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateAddressComponent } from './update-address/update-address.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ShowWishlistComponent } from './show-wishlist/show-wishlist.component';
+import { PaySuccessComponent } from './pay-success/pay-success.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ShowWishlistComponent } from './show-wishlist/show-wishlist.component';
     ProfileComponent,
     UpdateAddressComponent,
     VerificationComponent,
-    ShowWishlistComponent
+    ShowWishlistComponent,
+    PaySuccessComponent
   ],
   imports: [
     BrowserModule,

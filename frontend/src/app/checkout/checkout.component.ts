@@ -66,8 +66,7 @@ export class CheckoutComponent implements OnInit {
       address_line_2: [""],
       address_landmark: [""],
       address_pincode: ["", Validators.required],
-      address_city: ["", Validators.required],
-      term: ["", Validators.required]
+      address_city: ["", Validators.required]
     });
 
     this._address.getUserAddress(this.id).subscribe(
@@ -136,6 +135,12 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
+  emptyCart() {
+    this._cart.deleteCartByUser(this.id).subscribe((data: any) => {
+      console.log("after checkout cart deleted");
+    });
+  }
+
   onCheckout() {
     var options = {
       key: "rzp_test_5p9yN94TKfWfJw", // Enter the Key ID generated from the Dashboard
@@ -184,7 +189,8 @@ export class CheckoutComponent implements OnInit {
               .subscribe(
                 data => {
                   console.log(data);
-                  this.router.navigate(["/orderHistory"]);
+                  this.emptyCart();
+                  window.location.href = "/paySuccess";
                 },
                 function(err) {
                   console.log(err);

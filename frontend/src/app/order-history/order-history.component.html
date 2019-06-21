@@ -23,13 +23,6 @@
             <div class="entry-content">
               <div *ngIf="order_arr.length > 0" class="woocommerce">
                 <div class="woocommerce-order" *ngFor="let item of order_arr">
-                  <p
-                    style="background-color:rgb(1, 173, 44); height:40px; color: white!important;font-size: 20px;"
-                    class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"
-                  >
-                    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Thank
-                    you. Your order has been received.
-                  </p>
                   <button
                     class="btn btn-danger"
                     (click)="deleteOrder(item.pk_order_id)"
@@ -45,7 +38,9 @@
                     </li>
                     <li class="woocommerce-order-overview__date date">
                       Date:
-                      <strong>{{ item.order_date }}</strong>
+                      <strong>{{
+                        item.order_date | date: "dd-MMMM-yyyy"
+                      }}</strong>
                     </li>
                     <li class="woocommerce-order-overview__total total">
                       Total:
