@@ -63,7 +63,7 @@ const routes: Routes = [
     component: OrderHistoryComponent
   },
   {
-    path: "paySuccess",
+    path: "paySuccess/:payId",
     component: PaySuccessComponent
   },
   {

@@ -153,7 +153,8 @@ export class CheckoutComponent implements OnInit {
       //order_id: "order_9A33XWu170gUtm", //Order ID is generated as Orders API has been implemented. Refer the Checkout form table given below
       handler: function(response) {
         alert(response.razorpay_payment_id);
-        window.location.href = "/paySuccess";
+        this.payId = response.razorpay_payment_id;
+        window.location.href = `/paySuccess/${response.razorpay_payment_id}`;
       },
       prefill: {
         name: this.id.split("@"),
@@ -239,7 +240,8 @@ export class CheckoutComponent implements OnInit {
         this.address_arr[id].address_pincode,
         Validators.required
       ],
-      address_city: [this.address_arr[id].address_city, Validators.required]
+      address_city: [this.address_arr[id].address_city, Validators.required],
+      is_default: [0]
     });
 
     this.address_name = this.address_arr[id].address_name;

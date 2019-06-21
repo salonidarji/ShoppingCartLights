@@ -16,7 +16,7 @@ var Order = {
   },
   addOrder: function(item, callback) {
     return db.query(
-      "Insert into order_tbl values(?,?,?,?,?,?,?,?,?,?,?,?)",
+      "Insert into order_tbl values(?,?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         "null",
         item.order_date,
@@ -28,6 +28,7 @@ var Order = {
         item.address_landmark,
         item.address_pincode,
         item.address_city,
+        "",
         1,
         0
       ],

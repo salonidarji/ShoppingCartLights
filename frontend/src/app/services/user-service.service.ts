@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { identifierModuleUrl } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root"
