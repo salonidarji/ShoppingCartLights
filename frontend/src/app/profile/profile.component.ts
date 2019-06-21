@@ -23,13 +23,15 @@ export class ProfileComponent implements OnInit {
   passwordChange: string;
   changePasswordForm: FormGroup;
   getUserForm: FormGroup;
+  addressForm: FormGroup;
   notAllowedFlag = 0;
 
   constructor(
     private _user: UserServiceService,
     private _address: UserAddressServiceService,
     private fb: FormBuilder,
-    private authService: AuthenticationServiceService
+    private authService: AuthenticationServiceService,
+    private _userAddress: UserAddressServiceService
   ) {}
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
@@ -40,6 +42,18 @@ export class ProfileComponent implements OnInit {
     this.changePasswordForm = this.fb.group({
       user_old_password: ["", Validators.required],
       user_password: ["", Validators.required]
+    });
+
+    this.addressForm = this.fb.group({
+      fk_user_id: [this.id],
+      address_name: ["", Validators.required],
+      address_mobile: ["", Validators.required],
+      address_line_1: ["", Validators.required],
+      address_line_2: [""],
+      address_landmark: [""],
+      address_pincode: ["", Validators.required],
+      address_city: ["", Validators.required],
+      is_default: [0]
     });
 
     this._user.getUser(this.id).subscribe(
@@ -102,7 +116,6 @@ export class ProfileComponent implements OnInit {
     this._address
       .deleteUserAddress(pk_address_id, this.id)
       .subscribe((data: any) => {
-        alert("Address Deleted");
         this.ngOnInit();
       });
   }
@@ -112,20 +125,18 @@ export class ProfileComponent implements OnInit {
   }
 
   newAddress() {
-    /* console.warn(this.insertUserAddressForm.value);
-     this._userAddress
-       .insertUserAddress(this.insertUserAddressForm.value)
-       .subscribe(
-         data => {
-           console.log(data);
-           this.router.navigate(["/viewUserAddress"]);
-         },
-         function(err) {
-           console.log(err);
-         },
-         function() {
-           console.log("finally");
-         }
-       );*/
+    console.warn(this.addressForm.value);
+    this._userAddress.insertUserAddress(this.addressForm.value).subscribe(
+      data => {
+        console.log(data);
+        window.location.href = "/profile";
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally");
+      }
+    );
   }
 }

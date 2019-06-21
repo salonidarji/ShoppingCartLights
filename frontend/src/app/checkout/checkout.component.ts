@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   id: string;
   flag: string;
   address_arr: UserAddress[];
-  selectedAddressId: number;
+  selectedAddressId = 0;
   newDate: string;
 
   checkout = 0;
@@ -57,6 +57,7 @@ export class CheckoutComponent implements OnInit {
     this.id = localStorage.getItem("token");
     var date = new Date();
     this.newDate = date.toLocaleDateString("en-US");
+
     this.checkoutForm = this.fb.group({
       fk_user_id: [this.id],
       order_date: [this.newDate],
@@ -66,7 +67,8 @@ export class CheckoutComponent implements OnInit {
       address_line_2: [""],
       address_landmark: [""],
       address_pincode: ["", Validators.required],
-      address_city: ["", Validators.required]
+      address_city: ["", Validators.required],
+      is_default: [0]
     });
 
     this._address.getUserAddress(this.id).subscribe(
@@ -151,6 +153,7 @@ export class CheckoutComponent implements OnInit {
       //order_id: "order_9A33XWu170gUtm", //Order ID is generated as Orders API has been implemented. Refer the Checkout form table given below
       handler: function(response) {
         alert(response.razorpay_payment_id);
+        window.location.href = "/paySuccess";
       },
       prefill: {
         name: this.id.split("@"),
@@ -189,8 +192,8 @@ export class CheckoutComponent implements OnInit {
               .subscribe(
                 data => {
                   console.log(data);
+
                   this.emptyCart();
-                  window.location.href = "/paySuccess";
                 },
                 function(err) {
                   console.log(err);
@@ -199,6 +202,9 @@ export class CheckoutComponent implements OnInit {
                   console.log("finally");
                 }
               );
+          }
+          if (this.selectedAddressId == 0) {
+            this.newAddress();
           }
         },
         function(err) {
@@ -237,5 +243,20 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.address_name = this.address_arr[id].address_name;
+  }
+
+  newAddress() {
+    console.warn(this.checkoutForm.value);
+    this._address.insertUserAddress(this.checkoutForm.value).subscribe(
+      data => {
+        console.log(data);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finally");
+      }
+    );
   }
 }

@@ -137,7 +137,7 @@
                               </div>
                             </div>
                             <!-- /.product-outer -->
-                            <div class="product" (click)="newAddress()">
+                            <div class="product" >
                               <button
                                 type="button"
                                 class="btn btn-success "
@@ -148,6 +148,8 @@
                                 line-height: 1.33;
                                 border-radius: 35px;
                                 margin-top: 70px;"
+
+                                data-toggle="collapse" data-target="#shipping-address" aria-controls="shipping-address"
                               >
                                 <i class="fa fa-plus"></i>
                               </button>
@@ -171,6 +173,80 @@
               </div>
             </div>
             <!-- .entry-content -->
+            <div class="shipping_address collapse" id="shipping-address">
+                <form action="#" class="checkout woocommerce-checkout" method="post" name="checkout" [formGroup]="addressForm"
+                (ngSubmit)="newAddress()">
+                    <div id="customer_details" class="col2-set">
+                        <div class="col-1">
+                            <div class="woocommerce-billing-fields">
+                              <br/>
+                                <h3>Add New Address</h3>
+                                <div class="woocommerce-billing-fields__field-wrapper-outer">
+                                    <div class="woocommerce-billing-fields__field-wrapper">
+                                        <!-- <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                            <label class="" for="billing_first_name">First Name
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="text" value="" placeholder="" id="billing_first_name"   name="billing_first_name" class="input-text ">
+                                        </p>
+                                        <p id="billing_last_name_field" class="form-row form-row-last validate-required">
+                                            <label class="" for="billing_last_name">Last Name
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="text" value="" placeholder="" id="billing_last_name" name="billing_last_name" class="input-text ">
+                                        </p> -->
+                                        <div class="clear"></div>
+                                        <p id="billing_company_field" class="form-row form-row-wide">
+                                              <label class="" for="billing_company">Address Name</label>
+                                              <input type="text" value="" formControlName="address_name" placeholder="" id="billing_company" name="billing_company" class="input-text ">
+                                          </p>
+                                         <div class="clear"></div>
+                                        <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
+                                            <label class="" for="billing_address_1">Street address
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="text" value="" formControlName="address_line_1" placeholder="Street address" id="billing_address_1" name="billing_address_1" class="input-text ">
+                                        </p>
+                                        <p id="billing_address_2_field" class="form-row form-row-wide address-field">
+                                            <input type="text" value="" formControlName="address_line_2" placeholder="Apartment, suite, unit etc. (optional)" id="billing_address_2" name="billing_address_2" class="input-text ">
+                                        </p>
+                                        <p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row form-row-wide address-field validate-required">
+                                            <label class="" for="billing_city">Town / City
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="text" value="" formControlName="address_city" placeholder="" id="billing_city" name="billing_city" class="input-text ">
+                                        </p>
+                                        <p id="billing_postcode_field" class="form-row form-row-wide address-field validate-postcode validate-required" data-o_class="form-row form-row form-row-last address-field validate-required validate-postcode">
+                                            <label class="" for="billing_postcode">Postcode / ZIP
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="text" value="" formControlName="address_pincode" placeholder="" id="billing_postcode" name="billing_postcode" class="input-text ">
+                                        </p>
+                                        <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
+                                            <label class="" for="billing_phone">Phone
+                                                <abbr title="required" class="required">*</abbr>
+                                            </label>
+                                            <input type="tel" value="" formControlName="address_mobile" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                        </p>
+                                  <br/>
+                                  <button type="submit"  *ngIf="addressForm.valid" class="btn btn-block btn-success">Save Address</button>
+                                       
+                                    </div>
+                                </div>
+                                <!-- .woocommerce-billing-fields__field-wrapper-outer -->
+                            </div>
+                            <!-- .woocommerce-billing-fields -->
+                          
+                            <!-- .woocommerce-account-fields -->
+                        </div>
+                        <!-- .col-1 -->
+                      
+                    </div>
+                    <!-- .col2-set -->
+                 
+                </form>
+                <!-- .woocommerce-checkout -->
+        </div>
           </div>
           <!-- .hentry -->
           <div *ngIf="notAllowedFlag == 1">
