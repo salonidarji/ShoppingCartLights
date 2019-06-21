@@ -84,31 +84,45 @@ export class LoginSignupComponent implements OnInit {
 
   onSignup() {
     console.warn(this.insertUserForm.value.user_email);
-    this._user.insertUser(this.insertUserForm.value).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.verify_arr.push(data);
-        console.log(this.verify_arr);
-
-        this._user.EmailVerification(this.verify_arr[0]).subscribe(
+    for (let i = 0; i < this.model.length; i++) {
+      if (
+        this.insertUserForm.controls.user_email.value ===
+        this.model[i].user_email
+      ) {
+        alert("Email Id Already Exist");
+      } else if (
+        this.insertUserForm.controls.user_mobile.value ===
+        this.model[i].user_mobile
+      ) {
+        alert(" Mobile number Already Exist");
+      } else {
+        this._user.insertUser(this.insertUserForm.value).subscribe(
           (data: any) => {
             console.log(data);
-            alert("Verify Your Registerd email id");
+            this.verify_arr.push(data);
+            console.log(this.verify_arr);
+
+            this._user.EmailVerification(this.verify_arr[0]).subscribe(
+              (data: any) => {
+                console.log(data);
+                alert("Verify Your Registerd email id");
+              },
+              function(err) {
+                console.log(err);
+              },
+              function() {
+                console.log("email send");
+              }
+            );
           },
           function(err) {
             console.log(err);
           },
           function() {
-            console.log("email send");
+            console.log("finally");
           }
         );
-      },
-      function(err) {
-        console.log(err);
-      },
-      function() {
-        console.log("finally");
       }
-    );
+    }
   }
 }
