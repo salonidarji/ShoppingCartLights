@@ -25,6 +25,7 @@ var EmailVerification = require("./routes/EmailVerification");
 var payment = require("./routes/payment");
 var wishlist = require("./routes/wishlist");
 var review = require("./routes/review");
+var faq = require("./routes/faq");
 
 var app = express();
 
@@ -63,6 +64,7 @@ app.use("/emailVerification", EmailVerification);
 app.use("/payment", payment);
 app.use("/wishlist", wishlist);
 app.use("/review", review);
+app.use("/faq", faq);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

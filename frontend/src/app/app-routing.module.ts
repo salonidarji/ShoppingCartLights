@@ -15,6 +15,7 @@ import { VerificationComponent } from "./verification/verification.component";
 import { ShowWishlistComponent } from "./show-wishlist/show-wishlist.component";
 import { NotLoginComponent } from "./not-login/not-login.component";
 import { PaySuccessComponent } from "./pay-success/pay-success.component";
+import { FaqComponent } from "./faq/faq.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path: "productByCategory/:uId",
     component: ProductCategoryComponent
+  },
+  {
+    path: "faq",
+    component: FaqComponent
   },
   {
     path: "**",

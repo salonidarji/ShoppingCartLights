@@ -108,6 +108,7 @@ export class OrderHistoryComponent implements OnInit {
     this._review.insertReview(this.reviewProductForm.value).subscribe(
       (data: any) => {
         console.log(data);
+        this.reviewProductForm.controls["review_detail"].setValue("");
       },
       function(err) {
         console.log(err);
