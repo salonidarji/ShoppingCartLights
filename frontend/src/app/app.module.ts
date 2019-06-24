@@ -25,6 +25,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { ShowWishlistComponent } from './show-wishlist/show-wishlist.component';
 import { PaySuccessComponent } from './pay-success/pay-success.component';
 import { FaqComponent } from './faq/faq.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FaqComponent } from './faq/faq.component';
     VerificationComponent,
     ShowWishlistComponent,
     PaySuccessComponent,
-    FaqComponent
+    FaqComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

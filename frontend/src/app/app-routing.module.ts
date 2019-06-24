@@ -16,6 +16,7 @@ import { ShowWishlistComponent } from "./show-wishlist/show-wishlist.component";
 import { NotLoginComponent } from "./not-login/not-login.component";
 import { PaySuccessComponent } from "./pay-success/pay-success.component";
 import { FaqComponent } from "./faq/faq.component";
+import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/content", pathMatch: "full" },
@@ -82,6 +83,10 @@ const routes: Routes = [
   {
     path: "faq",
     component: FaqComponent
+  },
+  {
+    path: "privacyPolicy",
+    component: PrivacyPolicyComponent
   },
   {
     path: "**",
