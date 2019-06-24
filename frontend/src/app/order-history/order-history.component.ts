@@ -5,6 +5,8 @@ import { Product } from "../models/product";
 import { ProductServiceService } from "../services/product-service.service";
 import { OrderDetailServiceService } from "../services/order-detail-service.service";
 import { OrderDetail } from "../models/order-detail";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ReviewServiceService } from "../services/review-service.service";
 
 @Component({
   selector: "app-order-history",
@@ -21,10 +23,14 @@ export class OrderHistoryComponent implements OnInit {
   order_arr: Order[] = [];
   product_arr: Product[] = [];
 
+  reviewProductForm: FormGroup;
+
   constructor(
     private _order: OrderServiceService,
     private _orderDetail: OrderDetailServiceService,
-    private _product: ProductServiceService
+    private _product: ProductServiceService,
+    private fb: FormBuilder,
+    private _review: ReviewServiceService
   ) {}
 
   ngOnInit() {
@@ -78,6 +84,12 @@ export class OrderHistoryComponent implements OnInit {
         console.log("order done");
       }
     );
+
+    this.reviewProductForm = this.fb.group({
+      review_detail: [""],
+      fk_user_id: [this.id],
+      fk_product_id: [""]
+    });
   }
 
   deleteOrder(id) {
@@ -87,5 +99,22 @@ export class OrderHistoryComponent implements OnInit {
         this.ngOnInit();
       });
     });
+  }
+
+  onReviewProduct(prodId) {
+    this.reviewProductForm.controls["fk_product_id"].setValue(prodId);
+
+    console.log(this.reviewProductForm.value);
+    this._review.insertReview(this.reviewProductForm.value).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      function(err) {
+        console.log(err);
+      },
+      function() {
+        console.log("finaly of review");
+      }
+    );
   }
 }

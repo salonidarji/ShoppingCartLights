@@ -22,7 +22,10 @@
           <div class="page hentry">
             <div class="entry-content">
               <div *ngIf="order_arr.length > 0" class="woocommerce">
-                <div class="woocommerce-order" *ngFor="let item of order_arr">
+                <div
+                  class="woocommerce-order"
+                  *ngFor="let item of order_arr; let i = index"
+                >
                   <button
                     class="btn btn-danger"
                     (click)="deleteOrder(item.pk_order_id)"
@@ -60,99 +63,130 @@
                     </li>
                   </ul>
                   <!-- .woocommerce-order-overview -->
-                  <section class="woocommerce-order-details">
-                    <h2 class="woocommerce-order-details__title">
-                      Order details
-                    </h2>
-                    <table
-                      class="woocommerce-table woocommerce-table--order-details shop_table order_details"
-                    >
-                      <thead>
-                        <tr>
-                          <th
-                            class="woocommerce-table__product-name product-name"
+                  <div class="row">
+                    <section class="woocommerce-order-details col-md-8">
+                      <h2 class="woocommerce-order-details__title">
+                        Order details
+                      </h2>
+                      <table
+                        class="woocommerce-table woocommerce-table--order-details shop_table order_details"
+                      >
+                        <thead>
+                          <tr>
+                            <th
+                              class="woocommerce-table__product-name product-name"
+                            >
+                              Product
+                            </th>
+                            <th
+                              class="woocommerce-table__product-table product-total"
+                            >
+                              Total
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            class="woocommerce-table__line-item order_item"
+                            *ngFor="let itemP of product_arr; let i = index"
                           >
-                            Product
-                          </th>
-                          <th
-                            class="woocommerce-table__product-table product-total"
+                            <td
+                              class="woocommerce-table__product-name product-name"
+                            >
+                              <a href="single-product-fullwidth.html">{{
+                                itemP[0].product_name
+                              }}</a>
+                              <strong class="product-quantity"
+                                >× {{ orderDetail_arr[i].detail_qty }}</strong
+                              >
+                            </td>
+                            <td
+                              class="woocommerce-table__product-total product-total"
+                            >
+                              <span class="woocommerce-Price-amount amount">
+                                <span class="woocommerce-Price-currencySymbol"
+                                  ><i class="fa fa-inr"></i></span
+                                >{{
+                                  itemP[0].product_sale_price *
+                                    orderDetail_arr[i].detail_qty
+                                }}</span
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th scope="row">Subtotal:</th>
+                            <td>
+                              <span class="woocommerce-Price-amount amount">
+                                <span class="woocommerce-Price-currencySymbol"
+                                  ><i class="fa fa-inr"></i></span
+                                >{{ totalPrice }}</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Shipping:</th>
+                            <!-- <td>
+                                <span class="woocommerce-Price-amount amount">
+                                  <span class="woocommerce-Price-currencySymbol"
+                                    >$</span
+                                  >50</span
+                                >&nbsp;
+                                <small class="shipped_via"
+                                  >via Normal Delivery</small
+                                >
+                              </td> -->
+                          </tr>
+                          <tr>
+                            <th scope="row">Payment method:</th>
+                            <td>Direct bank transfer</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Total:</th>
+                            <td>
+                              <span class="woocommerce-Price-amount amount">
+                                <span class="woocommerce-Price-currencySymbol"
+                                  ><i class="fa fa-inr"></i></span
+                                >{{ totalPrice }}</span
+                              >
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                      <!-- .woocommerce-table -->
+                    </section>
+                    <!-- .woocommerce-order-details -->
+
+                    <div class="col-md-4">
+                      <br /><br /><br />
+                      <div>
+                        <div class="card card-body">
+                          <form
+                            [formGroup]="reviewProductForm"
+                            (ngSubmit)="
+                              onReviewProduct(orderDetail_arr[i].fk_product_id)
+                            "
                           >
-                            Total
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr
-                          class="woocommerce-table__line-item order_item"
-                          *ngFor="let itemP of product_arr; let i = index"
-                        >
-                          <td
-                            class="woocommerce-table__product-name product-name"
-                          >
-                            <a href="single-product-fullwidth.html">{{
-                              itemP[0].product_name
-                            }}</a>
-                            <strong class="product-quantity"
-                              >× {{ orderDetail_arr[i].detail_qty }}</strong
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                formControlName="review_detail"
+                                placeholder="Enter Your Review Here..."
+                              />
+                            </div>
+                            <button
+                              class="btn btn-success  btn-block"
+                              type="submit"
                             >
-                          </td>
-                          <td
-                            class="woocommerce-table__product-total product-total"
-                          >
-                            <span class="woocommerce-Price-amount amount">
-                              <span class="woocommerce-Price-currencySymbol"
-                                ><i class="fa fa-inr"></i></span
-                              >{{
-                                itemP[0].product_sale_price *
-                                  orderDetail_arr[i].detail_qty
-                              }}</span
-                            >
-                          </td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th scope="row">Subtotal:</th>
-                          <td>
-                            <span class="woocommerce-Price-amount amount">
-                              <span class="woocommerce-Price-currencySymbol"
-                                ><i class="fa fa-inr"></i></span
-                              >{{ totalPrice }}</span
-                            >
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Shipping:</th>
-                          <!-- <td>
-                            <span class="woocommerce-Price-amount amount">
-                              <span class="woocommerce-Price-currencySymbol"
-                                >$</span
-                              >50</span
-                            >&nbsp;
-                            <small class="shipped_via"
-                              >via Normal Delivery</small
-                            >
-                          </td> -->
-                        </tr>
-                        <tr>
-                          <th scope="row">Payment method:</th>
-                          <td>Direct bank transfer</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Total:</th>
-                          <td>
-                            <span class="woocommerce-Price-amount amount">
-                              <span class="woocommerce-Price-currencySymbol"
-                                ><i class="fa fa-inr"></i></span
-                              >{{ totalPrice }}</span
-                            >
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                    <!-- .woocommerce-table -->
-                  </section>
-                  <!-- .woocommerce-order-details -->
+                              Submit Review
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <!-- .woocommerce-order -->
               </div>

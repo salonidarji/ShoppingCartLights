@@ -10,6 +10,8 @@ import { ProductImage } from "../models/product-image";
 import { ProductImageServiceService } from "../services/product-image-service.service";
 import { CartServiceService } from "../services/cart-service.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { ReviewServiceService } from "../services/review-service.service";
+import { Review } from "../models/review";
 
 @Component({
   selector: "app-single-product",
@@ -19,6 +21,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class SingleProductComponent implements OnInit {
   insertCartForm: FormGroup;
 
+  review_arr: Review[];
   product_arr: Product[];
   feature_arr: Feature[] = [];
   productFeature_arr: ProductFeature[];
@@ -45,7 +48,8 @@ export class SingleProductComponent implements OnInit {
     private _productImage: ProductImageServiceService,
     private _cart: CartServiceService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _review: ReviewServiceService
   ) {}
 
   ngOnInit() {
@@ -124,7 +128,10 @@ export class SingleProductComponent implements OnInit {
       }
     );
 
-    console.log("quantity:" + this.quantity);
+    this._review.getReview(id).subscribe((data: any) => {
+      this.review_arr = data;
+      console.log(this.review_arr);
+    });
   }
 
   replaceImage(image) {
