@@ -35,6 +35,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { SingleProductComponent } from "./product/single-product/single-product.component";
+import { ReviewComponent } from "./review/review.component";
+import { NotLoginComponent } from "./not-login/not-login.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -204,7 +206,12 @@ const routes: Routes = [
     component: UpdateOrderDetailComponent,
     runGuardsAndResolvers: "always"
   },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent },
+  { path: "review", component: ReviewComponent },
+  {
+    path: "**",
+    component: NotLoginComponent
+  }
 ];
 
 @NgModule({

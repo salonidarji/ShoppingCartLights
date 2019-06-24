@@ -1,0 +1,52 @@
+<div class="container-fluid" *ngIf="flag == 'true'; else notLogin">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Reviews</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        All Reviews
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Review</th>
+              <th>User</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of review_arr">
+            <tr>
+              <td>{{ item.fk_product_id }}</td>
+              <td>{{ item.review_detail }}</td>
+              <td>{{ item.fk_user_id }}</td>
+              <td>
+                <button
+                  class="btn btn-danger btn-md"
+                  (click)="deleteReview(item.pk_review_id)"
+                >
+                  <span class="fa fa-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notLogin>
+  <app-not-login></app-not-login>
+</ng-template>
