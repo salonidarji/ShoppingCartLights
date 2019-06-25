@@ -21,17 +21,14 @@
         <main id="main" class="site-main">
           <div class="page hentry">
             <div class="entry-content">
+              <h2 class="woocommerce-order-details__title">
+                Order details
+              </h2>
               <div *ngIf="order_arr.length > 0" class="woocommerce">
                 <div
                   class="woocommerce-order"
                   *ngFor="let item of order_arr; let i = index"
                 >
-                  <button
-                    class="btn btn-danger"
-                    (click)="deleteOrder(item.pk_order_id)"
-                  >
-                    Cancel Order
-                  </button>
                   <ul
                     class="woocommerce-order-overview woocommerce-thankyou-order-details order_details"
                   >
@@ -55,6 +52,15 @@
                         >
                       </strong>
                     </li>
+                    <li class="woocommerce-order-overview__total total">
+                      Status:
+                      <strong>
+                        <span class="woocommerce-Price-amount amount">
+                          <span class="woocommerce-Price-currencySymbol"></span
+                          >{{ orderDetail_arr[i].order_status }}</span
+                        >
+                      </strong>
+                    </li>
                     <li
                       class="woocommerce-order-overview__payment-method method"
                     >
@@ -65,9 +71,6 @@
                   <!-- .woocommerce-order-overview -->
                   <div class="row">
                     <section class="woocommerce-order-details col-md-8">
-                      <h2 class="woocommerce-order-details__title">
-                        Order details
-                      </h2>
                       <table
                         class="woocommerce-table woocommerce-table--order-details shop_table order_details"
                       >
@@ -159,7 +162,19 @@
                     <!-- .woocommerce-order-details -->
 
                     <div class="col-md-4">
+                      <button
+                        *ngIf="
+                          orderDetail_arr[i].order_status !==
+                            'Out For Delivery' &&
+                          orderDetail_arr[i].order_status !== 'Delivered'
+                        "
+                        class="btn btn-danger"
+                        (click)="deleteOrder(item.pk_order_id)"
+                      >
+                        Cancel Order {{ orderDetail_arr[i].order_status }}
+                      </button>
                       <br /><br /><br />
+
                       <div>
                         <div class="card card-body">
                           <form

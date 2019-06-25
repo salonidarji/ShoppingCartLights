@@ -23,6 +23,8 @@
               <th>Product</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Order Status</th>
+              <th>Change Status</th>
               <!-- <th>Action</th> -->
             </tr>
           </thead>
@@ -33,15 +35,19 @@
               <td>{{ item.product_name }}</td>
               <td>{{ item.detail_qty }}</td>
               <td>{{ item.detail_price }}</td>
-              <!-- <td colspan="3">
-                <button
-                  class="btn btn-primary btn-md"
-                  (click)="deleteOrderDetail(item.pk_detail_id)"
+              <td>{{ item.order_status }}</td>
+              <td>
+                <select
+                  [(ngModel)]="status"
+                  (change)="onStatus(item.pk_detail_id)"
                 >
-                  <span class="fa fa-trash"></span>
-                </button>
-                
-              </td> -->
+                  <option value="In Process">In Process</option>
+                  <option value="Packed">Packed</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Out For Delivery">Out For Delivery</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+              </td>
             </tr>
           </tbody>
         </table>

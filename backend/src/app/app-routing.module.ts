@@ -38,6 +38,7 @@ import { SingleProductComponent } from "./product/single-product/single-product.
 import { ReviewComponent } from "./review/review.component";
 import { NotLoginComponent } from "./not-login/not-login.component";
 import { ViewFaqComponent } from "./view-faq/view-faq.component";
+import { UpdateFaqComponent } from "./update-faq/update-faq.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -200,6 +201,11 @@ const routes: Routes = [
   {
     path: "viewFaq",
     component: ViewFaqComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {
+    path: "updateFaq/:uId",
+    component: UpdateFaqComponent,
     runGuardsAndResolvers: "always"
   },
   {

@@ -28,7 +28,7 @@ export class OrderDetailServiceService {
     return this._http.post(this.orderDetail_url, body, httpOptions);
   }
 
-  updateOrderDetail(id, item) {
+  updateStatus(id, item) {
     let body = JSON.stringify(item);
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" })

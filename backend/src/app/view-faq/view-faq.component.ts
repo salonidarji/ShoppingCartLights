@@ -15,6 +15,7 @@ export class ViewFaqComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
+    console.log("flag: " + this.flag);
     this._faq.getAllFaq().subscribe((data: any) => {
       this.faq_arr = data;
     });

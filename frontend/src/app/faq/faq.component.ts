@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { FaqServiceService } from "../services/faq-service.service";
+import { Faq } from "../models/faq";
 
 @Component({
   selector: "app-faq",
@@ -10,6 +11,7 @@ import { FaqServiceService } from "../services/faq-service.service";
 export class FaqComponent implements OnInit {
   id: string;
   flag: string;
+  faq_arr: Faq[];
 
   faqForm: FormGroup;
 
@@ -24,6 +26,10 @@ export class FaqComponent implements OnInit {
       faq_answer: [""],
       fk_user_id: [""]
     });
+
+    this._faq.getAllFaq().subscribe((data: any) => {
+      this.faq_arr = data;
+    });
   }
 
   onFaq() {
@@ -32,7 +38,8 @@ export class FaqComponent implements OnInit {
     }
 
     this._faq.insertFaq(this.faqForm.value).subscribe((data: any) => {
-      alert("Your question is submitted. Do check your mail id for answer");
+      console.log("faq submitted");
+      this.ngOnInit();
     });
   }
 }
