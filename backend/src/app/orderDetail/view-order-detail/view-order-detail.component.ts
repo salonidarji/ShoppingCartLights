@@ -72,7 +72,7 @@ export class ViewOrderDetailComponent implements OnInit {
     this._orderDetail
       .updateStatus(id, this.statusForm.value)
       .subscribe((data: any) => {
-        this.ngOnInit();
+        window.location.href = "/viewOrderDetail";
       });
   }
 }
