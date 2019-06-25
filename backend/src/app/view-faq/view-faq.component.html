@@ -1,12 +1,12 @@
 <div class="container-fluid" *ngIf="flag == 'true'; else notLogin">
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Features</h1>
+  <h1 class="h3 mb-2 text-gray-800">FAQs</h1>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
-        All Features
+        All FAQs
       </h6>
     </div>
     <div class="card-body">
@@ -19,33 +19,24 @@
         >
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>User Mail Id</th>
               <th>Action</th>
             </tr>
           </thead>
 
-          <tbody *ngFor="let item of feature_arr">
+          <tbody *ngFor="let item of faq_arr">
             <tr>
-              <td>{{ item.feature_name }}</td>
-              <td colspan="3">
+              <td>{{ item.faq_question }}</td>
+              <td>{{ item.faq_answer }}</td>
+              <td>{{ item.fk_user_id }}</td>
+              <td>
                 <button
                   class="btn btn-danger btn-md"
-                  (click)="deleteFeature(item.pk_feature_id)"
+                  (click)="deleteFaq(item.pk_faq_id)"
                 >
                   <span class="fa fa-trash"></span>
-                </button>
-                <!-- <button
-                    class="btn btn-primary btn-md"
-                    (click)="singlefeature(item.pk_feature_id)"
-                  >
-                    View
-                  </button> -->
-                &nbsp;
-                <button
-                  class="btn btn-success btn-md"
-                  routerLink="/updateFeature/{{ item.pk_feature_id }}"
-                >
-                  <span class="fa fa-pencil"></span>
                 </button>
               </td>
             </tr>

@@ -45,6 +45,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { SingleProductComponent } from "./product/single-product/single-product.component";
 import { ReviewComponent } from './review/review.component';
 import { NotLoginComponent } from './not-login/not-login.component';
+import { ViewFaqComponent } from './view-faq/view-faq.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { NotLoginComponent } from './not-login/not-login.component';
     ForgotPasswordComponent,
     SingleProductComponent,
     ReviewComponent,
-    NotLoginComponent
+    NotLoginComponent,
+    ViewFaqComponent
   ],
   imports: [
     BrowserModule,

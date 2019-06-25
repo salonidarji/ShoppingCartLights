@@ -9,9 +9,13 @@ import { Feature } from "../../models/feature";
 })
 export class ViewFeatureComponent implements OnInit {
   feature_arr: Feature[];
+  flag: string;
+
   constructor(private _feature: FeatureServiceService) {}
 
   ngOnInit() {
+    this.flag = localStorage.getItem("isLoggedIn");
+
     this._feature.getAllFeature().subscribe(
       (_data: any) => {
         this.feature_arr = _data;
