@@ -16,8 +16,16 @@ var OrderDetail = {
   },
   addOrderDetail: function(item, callback) {
     return db.query(
-      "Insert into order_detail_tbl values(?,(select max(pk_order_id) from order_tbl),?,?,?,?,?)",
-      ["null", item.fk_product_id, item.detail_qty, item.detail_price, 1, 0],
+      "Insert into order_detail_tbl values(?,(select max(pk_order_id) from order_tbl),?,?,?,?,?,?)",
+      [
+        "null",
+        item.fk_product_id,
+        item.detail_qty,
+        item.detail_price,
+        "In Process",
+        1,
+        0
+      ],
       callback
     );
   },

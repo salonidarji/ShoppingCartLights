@@ -98,7 +98,7 @@ export class UpdateOrderDetailComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.updateOrderDetailForm.value);
-    this._orderDetail
+    /* this._orderDetail
       .updateOrderDetail(this.id, this.updateOrderDetailForm.value)
       .subscribe(
         data => {
@@ -111,6 +111,6 @@ export class UpdateOrderDetailComponent implements OnInit {
         function() {
           console.log("finally");
         }
-      );
+      ); */
   }
 }
