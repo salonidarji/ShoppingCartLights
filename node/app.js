@@ -26,6 +26,7 @@ var payment = require("./routes/payment");
 var wishlist = require("./routes/wishlist");
 var review = require("./routes/review");
 var faq = require("./routes/faq");
+var chart = require("./routes/chart");
 
 var app = express();
 
@@ -65,6 +66,7 @@ app.use("/payment", payment);
 app.use("/wishlist", wishlist);
 app.use("/review", review);
 app.use("/faq", faq);
+app.use("/chart", chart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

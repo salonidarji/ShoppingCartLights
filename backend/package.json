@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "angular-file-upload": "^2.5.0",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
     "datatables": "^1.10.18",
     "jquery": "^3.4.1",
