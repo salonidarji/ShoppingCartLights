@@ -48,14 +48,19 @@
                         <span class="woocommerce-Price-amount amount">
                           <span class="woocommerce-Price-currencySymbol"
                             ><i class="fa fa-inr"></i></span
-                          >{{ totalPrice }}</span
+                          >{{
+                            totalPrice * orderDetail_arr[i].detail_qty
+                          }}</span
                         >
                       </strong>
                     </li>
                     <li class="woocommerce-order-overview__total total">
                       Status:
                       <strong>
-                        <span class="woocommerce-Price-amount amount">
+                        <span
+                          class="woocommerce-Price-amount amount"
+                          *ngIf="orderDetail_arr.length > 0"
+                        >
                           <span class="woocommerce-Price-currencySymbol"></span
                           >{{ orderDetail_arr[i].order_status }}</span
                         >
@@ -124,7 +129,9 @@
                               <span class="woocommerce-Price-amount amount">
                                 <span class="woocommerce-Price-currencySymbol"
                                   ><i class="fa fa-inr"></i></span
-                                >{{ totalPrice }}</span
+                                >{{
+                                  totalPrice * orderDetail_arr[i].detail_qty
+                                }}</span
                               >
                             </td>
                           </tr>
@@ -161,7 +168,7 @@
                     </section>
                     <!-- .woocommerce-order-details -->
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="orderDetail_arr.length > 0">
                       <button
                         *ngIf="
                           orderDetail_arr[i].order_status !==

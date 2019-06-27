@@ -40,41 +40,45 @@ export class OrderHistoryComponent implements OnInit {
     this._order.getOrder(this.id).subscribe(
       (data: any) => {
         this.order_arr = data;
-        if (this.order_arr.length > 0) {
-          this._orderDetail
-            .getOrderDetail(this.order_arr[0].pk_order_id)
-            .subscribe(
-              (data: any) => {
-                this.orderDetail_arr = data;
-                for (var j = 0; j < this.orderDetail_arr.length; j++) {
-                  this._product
-                    .getProduct(this.orderDetail_arr[j].fk_product_id)
-                    .subscribe(
-                      (data: any) => {
-                        this.product_arr.push(data);
 
-                        for (var i = 0; i < this.product_arr.length; i++) {
-                          this.totalPrice += parseInt(
-                            this.product_arr[i][0].product_sale_price
-                          );
+        if (this.order_arr.length > 0) {
+          for (var a = 0; a < this.order_arr.length; a++) {
+            this._orderDetail
+              .getOrderDetail(this.order_arr[a].pk_order_id)
+              .subscribe(
+                (data: any) => {
+                  this.orderDetail_arr = data;
+                  for (var j = 0; j < this.orderDetail_arr.length; j++) {
+                    this._product
+                      .getProduct(this.orderDetail_arr[j].fk_product_id)
+                      .subscribe(
+                        (data: any) => {
+                          this.product_arr.push(data);
+
+                          for (var i = 0; i < this.product_arr.length; i++) {
+                            this.totalPrice += parseInt(
+                              this.product_arr[i][0].product_sale_price
+                            );
+                          }
+                          console.log(this.product_arr);
+                        },
+                        function(err) {
+                          console.log(err);
+                        },
+                        function() {
+                          console.log("product done");
                         }
-                      },
-                      function(err) {
-                        console.log(err);
-                      },
-                      function() {
-                        console.log("product done");
-                      }
-                    );
+                      );
+                  }
+                },
+                function(err) {
+                  console.log(err);
+                },
+                function() {
+                  console.log("order detail done");
                 }
-              },
-              function(err) {
-                console.log(err);
-              },
-              function() {
-                console.log("order detail done");
-              }
-            );
+              );
+          }
         }
       },
       function(err) {
