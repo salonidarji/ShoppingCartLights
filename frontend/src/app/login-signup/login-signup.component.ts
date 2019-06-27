@@ -65,12 +65,15 @@ export class LoginSignupComponent implements OnInit {
         //this.authService.authLogin(this.model);
 
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("token", this.loginForm.controls.user_email.value);
+        localStorage.setItem(
+          "tokenWeb",
+          this.loginForm.controls.user_email.value
+        );
         localStorage.setItem(
           "password",
           this.loginForm.controls.user_password.value
         );
-        this.LoginId.emit(localStorage.getItem("tokken"));
+        this.LoginId.emit(localStorage.getItem("tokenWeb"));
         window.location.href = "/";
       }
     }

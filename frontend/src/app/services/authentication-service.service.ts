@@ -42,7 +42,7 @@ export class AuthenticationServiceService {
   logout() {
     // remove user from local storage to log user out
     localStorage.setItem("isLoggedIn", "false");
-    localStorage.setItem("token", "");
+    localStorage.setItem("tokenWeb", "");
 
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);

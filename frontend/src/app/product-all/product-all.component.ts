@@ -32,7 +32,7 @@ export class ProductAllComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
     console.log("id:" + this.id);
     console.log("uid: " + this.route.snapshot.paramMap.get("uId"));
     if (this.route.snapshot.paramMap.get("uId") != null) {

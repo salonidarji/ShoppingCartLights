@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
 
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
     this.loginPassword = localStorage.getItem("password");
 
     this.changePasswordForm = this.fb.group({

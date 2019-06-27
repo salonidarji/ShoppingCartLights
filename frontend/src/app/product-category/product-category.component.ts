@@ -34,7 +34,7 @@ export class ProductCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("uId");
-    this.userEmail = localStorage.getItem("token");
+    this.userEmail = localStorage.getItem("tokenWeb");
     this._category.getProductByCategory(this.id).subscribe(
       (data: any) => {
         this.product_arr = data;

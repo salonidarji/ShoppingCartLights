@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
 
     this._cart.getCartByUser(this.id).subscribe(
       (data: any) => {

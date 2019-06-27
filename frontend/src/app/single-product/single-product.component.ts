@@ -55,7 +55,7 @@ export class SingleProductComponent implements OnInit {
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get("uId");
     this.productId = id;
-    this.userId = localStorage.getItem("token");
+    this.userId = localStorage.getItem("tokenWeb");
     this._product.getProduct(id).subscribe(
       (data: any) => {
         this.product_arr = data;

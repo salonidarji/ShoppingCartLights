@@ -35,7 +35,7 @@ export class OrderHistoryComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
 
     this._order.getOrder(this.id).subscribe(
       (data: any) => {

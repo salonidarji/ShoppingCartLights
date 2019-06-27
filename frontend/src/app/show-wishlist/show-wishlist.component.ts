@@ -32,7 +32,7 @@ export class ShowWishlistComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
 
     this._wishlist.getWishlist(this.id).subscribe(
       (data: any) => {

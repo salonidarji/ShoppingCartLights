@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
       }
     });
 
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
     console.log("id:" + this.id);
 
     this._wishlist.getWishlist(this.id).subscribe(

@@ -25,7 +25,7 @@ export class PaySuccessComponent implements OnInit {
 
   ngOnInit() {
     this.payId = this.route.snapshot.paramMap.get("payId");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
 
     this.userForm = this.fb.group({
       user_email: [this.id]

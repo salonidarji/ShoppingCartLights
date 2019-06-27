@@ -13,6 +13,6 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
   }
 }

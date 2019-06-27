@@ -29,7 +29,7 @@ export class UpdateAddressComponent implements OnInit {
     let address_id = <any>this.route.snapshot.paramMap.get("uId");
     this.address_id = address_id;
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
     var date = new Date();
     this.newDate = date.toLocaleDateString("en-US");
 

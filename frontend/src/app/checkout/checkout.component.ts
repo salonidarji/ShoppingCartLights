@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.flag = localStorage.getItem("isLoggedIn");
-    this.id = localStorage.getItem("token");
+    this.id = localStorage.getItem("tokenWeb");
     var date = new Date();
     this.newDate = date.toLocaleDateString("en-US");
 
