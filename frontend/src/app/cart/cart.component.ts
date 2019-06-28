@@ -121,7 +121,7 @@ export class CartComponent implements OnInit {
       this.total_arr.forEach(element => {
         element = 0;
       });
-      this.ngOnInit();
+      window.location.href = "/cart";
     });
   }
 

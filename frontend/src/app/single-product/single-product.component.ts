@@ -149,7 +149,8 @@ export class SingleProductComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          this.router.navigate(["/cart"]);
+          //this.router.navigate(["/cart"]);
+          window.location.href = "/cart";
         },
         function(err) {
           console.log(err);

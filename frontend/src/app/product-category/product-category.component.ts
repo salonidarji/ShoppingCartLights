@@ -35,6 +35,7 @@ export class ProductCategoryComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("uId");
     this.userEmail = localStorage.getItem("tokenWeb");
+    console.log("useremail:" + this.userEmail);
     this._category.getProductByCategory(this.id).subscribe(
       (data: any) => {
         this.product_arr = data;
@@ -70,7 +71,7 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   addToCart(product_id) {
-    if (this.id != "") {
+    if (this.userEmail != "") {
       this.insertCartForm = this.fb.group({
         fk_user_email_id: [this.userEmail],
         fk_product_id: [product_id],
@@ -80,7 +81,8 @@ export class ProductCategoryComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          this.router.navigate(["/cart"]);
+          //this.router.navigate(["/cart"]);
+          window.location.href = "/cart";
         },
         function(err) {
           console.log(err);
@@ -91,11 +93,12 @@ export class ProductCategoryComponent implements OnInit {
       );
     } else {
       alert("please Do Login first...!!!");
+      this.router.navigate(["/loginSignup"]);
     }
   }
 
   addToWishlist(product_id) {
-    if (this.id != "") {
+    if (this.id !== "") {
       this.insertWishlistForm = this.fb.group({
         fk_user_email: [this.userEmail],
         fk_product_id: [product_id],

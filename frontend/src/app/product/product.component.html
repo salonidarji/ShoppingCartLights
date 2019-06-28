@@ -24,7 +24,9 @@
                     style="text-align: right;"
                   >
                     <button
-                      *ngIf="wishProdId.indexOf(item.pk_product_id) == -1"
+                      *ngIf="
+                        wishProdId.indexOf(item.pk_product_id) == -1 && id != ''
+                      "
                       type="button"
                       rel="nofollow"
                       style="background-color: rgb(255, 230, 8); "
@@ -33,13 +35,24 @@
                       <i class="fa fa-heart fa-lg"></i>
                     </button>
                     <button
-                      *ngIf="wishProdId.indexOf(item.pk_product_id) > -1"
+                      *ngIf="
+                        wishProdId.indexOf(item.pk_product_id) > -1 && id != ''
+                      "
                       type="button"
                       rel="nofollow"
                       style="background-color: rgb(255, 230, 8); "
                       (click)="deleteFromWishlist(item.pk_product_id)"
                     >
                       <i class="fa fa-heart fa-lg" style="color:red;"></i>
+                    </button>
+
+                    <button
+                      *ngIf="id == ''"
+                      type="button"
+                      rel="nofollow"
+                      style="background-color: rgb(255, 230, 8); "
+                    >
+                      <i class="fa fa-heart fa-lg"></i>
                     </button>
                   </div>
                   <br />

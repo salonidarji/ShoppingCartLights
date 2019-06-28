@@ -72,7 +72,8 @@ export class ProductComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          this.router.navigate(["/cart"]);
+          //this.router.navigate(["/cart"]);
+          window.location.href = "/cart";
         },
         function(err) {
           console.log(err);
@@ -103,6 +104,7 @@ export class ProductComponent implements OnInit {
               this.wishProdId.push(this.wishlist_arr[k].fk_product_id);
             }
           }
+          window.location.href = "/";
         },
         function(err) {
           console.log(err);
@@ -123,6 +125,7 @@ export class ProductComponent implements OnInit {
           this.wishProdId.splice(k, 1);
         }
       }
+      window.location.href = "/";
     });
   }
 }

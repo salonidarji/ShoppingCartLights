@@ -33,8 +33,6 @@ export class ProductAllComponent implements OnInit {
 
   ngOnInit() {
     this.id = localStorage.getItem("tokenWeb");
-    console.log("id:" + this.id);
-    console.log("uid: " + this.route.snapshot.paramMap.get("uId"));
     if (this.route.snapshot.paramMap.get("uId") != null) {
       this.productName = this.route.snapshot.paramMap.get("uId");
 
@@ -86,8 +84,7 @@ export class ProductAllComponent implements OnInit {
       this._cart.insertCart(this.insertCartForm.value).subscribe(
         (data: any) => {
           console.log(this.insertCartForm.value);
-          this.router.navigate(["/cart"]);
-          this.ngOnInit();
+          window.location.href = "/cart";
         },
         function(err) {
           console.log(err);
