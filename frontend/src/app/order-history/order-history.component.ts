@@ -4,7 +4,7 @@ import { Order } from "../models/order";
 import { Product } from "../models/product";
 import { ProductServiceService } from "../services/product-service.service";
 import { OrderDetailServiceService } from "../services/order-detail-service.service";
-import { OrderDetail } from "../models/order-detail";
+import { OrderDetailHistory } from "../models/order-detail";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ReviewServiceService } from "../services/review-service.service";
 
@@ -19,16 +19,14 @@ export class OrderHistoryComponent implements OnInit {
 
   totalPrice: number = 0;
 
-  public orderDetail_arr: OrderDetail[] = [];
+  public orderDetail_arr: OrderDetailHistory[] = [];
   order_arr: Order[] = [];
-  product_arr: Product[] = [];
 
   reviewProductForm: FormGroup;
 
   constructor(
     private _order: OrderServiceService,
     private _orderDetail: OrderDetailServiceService,
-    private _product: ProductServiceService,
     private fb: FormBuilder,
     private _review: ReviewServiceService
   ) {}
@@ -37,57 +35,10 @@ export class OrderHistoryComponent implements OnInit {
     this.flag = localStorage.getItem("isLoggedIn");
     this.id = localStorage.getItem("tokenWeb");
 
-    this._order.getOrder(this.id).subscribe(
-      (data: any) => {
-        this.order_arr = data;
-
-        if (this.order_arr.length > 0) {
-          for (var a = 0; a < this.order_arr.length; a++) {
-            this._orderDetail
-              .getOrderDetail(this.order_arr[a].pk_order_id)
-              .subscribe(
-                (data: any) => {
-                  this.orderDetail_arr = data;
-                  for (var j = 0; j < this.orderDetail_arr.length; j++) {
-                    this._product
-                      .getProduct(this.orderDetail_arr[j].fk_product_id)
-                      .subscribe(
-                        (data: any) => {
-                          this.product_arr.push(data);
-
-                          for (var i = 0; i < this.product_arr.length; i++) {
-                            this.totalPrice += parseInt(
-                              this.product_arr[i][0].product_sale_price
-                            );
-                          }
-                          console.log(this.product_arr);
-                        },
-                        function(err) {
-                          console.log(err);
-                        },
-                        function() {
-                          console.log("product done");
-                        }
-                      );
-                  }
-                },
-                function(err) {
-                  console.log(err);
-                },
-                function() {
-                  console.log("order detail done");
-                }
-              );
-          }
-        }
-      },
-      function(err) {
-        console.log(err);
-      },
-      function() {
-        console.log("order done");
-      }
-    );
+    this._orderDetail.getOrderDetail(this.id).subscribe((data1: any) => {
+      this.orderDetail_arr.push(data1);
+      console.log(this.orderDetail_arr);
+    });
 
     this.reviewProductForm = this.fb.group({
       review_detail: [""],
@@ -99,8 +50,7 @@ export class OrderHistoryComponent implements OnInit {
   deleteOrder(id) {
     this._order.deleteOrder(id).subscribe((data: any) => {
       this._orderDetail.deleteOrderDetail(id).subscribe((data: any) => {
-        alert("Order Canceled Successfully");
-        this.ngOnInit();
+        window.location.href = "/orderHistory";
       });
     });
   }

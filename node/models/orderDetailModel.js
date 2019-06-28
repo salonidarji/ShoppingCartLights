@@ -9,7 +9,7 @@ var OrderDetail = {
   },
   getOrderDetail: function(id, callback) {
     return db.query(
-      "select * from order_detail_tbl where fk_order_id=? && is_delete=0 && is_active=1",
+      "Select *  from order_detail_tbl od, order_tbl o, product_tbl p where od.fk_order_id=o.pk_order_id && o.fk_user_id=? && od.fk_product_id=p.pk_product_id && od.is_active=1 && o.is_active=1 && p.is_active=1 && od.is_delete=0 &&  o.is_delete=0 && p.is_delete=0",
       [id],
       callback
     );
