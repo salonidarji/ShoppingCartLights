@@ -374,7 +374,7 @@
           </li>
 
           <!-- Nav Item - Alerts -->
-          <li class="nav-item dropdown no-arrow mx-1">
+          <li class="nav-item dropdown no-arrow mx-1" *ngIf="flag == 'true'">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -434,7 +434,7 @@
             </div>
           </li>
 
-          <li class="nav-item dropdown no-arrow">
+          <li class="nav-item dropdown no-arrow" *ngIf="flag == 'true'">
             <a
               class="nav-link dropdown-toggle"
               href="#"
