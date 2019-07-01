@@ -70,7 +70,30 @@
                     <span>All Departments</span>
                 </button>
                 <ul id="menu-departments-menu" class="dropdown-menu yamm departments-menu-dropdown">
-                   
+                        <li *ngIf="id != ''" class="menu-item menu-item-has-children animate-dropdown dropdown">
+                                <a  data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" href="#">Profile<span class="caret"></span></a>
+                                <ul role="menu" class=" dropdown-menu">
+                                      <li class="menu-item animate-dropdown">
+                                              <a title="ShowProfile" routerLink="/profile">Show Profile</a>
+                                          </li>
+                                    <li class="menu-item animate-dropdown">
+                                        <a title="AddtoCart" routerLink="/cart">Show Cart</a>
+                                    </li>
+                                    <li class="menu-item animate-dropdown">
+                                      <a title="orderHistory" routerLink="/orderHistory">Order History</a>
+                                  </li>
+                                    
+                                </ul>
+                                <!-- .dropdown-menu -->
+                            </li>
+                          
+                            <li *ngIf="id == ''" class="menu-item animate-dropdown">
+                              <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
+                          </li>
+                          <li *ngIf="id != ''" class="menu-item animate-dropdown">
+                              <a title="Logout" (click)="logout()">Logout</a>
+                          </li>
+                          <hr>
                     <li class="menu-item animate-dropdown" *ngFor="let item of category_arr">
                         <a title="{{item.category_name}}" routerLink="/productByCategory/{{ item.pk_category_id }}">{{item.category_name}}</a>
                     </li>
@@ -176,18 +199,8 @@
                 <!-- ============================================================= End Header Logo ============================================================= -->
                 <div class="handheld-header-links">
                     <ul class="columns-3">
-                        <li *ngIf="id == ''" class="menu-item animate-dropdown">
-                            <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
-                        </li>
-                        <li *ngIf="id != ''" class="menu-item animate-dropdown">
-                            <a title="Logout" (click)="logout()">Logout</a>
-                        </li>
-                        <li class="wishlist"  *ngIf="id != ''">
-                            <a routerLink="/showWishlist" class="nav-link">
-                                <i class="tm tm-favorites" style="color: red;"></i>
-                                <span *ngIf="wishlist_arr" id="top-cart-wishlist-count" class="value">{{ wishlist_arr.length }}</span>
-                            </a>
-                        </li>
+                        
+                        
                         
                     </ul>
                     <!-- .columns-3 -->
@@ -205,7 +218,30 @@
                         <div class="handheld-navigation-menu">
                             <span class="tmhm-close">Close</span>
                             <ul id="menu-departments-menu-1" class="nav">
-                                
+                                    <li *ngIf="id != ''" class="menu-item menu-item-has-children animate-dropdown dropdown">
+                                            <a  data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" href="#">Profile<span class="caret"></span></a>
+                                            <ul role="menu" class=" dropdown-menu">
+                                                  <li class="menu-item animate-dropdown">
+                                                          <a title="ShowProfile" routerLink="/profile">Show Profile</a>
+                                                      </li>
+                                                <li class="menu-item animate-dropdown">
+                                                    <a title="AddtoCart" routerLink="/cart">Show Cart</a>
+                                                </li>
+                                                <li class="menu-item animate-dropdown">
+                                                  <a title="orderHistory" routerLink="/orderHistory">Order History</a>
+                                              </li>
+                                                
+                                            </ul>
+                                            <!-- .dropdown-menu -->
+                                        </li>
+                                      
+                                        <li *ngIf="id == ''" class="menu-item animate-dropdown">
+                                          <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
+                                      </li>
+                                      <li *ngIf="id != ''" class="menu-item animate-dropdown">
+                                          <a title="Logout" (click)="logout()">Logout</a>
+                                      </li>
+                                      <hr>
                                 <li class="menu-item animate-dropdown" *ngFor="let item of category_arr">
                                     <a title="{{item.category_name}}" routerLink="/productByCategory/{{ item.pk_category_id }}">{{item.category_name}}</a>
                                 </li>
@@ -228,6 +264,12 @@
                         <!-- .widget -->
                     </div>
                     <!-- .site-search -->
+                   
+                            <a  *ngIf="id != ''" routerLink="/showWishlist" class="nav-link">
+                                <i class="tm tm-favorites" style="color: red;"></i>
+                                <span *ngIf="wishlist_arr" id="top-cart-wishlist-count" class="value">{{ wishlist_arr.length }}</span>
+                            </a>
+                     
                     <a class="handheld-header-cart-link has-icon" routerLink="/cart" title="View your shopping cart" *ngIf="id != ''">
                         <i class="tm tm-shopping-bag"></i>
                         <span class="count">{{cart_arr.length}}</span>
