@@ -141,7 +141,10 @@
                         <i class="tm tm-shopping-bag"></i>
                         <span class="count">{{cart_arr.length }}</span>
                         <span class="amount">
-                            <span class="price-label">Your Cart</span>&#8377; {{ grandTotal }}</span>
+                            <span class="price-label">Your Cart</span>
+                            <span *ngIf="cart_arr.length > 0">&#8377; {{ grandTotal }}</span>
+                            <span class="price-label" *ngIf="cart_arr.length == 0">is Empty</span>
+                        </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-mini-cart">
                         <li>
