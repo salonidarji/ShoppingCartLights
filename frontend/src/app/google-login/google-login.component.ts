@@ -4,7 +4,7 @@ declare const gapi: any;
 @Component({
   selector: "app-google-login",
   template:
-    '<button class="btn btn-primary" id="googleBtn">Google Sign-In</button>'
+    '<button class="btn btn-danger" id="googleBtn"><i class="fa fa-google"></i> Sign in</button>'
 })
 export class GoogleLoginComponent implements AfterViewInit {
   private clientId: string =
