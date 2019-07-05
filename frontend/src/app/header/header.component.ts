@@ -9,6 +9,7 @@ import { ProductServiceService } from "../services/product-service.service";
 import { WishlistServiceService } from "../services/wishlist-service.service";
 import { Wishlist } from "../models/wishlist";
 import { FormGroup, FormBuilder } from "@angular/forms";
+declare const gapi: any;
 
 @Component({
   selector: "app-header",
@@ -18,6 +19,17 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 export class HeaderComponent implements OnInit {
   flag: string;
   id: string;
+
+  private clientId: string =
+    "409167539692-4eqnaq2jd1itl211gsgh3m2k7i02aefa.apps.googleusercontent.com";
+
+  private scope = [
+    "profile",
+    "email",
+    "https://www.googleapis.com/auth/plus.me",
+    "https://www.googleapis.com/auth/contacts.readonly",
+    "https://www.googleapis.com/auth/admin.directory.user.readonly"
+  ].join(" ");
 
   searchForm: FormGroup;
 
@@ -139,12 +151,25 @@ export class HeaderComponent implements OnInit {
       search_category: [""]
     });
   }
-
+  public auth2: any;
   logout(): void {
     console.log("Logout");
     this._authService.logout();
 
-    window.location.href = "/";
+    let that = this;
+
+    gapi.load("auth2", function() {
+      that.auth2 = gapi.auth2.init({
+        client_id: that.clientId,
+        cookiepolicy: "single_host_origin",
+        scope: that.scope
+      });
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function() {
+        console.log("User signed out.");
+      });
+      window.location.href = "/";
+    });
   }
 
   deleteItem(pk_cart_id) {

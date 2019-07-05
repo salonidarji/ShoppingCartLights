@@ -50,7 +50,9 @@ export class OrderHistoryComponent implements OnInit {
   deleteOrder(id) {
     this._order.deleteOrder(id).subscribe((data: any) => {
       this._orderDetail.deleteOrderDetail(id).subscribe((data: any) => {
-        window.location.href = "/orderHistory";
+        this._order.deleteOrder(id).subscribe((data: any) => {
+          window.location.href = "/orderHistory";
+        });
       });
     });
   }

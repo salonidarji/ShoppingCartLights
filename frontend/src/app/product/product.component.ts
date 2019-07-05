@@ -83,7 +83,7 @@ export class ProductComponent implements OnInit {
         }
       );
     } else {
-      alert("please Do Login first...!!!");
+      this.router.navigate(["/loginSignup"]);
     }
   }
 

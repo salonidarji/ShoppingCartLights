@@ -152,7 +152,7 @@ export class CheckoutComponent implements OnInit {
       image: "../../assets/images/custom/logo.png",
       //order_id: "order_9A33XWu170gUtm", //Order ID is generated as Orders API has been implemented. Refer the Checkout form table given below
       handler: function(response) {
-        alert(response.razorpay_payment_id);
+        // alert(response.razorpay_payment_id);
         this.payId = response.razorpay_payment_id;
         window.location.href = `/paySuccess/${response.razorpay_payment_id}`;
       },

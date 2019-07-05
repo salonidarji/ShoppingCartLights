@@ -75,12 +75,14 @@
                                                 </p>
                                               <p class="form-row">
                                                   <input class="woocommerce-Button button" type="submit" id="loginClicked" value="Login" name="login">
-                                                  
+                                                 
                                               </p>
                                               <p class="woocommerce-LostPassword lost_password">
                                                   <a routerLink="/forgotPassword">Lost your password?</a>
                                               </p>
                                           </form>
+                                          <button type="button" class="btn" (click)="submitLogin();">Login with facebook</button>
+                                          <app-google-login>Google Login...!!!</app-google-login>
                                           <!-- .woocommerce-form-login -->
                                       </div>
                                       <!-- .col-1 -->

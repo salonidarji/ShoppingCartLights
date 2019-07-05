@@ -41,7 +41,7 @@
               <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
           </li>
           <li *ngIf="id != ''" class="menu-item animate-dropdown">
-              <a title="Logout" (click)="logout()">Logout</a>
+              <a title="Logout" (click)="logout()" id="googleSignout">Logout</a>
           </li>
            
            
@@ -91,7 +91,7 @@
                               <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
                           </li>
                           <li *ngIf="id != ''" class="menu-item animate-dropdown">
-                              <a title="Logout" (click)="logout()">Logout</a>
+                              <a title="Logout" (click)="logout()" id="googleSignout">Logout</a>
                           </li>
                           <hr>
                     <li class="menu-item animate-dropdown" *ngFor="let item of category_arr">
@@ -242,7 +242,7 @@
                                           <a title="Login/Register" routerLink="/loginSignup"><i class="tm tm-login-register"></i>Register or Sign in</a>
                                       </li>
                                       <li *ngIf="id != ''" class="menu-item animate-dropdown">
-                                          <a title="Logout" (click)="logout()">Logout</a>
+                                          <a title="Logout" id="googleSignout" (click)="logout()">Logout</a>
                                       </li>
                                       <hr>
                                 <li class="menu-item animate-dropdown" *ngFor="let item of category_arr">
