@@ -111,8 +111,7 @@ export class DashboardComponent implements OnInit {
               this.date.getDate() - 4,
               this.date.getDate() - 3,
               this.date.getDate() - 2,
-              this.date.getDate() - 1,
-              this.date.getDate()
+              this.date.getDate() - 1
             ],
             datasets: [
               {

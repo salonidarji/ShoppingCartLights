@@ -12,8 +12,8 @@ var payment = {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "akshay.rexontechnologies@gmail.com", // generated ethereal user
-        pass: "Rexon@Designer" // generated ethereal password
+        user: "salonidarji3335@gmail.com", // generated ethereal user
+        pass: "1941333lavishka" // generated ethereal password
       },
       tls: {
         rejectUnauthorized: false

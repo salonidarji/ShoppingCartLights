@@ -27,6 +27,7 @@ import { PaySuccessComponent } from "./pay-success/pay-success.component";
 import { FaqComponent } from "./faq/faq.component";
 import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 import { GoogleLoginComponent } from './google-login/google-login.component';
+import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { GoogleLoginComponent } from './google-login/google-login.component';
     PaySuccessComponent,
     FaqComponent,
     PrivacyPolicyComponent,
-    GoogleLoginComponent
+    GoogleLoginComponent,
+    FacebookLoginComponent
   ],
   imports: [
     BrowserModule,
